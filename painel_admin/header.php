@@ -28,4 +28,5 @@ if($_SESSION['access_level'] != 'Administrador'){
 -->
 <link href="../assets/css/darkmode.css" rel="stylesheet">
 <link href="../assets/css/main.css" rel="stylesheet">
+<link href="../assets/css/scrollbar.css" rel="stylesheet">
 </head>
