@@ -8,16 +8,16 @@
  =========================================================
  */
 .theme-light {
-  --color-primary: #0060df;
-  --color-secondary: #fbfbfe;
-  --color-posts: aquamarine;
-  --color-search: rgba(0, 0, 0, 0.616);
-  --color-accent: #fd6f53;
-  --font-color: #000000;
+  --color-primary: #33cabb;
+  --color-secondary: #1A1B25;
+  --color-posts: #123;
+  --color-search: #fff;
+  --color-accent: #12cdea;
+  --font-color: #ffffff;
 }
 .theme-dark {
   --color-primary: #33cabb;
-  --color-secondary: #1A1B25;
+  --color-secondary: rgb(4, 26, 54);
   --color-posts: #123;
   --color-search: #fff;
   --color-accent: #12cdea;

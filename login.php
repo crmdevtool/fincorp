@@ -4,6 +4,7 @@ include('db/connection.php');
 
 if(empty($_POST['username']) || empty($_POST['password'])){
   header('Location: index.php');
+  $_SESSION['error_vazio'] = true;
   exit();
 }
 

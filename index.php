@@ -34,13 +34,7 @@
             	</div>
             	<a href="#">Esqueceu a senha?</a>
 							<input type="submit" class="btn" value="Login">
-							<?php
-								if(isset($_SESSION['error_authentication'])): ?>
-								<p><small> Usuário ou senha inválidos! </small></p>
-							<?php
-								endif;
-								unset($_SESSION['error_authentication']);
-							?>
+							<?php include("error.php") ?>
             </form>
         </div>
     </div>
