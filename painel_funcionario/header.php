@@ -29,4 +29,5 @@ if($_SESSION['access_level'] != 'Funcionário'){
 <link href="../assets/css/darkmode.css" rel="stylesheet">
 <link href="../assets/css/main.css" rel="stylesheet">
 <link href="../assets/css/scrollbar.css" rel="stylesheet">
+<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
 </head>

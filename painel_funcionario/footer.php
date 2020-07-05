@@ -39,4 +39,20 @@
 </div>
 <script type="text/javascript" src="../assets/js/darkmode.js"></script>
 <script type="text/javascript" src="../assets/js/main.js"></script>
+<script type="text/javascript" src="../assets/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.dataTables.js"></script>
+
+  <script>
+  $(document).ready(function(){
+      $('#minhaTabela').DataTable({
+        	"language": {
+                "lengthMenu": "Mostrando _MENU_ registros por página",
+                "zeroRecords": "Nada encontrado",
+                "info": "Mostrando página _PAGE_ de _PAGES_",
+                "infoEmpty": "Nenhum registro disponível",
+                "infoFiltered": "(filtrado de _MAX_ registros no total)"
+            }
+        });
+  });
+  </script>
 </html>

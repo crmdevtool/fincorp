@@ -11137,7 +11137,8 @@ button,
 }
 
 .app-footer {
-  height: 60px
+  height: 60px;
+  background: var(--color-secondary);
 }
 
 .app-footer .app-footer__inner {

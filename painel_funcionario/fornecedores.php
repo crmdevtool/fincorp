@@ -139,20 +139,14 @@ Add produtos
 <li>
     <a href="#" class="mm-active">
         <i class="metismenu-icon pe-7s-shopbag"></i>
-        Produtos
+        Produtos-OS
         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
     </a>
     <ul>
         <li>
-            <a href="add-products.php">
-                <i class="metismenu-icon"></i>
-                Adicionar Produto
-            </a>
-        </li>
-        <li>
             <a href="products.php">
                 <i class="metismenu-icon">
-                </i>Produtos em estoque
+                </i>Produtos
             </a>
         </li>
         <li>
@@ -181,20 +175,14 @@ Add produtos
 <li>
     <a href="#">
         <i class="metismenu-icon pe-7s-users"></i>
-        Clientes
+        Clientes-OS
         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
     </a>
     <ul>
         <li>
-            <a href="add-clientes.php">
-                <i class="metismenu-icon">
-                </i>Adicionar Cliente
-            </a>
-        </li>
-        <li>
             <a href="clientes.php">
                 <i class="metismenu-icon">
-                </i>Clientes cadastrado
+                </i>Clientes
             </a>
         </li>
         <li>
@@ -249,16 +237,168 @@ Add produtos
 <div class="app-main__inner">
 <div class="app-page-title">
 <div class="page-title-wrapper">
+     <!-- Body -->
+     <body>
+    <div class="main-card mb-3 card">
+<div class="card-body">
+<table style="width: 100%;" id="minhaTabela" class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid" aria-describedby="example_info">
+<thead>
+<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 142.2px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nome do cliente</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 225.2px;" aria-label="Position: activate to sort column ascending">Endereço</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 101.2px;" aria-label="Office: activate to sort column ascending">E-mail</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 52.2px;" aria-label="Age: activate to sort column ascending">CPF</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 105.2px;" aria-label="Start date: activate to sort column ascending">Telefone</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 79.2px;" aria-label="Salary: activate to sort column ascending">Ação</th></tr>
+</thead>
+<tbody>
+<tr role="row" class="odd">
+    <td class="sorting_1 dtr-control" tabindex="0">Airi Satou</td>
+    <td>Rua Jurandir Velame 478</td>
+    <td>airi@gmail.com</td>
+    <td>86185646573</td>
+    <td>7399989-2369</td>
+    <td><div class="widget-content-right">
+    <button class="border-0 btn-transition btn btn-outline-success">
+        <i class="fa fa-edit"></i>
+    </button>
+    <button class="border-0 btn-transition btn btn-outline-danger">
+        <i class="fa fa-trash-alt"></i>
+    </button>
+</div></td>
+</tr><tr role="row" class="even">
+    <td class="sorting_1 dtr-control" tabindex="0">Angelica Ramos</td>
+    <td>Rua Humberto Campos 80</td>
+    <td>angelica@gmail.com</td>
+    <td>56235698576</td>
+    <td>739985-63219</td>
+    <td><div class="widget-content-right">
+    <button class="border-0 btn-transition btn btn-outline-success">
+        <i class="fa fa-edit"></i>
+    </button>
+    <button class="border-0 btn-transition btn btn-outline-danger">
+        <i class="fa fa-trash-alt"></i>
+    </button>
+</div></td>
+</tr><tr role="row" class="odd">
+    <td class="sorting_1 dtr-control" tabindex="0">Ashton Cox</td>
+    <td>Junior Technical Author</td>
+    <td>San Francisco</td>
+    <td>66</td>
+    <td>2009/01/12</td>
+    <td><div class="widget-content-right">
+    <button class="border-0 btn-transition btn btn-outline-success">
+        <i class="fa fa-edit"></i>
+    </button>
+    <button class="border-0 btn-transition btn btn-outline-danger">
+        <i class="fa fa-trash-alt"></i>
+    </button>
+</div></td>
+</tr><tr role="row" class="even">
+    <td class="sorting_1 dtr-control" tabindex="0">Bradley Greer</td>
+    <td>Software Engineer</td>
+    <td>London</td>
+    <td>41</td>
+    <td>2012/10/13</td>
+    <td><div class="widget-content-right">
+    <button class="border-0 btn-transition btn btn-outline-success">
+        <i class="fa fa-edit"></i>
+    </button>
+    <button class="border-0 btn-transition btn btn-outline-danger">
+        <i class="fa fa-trash-alt"></i>
+    </button>
+</div></td>
+</tr><tr role="row" class="odd">
+    <td class="sorting_1 dtr-control" tabindex="0">Brenden Wagner</td>
+    <td>Software Engineer</td>
+    <td>San Francisco</td>
+    <td>28</td>
+    <td>2011/06/07</td>
+    <td><div class="widget-content-right">
+    <button class="border-0 btn-transition btn btn-outline-success">
+        <i class="fa fa-edit"></i>
+    </button>
+    <button class="border-0 btn-transition btn btn-outline-danger">
+        <i class="fa fa-trash-alt"></i>
+    </button>
+</div></td>
+</tr><tr role="row" class="even">
+    <td class="sorting_1 dtr-control" tabindex="0">Brielle Williamson</td>
+    <td>Integration Specialist</td>
+    <td>New York</td>
+    <td>61</td>
+    <td>2012/12/02</td>
+    <td><div class="widget-content-right">
+    <button class="border-0 btn-transition btn btn-outline-success">
+        <i class="fa fa-edit"></i>
+    </button>
+    <button class="border-0 btn-transition btn btn-outline-danger">
+        <i class="fa fa-trash-alt"></i>
+    </button>
+</div></td>
+</tr><tr role="row" class="odd">
+    <td class="sorting_1 dtr-control" tabindex="0">Bruno Nash</td>
+    <td>Software Engineer</td>
+    <td>London</td>
+    <td>38</td>
+    <td>2011/05/03</td>
+    <td><div class="widget-content-right">
+    <button class="border-0 btn-transition btn btn-outline-success">
+        <i class="fa fa-edit"></i>
+    </button>
+    <button class="border-0 btn-transition btn btn-outline-danger">
+        <i class="fa fa-trash-alt"></i>
+    </button>
+</div></td>
+</tr><tr role="row" class="even">
+    <td class="sorting_1 dtr-control" tabindex="0">Caesar Vance</td>
+    <td>Pre-Sales Support</td>
+    <td>New York</td>
+    <td>21</td>
+    <td>2011/12/12</td>
+    <td><div class="widget-content-right">
+    <button class="border-0 btn-transition btn btn-outline-success">
+        <i class="fa fa-edit"></i>
+    </button>
+    <button class="border-0 btn-transition btn btn-outline-danger">
+        <i class="fa fa-trash-alt"></i>
+    </button>
+</div></td>
+</tr><tr role="row" class="odd">
+    <td class="sorting_1 dtr-control" tabindex="0">Cara Stevens</td>
+    <td>Sales Assistant</td>
+    <td>New York</td>
+    <td>46</td>
+    <td>2011/12/06</td>
+    <td><div class="widget-content-right">
+    <button class="border-0 btn-transition btn btn-outline-success">
+        <i class="fa fa-edit"></i>
+    </button>
+    <button class="border-0 btn-transition btn btn-outline-danger">
+        <i class="fa fa-trash-alt"></i>
+    </button>
+</div></td>
+</tr><tr role="row" class="even">
+    <td class="sorting_1 dtr-control" tabindex="0">Cedric Kelly</td>
+    <td>Senior Javascript Developer</td>
+    <td>Edinburgh</td>
+    <td>22</td>
+    <td>2012/03/29</td>
+    <td><div class="widget-content-right">
+    <button class="border-0 btn-transition btn btn-outline-success">
+        <i class="fa fa-edit"></i>
+    </button>
+    <button class="border-0 btn-transition btn btn-outline-danger">
+        <i class="fa fa-trash-alt"></i>
+    </button>
+</div></td>
+</tr></tbody>
+<tfoot>
+<tr><th rowspan="1" colspan="1">Nome do cliente</th><th rowspan="1" colspan="1">Endereço</th><th rowspan="1" colspan="1">E-mail</th><th rowspan="1" colspan="1">CPF</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Ação</th></tr>
+</tfoot>
+</table></div></div>
+</div>
+</div>
+
+  </body>
+<!-- /Body -->
 </div>   
 </div>
 </div>
-<!-- Body -->
-<body>
-
-
-
-</body>
-<!-- /Body -->
 <?php
 require_once("footer.php");
 ?>

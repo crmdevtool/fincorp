@@ -139,20 +139,14 @@ Add produtos
 <li>
     <a href="#">
         <i class="metismenu-icon pe-7s-shopbag"></i>
-        Produtos
+        Produtos-OS
         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
     </a>
     <ul>
         <li>
-            <a href="add-products.php">
-                <i class="metismenu-icon"></i>
-                Adicionar Produto
-            </a>
-        </li>
-        <li>
             <a href="products.php">
                 <i class="metismenu-icon">
-                </i>Produtos em estoque
+                </i>Produtos
             </a>
         </li>
         <li>
@@ -181,20 +175,14 @@ Add produtos
 <li>
     <a href="#">
         <i class="metismenu-icon pe-7s-users"></i>
-        Clientes
+        Clientes-OS
         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
     </a>
     <ul>
         <li>
-            <a href="add-clientes.php">
-                <i class="metismenu-icon">
-                </i>Adicionar Cliente
-            </a>
-        </li>
-        <li>
             <a href="clientes.php">
                 <i class="metismenu-icon">
-                </i>Clientes cadastrado
+                </i>Clientes
             </a>
         </li>
         <li>

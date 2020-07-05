@@ -285,16 +285,69 @@ Relatório
 <div class="app-main__inner">
 <div class="app-page-title">
 <div class="page-title-wrapper">
+<!-- Body -->
+<body>
+<div class="card-body">
+<h3>Novo Cliente</h3>
+<form class="">
+<div class="form-row">
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="nome-cliente" class="">Nome do cliente</label>
+            <input name="nome" id="nome-cliente" placeholder="Nome completo do cliente" type="name" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="cpf-cliente" class="">CPF/RG</label>
+            <input name="cpf" id="cpf-cliente" placeholder="Digite CPF ou RG do cliente..." type="name" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="contato-cliente" class="">Telefone</label>
+            <input name="contato" id="contato-cliente" placeholder="Número para contato" type="name" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="email-cliente" class="">Email</label>
+            <input name="email" id="email-cliente" placeholder="E-mail do cliente" type="email" class="form-control">
+        </div>
+    </div>
+</div>
+<div class="position-relative form-group">
+    <label for="exampleAddress" class="">Endereço</label>
+    <input name="address" id="exampleAddress" placeholder="Rua Bairro Nº" type="text" class="form-control">
+</div>
+<div class="form-row">
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="exampleCity" class="">Cidade</label>
+            <input name="city" id="exampleCity" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="position-relative form-group">
+            <label for="exampleState" class="">Estado</label>
+            <input name="state" id="exampleState" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="position-relative form-group">
+            <label for="exampleZip" class="">CEP</label>
+            <input name="zip" id="exampleZip" type="text" class="form-control">
+        </div>
+    </div>
+</div>
+<button class="mt-2 btn btn-primary">Cadastrar</button>
+</form>
+</div>
+</body>
+<!-- /Body -->
 </div>   
 </div>
 </div>
-<!-- Body -->
-<body>
-
-
-
-</body>
-<!-- /Body -->
 <?php
 require_once("footer.php");
 ?>
