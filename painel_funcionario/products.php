@@ -50,7 +50,8 @@ Caixa
 </a>
 </li>
 <li class="btn-group nav-item">
-<a href="add-products.php" class="nav-link">
+<a href="add-products.php" class="nav-link" data-toggle="modal"
+data-target=".bd-example-modal-lg">
 <i class="nav-link-icon fa fa-shopping-bag"></i>
 Add produtos
 </a>
@@ -242,7 +243,7 @@ Add produtos
      <body>
 
      <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal"
-data-target=".bd-example-modal-lg">Novo cliente</button>
+data-target=".bd-example-modal-lg">Cadastrar novo produto</button>
     <div class="main-card mb-3 card">
 <div class="card-body">
 <table style="width: 100%;" id="minhaTabela" class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid" aria-describedby="example_info">

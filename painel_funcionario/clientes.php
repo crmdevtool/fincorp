@@ -50,7 +50,8 @@ Caixa
 </a>
 </li>
 <li class="btn-group nav-item">
-<a href="add-products.php" class="nav-link">
+<a href="products.php" class="nav-link" data-toggle="modal"
+data-target=".bd-example-modal-lg-produto">
 <i class="nav-link-icon fa fa-shopping-bag"></i>
 Add produtos
 </a>
@@ -139,20 +140,14 @@ Add produtos
 <li>
     <a href="#">
         <i class="metismenu-icon pe-7s-shopbag"></i>
-        Produtos
+        Produtos-OS
         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
     </a>
     <ul>
         <li>
-            <a href="add-products.php">
-                <i class="metismenu-icon"></i>
-                Adicionar Produto
-            </a>
-        </li>
-        <li>
             <a href="products.php">
                 <i class="metismenu-icon">
-                </i>Produtos em estoque
+                </i>Produtos
             </a>
         </li>
         <li>
@@ -256,6 +251,7 @@ data-target=".bd-example-modal-lg">Novo cliente</button>
 <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 142.2px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nome do cliente</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 225.2px;" aria-label="Position: activate to sort column ascending">Endereço</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 101.2px;" aria-label="Office: activate to sort column ascending">E-mail</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 52.2px;" aria-label="Age: activate to sort column ascending">CPF</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 105.2px;" aria-label="Start date: activate to sort column ascending">Telefone</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 79.2px;" aria-label="Salary: activate to sort column ascending">Ação</th></tr>
 </thead>
 <tbody>
+
 <tr role="row" class="odd">
     <td class="sorting_1 dtr-control" tabindex="0">Airi Satou</td>
     <td>Rua Jurandir Velame 478</td>
@@ -550,6 +546,64 @@ data-target=".bd-example-modal-lg">Novo cliente</button>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal Cadastrar novo Produto -->
+
+<div class="modal fade bd-example-modal-lg-produto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Cadastrar novo produto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form class="">
+<div class="form-row">
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="nome-produto" class="">Nome/Marca do produto</label>
+            <input name="nome" id="nome-produto" placeholder="Nome do produto" type="name" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="codigo-produto" class="">Código</label>
+            <input name="codigo_barra" id="codigo-produto" placeholder="Código de barra" type="name" class="form-control">
+        </div>
+    </div>
+</div>
+<div class="position-relative form-group">
+    <label for="desproduto" class="">Descrição</label>
+    <input name="desproduto" id="desproduto" placeholder="Descrição do produto" type="text" class="form-control">
+</div>
+<div class="form-row">
+    <div class="col-md-2">
+        <div class="position-relative form-group">
+            <label for="valor" class="">Valor</label>
+            <input name="valor" id="valor" placeholder="R$" type="text" class="form-control">
+        </div>
+    </div>
+</div>
+<div class="position-relative row form-group">
+<label for="imagem" class="col-sm-2 col-form-label">Imagem do produto</label>
+<div class="col-sm-10">
+    <input name="imagem" id="imagem" type="file" class="form-control-file">
+    <small class="form-text text-muted">Selecione uma foto do produto.
+    </small>
+</div>
+</div>
+</form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Cadastrar</button>
             </div>
         </div>
     </div>
