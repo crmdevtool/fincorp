@@ -1,5 +1,6 @@
 <?php
 session_start();
+session_id();
 include('db/connection.php');
 
 if(empty($_POST['username']) || empty($_POST['password'])){
@@ -20,9 +21,12 @@ $dado = mysqli_fetch_array($result);
 
 $row = mysqli_num_rows($result);
 
+session_id([ $id_user ]);
+
 if($row > 0){
   $_SESSION['username'] = $username;
   $_SESSION['nome_user'] = $dado["nome"];
+  $_SESSION['id_user'] = $dado["id_user"];
   $_SESSION['access_level'] = $dado["access_level"];
 
   if ($_SESSION['access_level'] == 'Administrador'){

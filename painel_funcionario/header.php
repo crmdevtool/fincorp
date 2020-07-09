@@ -5,6 +5,7 @@ if($_SESSION['access_level'] != 'Funcionário'){
   header('Location: ../index.php');
   exit();
 }
+include('../controller/cadastrar.php');
 ?>
 <!doctype html>
 <html lang="en">

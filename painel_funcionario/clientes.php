@@ -416,62 +416,62 @@ data-target=".bd-example-modal-lg">Novo cliente</button>
                 </button>
             </div>
             <div class="modal-body">
-            <form class="">
+            <form method="POST" action="" class="">
 <div class="form-row">
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="nome-cliente" class="">Nome do cliente</label>
-            <input name="nome" id="nome-cliente" placeholder="Nome completo do cliente" type="name" class="form-control">
+            <input name="txtnome" id="nome-cliente" placeholder="Nome completo do cliente" type="text" class="form-control" required>
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="cpf-cliente" class="">CPF/RG</label>
-            <input name="cpf" id="cpf-cliente" placeholder="Digite CPF ou RG do cliente..." type="name" class="form-control">
+            <input name="txtcpf" id="cpf-cliente" placeholder="Digite CPF ou RG do cliente..." type="text" class="form-control" required>
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="contato-cliente" class="">Telefone</label>
-            <input name="contato" id="contato-cliente" placeholder="Número para contato" type="name" class="form-control">
+            <input name="txttelefone" id="contato-cliente" placeholder="Número para contato" type="text" class="form-control" required>
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="email-cliente" class="">Email</label>
-            <input name="email" id="email-cliente" placeholder="E-mail do cliente" type="email" class="form-control">
+            <input name="txtemail" id="email-cliente" placeholder="E-mail do cliente" type="email" class="form-control">
         </div>
     </div>
 </div>
 <div class="position-relative form-group">
     <label for="exampleAddress" class="">Endereço</label>
-    <input name="address" id="exampleAddress" placeholder="Rua Bairro Nº" type="text" class="form-control">
+    <input name="txtendereco" id="exampleAddress" placeholder="Rua Bairro Nº" type="text" class="form-control" required>
 </div>
 <div class="form-row">
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="exampleCity" class="">Cidade</label>
-            <input name="city" id="exampleCity" type="text" class="form-control">
+            <input name="txtcidade" id="exampleCity" type="text" class="form-control" required>
         </div>
     </div>
     <div class="col-md-4">
         <div class="position-relative form-group">
             <label for="exampleState" class="">Estado</label>
-            <input name="state" id="exampleState" type="text" class="form-control">
+            <input name="txtestado" id="exampleState" type="text" class="form-control" required>
         </div>
     </div>
     <div class="col-md-2">
         <div class="position-relative form-group">
             <label for="exampleZip" class="">CEP</label>
-            <input name="zip" id="exampleZip" type="text" class="form-control">
+            <input name="txtcep" id="exampleZip" type="text" class="form-control" required>
         </div>
     </div>
 </div>
-</form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Salvar</button>
+                <button type="submit" class="btn btn-primary" name="cadastrar-cliente">Salvar</button>
+            </form>
             </div>
         </div>
     </div>
@@ -495,49 +495,49 @@ data-target=".bd-example-modal-lg">Novo cliente</button>
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="nome-cliente" class="">Nome do cliente</label>
-            <input name="nome" id="nome-cliente" placeholder="Nome completo do cliente" type="name" class="form-control">
+            <input name="nome" id="editar-nome" placeholder="Nome completo do cliente" type="name" class="form-control">
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="cpf-cliente" class="">CPF/RG</label>
-            <input name="cpf" id="cpf-cliente" placeholder="Digite CPF ou RG do cliente..." type="name" class="form-control">
+            <input name="cpf" id="editar-cpf" placeholder="Digite CPF ou RG do cliente..." type="name" class="form-control">
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="contato-cliente" class="">Telefone</label>
-            <input name="contato" id="contato-cliente" placeholder="Número para contato" type="name" class="form-control">
+            <input name="contato" id="editar-telefone" placeholder="Número para contato" type="name" class="form-control">
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="email-cliente" class="">Email</label>
-            <input name="email" id="email-cliente" placeholder="E-mail do cliente" type="email" class="form-control">
+            <input name="email" id="editar-email" placeholder="E-mail do cliente" type="email" class="form-control">
         </div>
     </div>
 </div>
 <div class="position-relative form-group">
     <label for="exampleAddress" class="">Endereço</label>
-    <input name="address" id="exampleAddress" placeholder="Rua Bairro Nº" type="text" class="form-control">
+    <input name="address" id="editarAddress" placeholder="Rua Bairro Nº" type="text" class="form-control">
 </div>
 <div class="form-row">
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="exampleCity" class="">Cidade</label>
-            <input name="city" id="exampleCity" type="text" class="form-control">
+            <input name="city" id="editarCity" type="text" class="form-control">
         </div>
     </div>
     <div class="col-md-4">
         <div class="position-relative form-group">
             <label for="exampleState" class="">Estado</label>
-            <input name="state" id="exampleState" type="text" class="form-control">
+            <input name="state" id="editarState" type="text" class="form-control">
         </div>
     </div>
     <div class="col-md-2">
         <div class="position-relative form-group">
             <label for="exampleZip" class="">CEP</label>
-            <input name="zip" id="exampleZip" type="text" class="form-control">
+            <input name="zip" id="editarZip" type="text" class="form-control">
         </div>
     </div>
 </div>
@@ -569,13 +569,13 @@ data-target=".bd-example-modal-lg">Novo cliente</button>
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="nome-produto" class="">Nome/Marca do produto</label>
-            <input name="nome" id="nome-produto" placeholder="Nome do produto" type="name" class="form-control">
+            <input name="nome" id="nome-produto" placeholder="Nome do produto" type="text" class="form-control">
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="codigo-produto" class="">Código</label>
-            <input name="codigo_barra" id="codigo-produto" placeholder="Código de barra" type="name" class="form-control">
+            <input name="codigo_barra" id="codigo-produto" placeholder="Código de barra" type="text" class="form-control">
         </div>
     </div>
 </div>
