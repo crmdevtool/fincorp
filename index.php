@@ -5,6 +5,7 @@
 	<title>Fincorp CRM - Controle de Estoque e venda.</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/index.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="assets/css/toast.css">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -38,6 +39,7 @@
             </form>
         </div>
     </div>
-    <script type="text/javascript" src="assets/js/index.js"></script>
+		<script type="text/javascript" src="assets/js/index.js"></script>
+		<script type="text/javascript" src="assets/js/main.js"></script>
 </body>
 </html>

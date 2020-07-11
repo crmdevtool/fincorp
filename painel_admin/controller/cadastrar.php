@@ -24,6 +24,7 @@ if($row_verify > 0){
   exit();
 }
 
+//CADASTRO DE CLIENTES
 $query = "INSERT into tb_clientes (id_user, nome, documento, endereco, cidade, estado, cep, telefone, email, dt_registro) VALUES ('$id_user','$nome', '$documento', '$endereco', '$cidade', '$estado', '$cep', '$telefone', '$email', NOW() )";
 
 $result = mysqli_query($conn, $query);

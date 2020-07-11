@@ -20,11 +20,13 @@ $dado = mysqli_fetch_array($result);
 $row = mysqli_num_rows($result);
 
 session_id([ $id_user ]);
+session_id([ $id_funcionario ]);
 
 if($row > 0){
   $_SESSION['username'] = $username;
   $_SESSION['nome_user'] = $dado["nome"];
   $_SESSION['id_user'] = $dado["id_user"];
+  $_SESSION['id_funcionario'] = $dado["id_funcionario"];
   $_SESSION['access_level'] = $dado["access_level"];
 
   if ($_SESSION['access_level'] == 'Administrador'){

@@ -1,13 +1,17 @@
 <?php
 	if(isset($_SESSION['error_authentication'])): ?>
-	<p><small> Usuário ou senha inválidos! </small></p>
+	<div id="toast-container" class="toast-top-right">
+	<div class="toast toast-error" aria-live="assertive" style="">
+	<div class="toast-message">Usuário ou senha inválidos!</div></div></div>
 <?php
 endif;
 	unset($_SESSION['error_authentication']);
 ?>
 <?php
 	if(isset($_SESSION['error_vazio'])): ?>
-	<p><small> Digite o seu Usuário e senha! </small></p>
+	<div id="toast-container" class="toast-top-right">
+	<div class="toast toast-warning" aria-live="assertive" style="">
+	<div class="toast-message">Digite o seu Usuário e senha!</div></div></div>
 <?php
 endif;
 	unset($_SESSION['error_vazio']);
