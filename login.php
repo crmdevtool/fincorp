@@ -12,13 +12,11 @@ if(empty($_POST['username']) || empty($_POST['password'])){
 $username = mysqli_real_escape_string($conn, $_POST['username']);
 $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-$query = "SELECT * FROM usuarios WHERE username = '{$username}' AND password 
+$query = "SELECT * FROM usuarios WHERE usuarios.username = '{$username}' AND usuarios.password 
       = '{$password}' ";
 
 $result = mysqli_query($conn, $query);
-
 $dado = mysqli_fetch_array($result);
-
 $row = mysqli_num_rows($result);
 
 session_id([ $id_user ]);
@@ -33,14 +31,10 @@ if($row > 0){
   header('Location: painel_admin/painel_admin.php');
   exit();
   }
-  if ($_SESSION['access_level'] == 'Suporte'){
-    header('Location: painel_system/painel_system.php');
-    exit();
-    }
-  //if ($_SESSION['access_level'] == 'Funcionário'){
-    header('Location: painel_funcionario/painel_funcionario.php');
-    //exit();
-    //}
+  if ($_SESSION['access_level'] == 'Funcionário'){
+  header('Location: painel_funcionario/painel_funcionario.php');
+  exit();
+  }
 
   exit();
 }else{

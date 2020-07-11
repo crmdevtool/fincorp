@@ -39,9 +39,9 @@
 </div>
 <script type="text/javascript" src="../assets/js/darkmode.js"></script>
 <script type="text/javascript" src="../assets/js/main.js"></script>
-<script type="text/javascript" src="../assets/js/message.js"></script>
 <script type="text/javascript" src="../assets/js/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="../assets/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.mask.min.js"></script>
 
   <script>
   $(document).ready(function(){

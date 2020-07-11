@@ -5,7 +5,7 @@ if($_SESSION['access_level'] != 'Funcionário'){
   header('Location: ../index.php');
   exit();
 }
-include('../controller/cadastrar.php');
+include('controller/cadastrar.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -31,4 +31,5 @@ include('../controller/cadastrar.php');
 <link href="../assets/css/main.css" rel="stylesheet">
 <link href="../assets/css/scrollbar.css" rel="stylesheet">
 <link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 </head>

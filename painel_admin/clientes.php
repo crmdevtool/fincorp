@@ -1,106 +1,6 @@
 <?php
 require_once("header.php");
-?>
-<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-<div class="app-header header-shadow">
-<div class="app-header__logo">
-<div class="logo-titulo"><img class="img-logo" src="../assets/images/crm.png">Fincorp</div>
-<div class="header__pane ml-auto">
-<div>
-<button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
-<span class="hamburger-box">
-<span class="hamburger-inner"></span>
-</span>
-</button>
-</div>
-</div>
-</div>
-<div class="app-header__mobile-menu">
-<div>
-<button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
-<span class="hamburger-box">
-<span class="hamburger-inner"></span>
-</span>
-</button>
-</div>
-</div>
-<div class="app-header__menu">
-<span>
-<button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
-<span class="btn-icon-wrapper">
-<i class="fa fa-ellipsis-v fa-w-6"></i>
-</span>
-</button>
-</span>
-</div>    
-<div class="app-header__content">
-<div class="app-header-left">
-<div class="search-wrapper">
-<div class="input-holder">
-<input type="text" class="search-input" placeholder="Procurar...">
-<button class="search-icon"><span></span></button>
-</div>
-<button class="close"></button>
-</div>
-<ul class="header-menu nav">
-<li class="nav-item">
-<a href="javascript:void(0);" class="nav-link">
-<i class="nav-link-icon fa fa-cash-register"> </i>
-Caixa
-</a>
-</li>
-<li class="btn-group nav-item">
-<a href="products.php" class="nav-link" data-toggle="modal"
-data-target=".bd-example-modal-lg-produto">
-<i class="nav-link-icon fa fa-shopping-bag"></i>
-Add produtos
-</a>
-</li>
-<li class="dropdown nav-item">
-<a href="javascript:void(0);" class="nav-link">
-<i class="nav-link-icon fa fa-chart-line"></i>
-Relatório
-</a>
-</li>
-</ul>        </div>
-<div class="app-header-right">
-<div class="header-btn-lg pr-0">
-<div class="widget-content p-0">
-<div class="widget-content-wrapper">
-<div class="widget-content-left">
-    <div class="btn-group">
-        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-            <img width="42" class="rounded-circle" src="../assets/images/avatars/1.jpg" alt="">
-            <i class="fa fa-angle-down ml-2 opacity-8"></i>
-        </a>
-        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-        <a href="perfil.php"><button type="button" tabindex="0" class="dropdown-item">Perfil</button></a>
-            <button type="button" tabindex="0" class="dropdown-item">Configurações</button>
-            <h6 tabindex="-1" class="dropdown-header">Central de ajuda</h6>
-            <button type="button" tabindex="0" class="dropdown-item">Ajuda</button>
-            <div tabindex="-1" class="dropdown-divider"></div>
-            <button type="button" tabindex="0" class="dropdown-item">Sair</button>
-        </div>
-    </div>
-</div>
-<div class="widget-content-left  ml-3 header-user-info">
-    <div class="widget-heading">
-        Fincorp - CRM
-    </div>
-    <div class="widget-subheading">
-        Administrador(a) do sistema
-    </div>
-</div>
-<div class="widget-content-right header-user-info ml-3">
-    <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
-        <i class="fa text-white fa-calendar pr-1 pl-1"></i>
-    </button>
-</div>
-</div>
-</div>
-</div>        </div>
-</div>
-</div>        
+?>        
 <div class="app-main">
 <div class="app-sidebar sidebar-shadow">
 <div class="app-header__logo">
@@ -275,22 +175,128 @@ Relatório
 <div class="app-page-title">
 <div class="page-title-wrapper">
 </div>   
-</div>
-</div>
-</div>
-</div>
-</div>
 <!-- Body -->
 <body>
 
-<!-- modal Cadastrar novo Produto -->
+<button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal"
+data-target=".bd-example-modal-lg">Novo cliente</button>
+    <div class="main-card mb-3 card">
+<div class="card-body">
+<table style="width: 100%;" id="minhaTabela" class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid" aria-describedby="example_info">
+<thead>
+<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 142.2px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nome do cliente</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 225.2px;" aria-label="Position: activate to sort column ascending">Endereço</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 101.2px;" aria-label="Office: activate to sort column ascending">E-mail</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 52.2px;" aria-label="Age: activate to sort column ascending">CPF</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 105.2px;" aria-label="Start date: activate to sort column ascending">Telefone</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 79.2px;" aria-label="Salary: activate to sort column ascending">Ação</th></tr>
+</thead>
+<tbody>
 
-<div class="modal fade bd-example-modal-lg-produto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<tr role="row" class="odd">
+    <td class="sorting_1 dtr-control" tabindex="0">Airi Satou</td>
+    <td>Rua Jurandir Velame 478</td>
+    <td>airi@gmail.com</td>
+    <td>86185646573</td>
+    <td>7399989-2369</td>
+    <td><div class="widget-content-right">
+    <button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
+    data-target=".bd-example-modal-lg-editar">
+        <i class="fa fa-edit"></i>
+    </button>
+    <button class="border-0 btn-transition btn btn-outline-danger">
+        <i class="fa fa-trash-alt"></i>
+    </button>
+</div></td>
+</tr>
+
+</tbody>
+<tfoot>
+<tr><th rowspan="1" colspan="1">Nome do cliente</th><th rowspan="1" colspan="1">Endereço</th><th rowspan="1" colspan="1">E-mail</th><th rowspan="1" colspan="1">CPF</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Ação</th></tr>
+</tfoot>
+</table></div></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- modal Cadastrar -->
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Cadastrar novo produto</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Novo cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form method="POST" action="" class="">
+<div class="form-row">
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="nome-cliente" class="">Nome do cliente</label>
+            <input name="txtnome" id="nome-cliente" placeholder="Nome completo do cliente" type="text" class="form-control" required>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="cpf_cliente" class="">CPF</label>
+            <input name="txtcpf" id="cpf-cliente" placeholder="Digite o CPF do cliente..." type="text" class="form-control" required>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="telefone_cliente" class="">Telefone</label>
+            <input name="txttelefone" id="telefone-cliente" placeholder="Número para contato" type="text" class="form-control" required>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="email_cliente" class="">Email</label>
+            <input name="txtemail" id="email-cliente" placeholder="E-mail do cliente" type="email" class="form-control">
+        </div>
+    </div>
+</div>
+<div class="position-relative form-group">
+    <label for="exampleAddress" class="">Endereço</label>
+    <input name="txtendereco" id="exampleAddress" placeholder="Rua Bairro Nº" type="text" class="form-control" required>
+</div>
+<div class="form-row">
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="exampleCity" class="">Cidade</label>
+            <input name="txtcidade" id="exampleCity" type="text" class="form-control" required>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="position-relative form-group">
+            <label for="exampleState" class="">Estado</label>
+            <input name="txtestado" id="exampleState" type="text" class="form-control" required>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="position-relative form-group">
+            <label for="exampleZip" class="">CEP</label>
+            <input name="txtcep" id="cep-cliente" type="text" class="form-control" required>
+        </div>
+    </div>
+</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" name="cadastrar-cliente">Salvar</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal Editar -->
+
+<div class="modal fade bd-example-modal-lg-editar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Editar Cadastro do cliente</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -300,42 +306,58 @@ Relatório
 <div class="form-row">
     <div class="col-md-6">
         <div class="position-relative form-group">
-            <label for="nome-produto" class="">Nome/Marca do produto</label>
-            <input name="nome" id="nome-produto" placeholder="Nome do produto" type="name" class="form-control">
+            <label for="nome-cliente" class="">Nome do cliente</label>
+            <input name="nome" id="editar-nome" placeholder="Nome completo do cliente" type="name" class="form-control">
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
-            <label for="codigo-produto" class="">Código</label>
-            <input name="codigo_barra" id="codigo-produto" placeholder="Código de barra" type="name" class="form-control">
+            <label for="cpf-cliente" class="">CPF</label>
+            <input name="cpf" id="editar-cpf" placeholder="Digite o CPF do cliente..." type="name" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="contato-cliente" class="">Telefone</label>
+            <input name="contato" id="editar-telefone" placeholder="Número para contato" type="name" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="email-cliente" class="">Email</label>
+            <input name="email" id="editar-email" placeholder="E-mail do cliente" type="email" class="form-control">
         </div>
     </div>
 </div>
 <div class="position-relative form-group">
-    <label for="desproduto" class="">Descrição</label>
-    <input name="desproduto" id="desproduto" placeholder="Descrição do produto" type="text" class="form-control">
+    <label for="exampleAddress" class="">Endereço</label>
+    <input name="address" id="editarAddress" placeholder="Rua Bairro Nº" type="text" class="form-control">
 </div>
 <div class="form-row">
-    <div class="col-md-2">
+    <div class="col-md-6">
         <div class="position-relative form-group">
-            <label for="valor" class="">Valor</label>
-            <input name="valor" id="valor" placeholder="R$" type="text" class="form-control">
+            <label for="exampleCity" class="">Cidade</label>
+            <input name="city" id="editarCity" type="text" class="form-control">
         </div>
     </div>
-</div>
-<div class="position-relative row form-group">
-<label for="imagem" class="col-sm-2 col-form-label">Imagem do produto</label>
-<div class="col-sm-10">
-    <input name="imagem" id="imagem" type="file" class="form-control-file">
-    <small class="form-text text-muted">Selecione uma foto do produto.
-    </small>
-</div>
+    <div class="col-md-4">
+        <div class="position-relative form-group">
+            <label for="exampleState" class="">Estado</label>
+            <input name="state" id="editarState" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="position-relative form-group">
+            <label for="exampleZip" class="">CEP</label>
+            <input name="zip" id="editarZip" type="text" class="form-control">
+        </div>
+    </div>
 </div>
 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Cadastrar</button>
+                <button type="button" class="btn btn-primary">Salvar</button>
             </div>
         </div>
     </div>
@@ -346,3 +368,13 @@ Relatório
 <?php
 require_once("footer.php");
 ?>
+
+<!--MASCARAS -->
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('#telefone-cliente').mask('(00) 00000-0000');
+      $('#cpf-cliente').mask('000.000.000-00');
+      $('#cep-cliente').mask('00000-000');
+      });
+</script>
