@@ -93,6 +93,12 @@ Add produtos
 Relatório
 </a>
 </li>
+<li class="dropdown nav-item">
+<a href="javascript:void(0);" class="nav-link">
+<i class="nav-link-icon fa fa-user"></i>
+Funcionário
+</a>
+</li>
 </ul>        </div>
 <div class="app-header-right">
 <div class="header-btn-lg pr-0">

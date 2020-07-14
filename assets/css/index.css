@@ -13,7 +13,7 @@ small{
 body{
     font-family: 'Poppins', sans-serif;
 		overflow: hidden;
-		background-color: rgb(15, 14, 14);
+		background-color: #1A1B25;
 }
 
 .wave{
@@ -27,7 +27,6 @@ body{
 .container{
 	width: 100vw;
 	height: 100vh;
-	background: rgb(17, 17, 17);
 	display: flex;
 	flex-direction: row;
 	justify-content: center;

@@ -182,34 +182,89 @@ require_once("header.php");
 data-target=".bd-example-modal-lg">Novo cliente</button>
     <div class="main-card mb-3 card">
 <div class="card-body">
-<table style="width: 100%;" id="minhaTabela" class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid" aria-describedby="example_info">
-<thead>
-<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 142.2px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nome do cliente</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 225.2px;" aria-label="Position: activate to sort column ascending">Endereço</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 101.2px;" aria-label="Office: activate to sort column ascending">E-mail</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 52.2px;" aria-label="Age: activate to sort column ascending">CPF</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 105.2px;" aria-label="Start date: activate to sort column ascending">Telefone</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 79.2px;" aria-label="Salary: activate to sort column ascending">Ação</th></tr>
-</thead>
-<tbody>
 
-<tr role="row" class="odd">
-    <td class="sorting_1 dtr-control" tabindex="0">Airi Satou</td>
-    <td>Rua Jurandir Velame 478</td>
-    <td>airi@gmail.com</td>
-    <td>86185646573</td>
-    <td>7399989-2369</td>
+    <!--LISTAR TODOS OS CLIENTES -->
+
+    <?php
+
+
+    if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
+        $nome = $_GET['txtpesquisar'] . '%';
+        $query = "select * from tb_clientes where nome LIKE '$nome'  order by nome asc"; 
+    }else if(isset($_GET['buttonPesquisarCPF']) and $_GET['txtpesquisarcpf'] != ''){
+        $nome = $_GET['txtpesquisarcpf'];
+        $query = "select * from tb_clientes where cpf = '$nome'  order by nome asc"; 
+    }
+
+    else{ 
+     $query = "select * from tb_clientes order by nome asc"; 
+    }
+
+        $result = mysqli_query($conn, $query);
+        //$dado = mysqli_fetch_array($result);
+        $row = mysqli_num_rows($result);
+
+    if($row == ''){
+
+        echo "<h3> Não existem dados cadastrados no banco </h3>";
+
+    }else{
+
+   ?>
+
+    <table style="width: 100%;" id="minhaTabela" class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid" aria-describedby="example_info">
+    <thead>
+    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 142.2px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nome</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 225.2px;" aria-label="Position: activate to sort column ascending">Endereço</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 79.2px;" aria-label="Salary: activate to sort column ascending">Cidade</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 101.2px;" aria-label="Office: activate to sort column ascending">E-mail</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 52.2px;" aria-label="Age: activate to sort column ascending">CPF</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 105.2px;" aria-label="Start date: activate to sort column ascending">Telefone</th><th class="sorting" tabindex="0" aria-controls="minhaTabela" rowspan="1" colspan="1" style="width: 79.2px;" aria-label="Salary: activate to sort column ascending">Ação</th></tr>
+    </thead>
+    <tbody>
+
+    <?php 
+
+    while($res_1 = mysqli_fetch_array($result)){
+        $nome = $res_1["nome"];
+        $telefone = $res_1["telefone"];
+        $endereco = $res_1["endereco"];
+        $cidade = $res_1["cidade"];
+        $email = $res_1["email"];
+        $cpf = $res_1["cpf"];
+        $data = $res_1["dt_registro"];
+        $id_cliente = $res_1["id_cliente"];
+
+        $data2 = implode('/', array_reverse(explode('-', $data)));
+
+    ?>
+
+    <tr role="row" class="odd">
+        <td class="sorting_1 dtr-control" tabindex="0"><?php echo $nome; ?></td>
+        <td><?php echo $endereco; ?></td>
+        <td><?php echo $cidade; ?></td>
+        <td><?php echo $email; ?></td>
+        <td><?php echo $cpf; ?></td>
+        <td><?php echo $telefone; ?></td>
     <td><div class="widget-content-right">
-    <button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
+    <a href="clientes.php?func=edita&id_cliente=<?php echo $id_cliente; ?>"><button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
     data-target=".bd-example-modal-lg-editar">
         <i class="fa fa-edit"></i>
-    </button>
-    <button class="border-0 btn-transition btn btn-outline-danger">
+    </button></a>
+    <a href="clientes.php?func=deleta&id_cliente=<?php echo $id_cliente; ?>"><button class="border-0 btn-transition btn btn-outline-danger">
         <i class="fa fa-trash-alt"></i>
-    </button>
-</div></td>
-</tr>
+    </button></a>
+    </div></td>
+    </tr>
 
-</tbody>
-<tfoot>
-<tr><th rowspan="1" colspan="1">Nome do cliente</th><th rowspan="1" colspan="1">Endereço</th><th rowspan="1" colspan="1">E-mail</th><th rowspan="1" colspan="1">CPF</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Ação</th></tr>
-</tfoot>
-</table></div></div>
+    <?php 
+        }                        
+    ?>
+
+    </tbody>
+    <tfoot>
+    <tr><th rowspan="1" colspan="1">Nome</th><th rowspan="1" colspan="1">Endereço</th><th rowspan="1" colspan="1">Cidade</th><th rowspan="1" colspan="1">E-mail</th><th rowspan="1" colspan="1">CPF</th><th rowspan="1" colspan="1">Telefone</th><th rowspan="1" colspan="1">Ação</th></tr>
+    </tfoot>
+    </table>
+    <?php 
+        }                        
+    ?>
+</div></div>
 </div>
 </div>
 </div>
@@ -289,6 +344,18 @@ data-target=".bd-example-modal-lg">Novo cliente</button>
     </div>
 </div>
 
+<!--EDITAR -->
+<?php
+if(@$_GET['func'] == 'edita'){  
+$id_cliente = $_GET['id_cliente'];
+$query = "select * from tb_clientes where id_cliente = '$id_cliente'";
+$result = mysqli_query($conn, $query);
+
+ while($res_1 = mysqli_fetch_array($result)){
+
+
+?>
+
 <!-- modal Editar -->
 
 <div class="modal fade bd-example-modal-lg-editar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -307,49 +374,49 @@ data-target=".bd-example-modal-lg">Novo cliente</button>
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="nome-cliente" class="">Nome do cliente</label>
-            <input name="nome" id="editar-nome" placeholder="Nome completo do cliente" type="name" class="form-control">
+            <input name="txtnome" id="editar-nome" value="<?php echo $res_1['nome']; ?>" placeholder="Nome completo do cliente" type="name" class="form-control">
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="cpf-cliente" class="">CPF</label>
-            <input name="cpf" id="editar-cpf" placeholder="Digite o CPF do cliente..." type="name" class="form-control">
+            <input name="txtcpf" id="editar-cpf" value="<?php echo $res_1['cpf']; ?>" placeholder="Digite o CPF do cliente..." type="name" class="form-control">
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="contato-cliente" class="">Telefone</label>
-            <input name="contato" id="editar-telefone" placeholder="Número para contato" type="name" class="form-control">
+            <input name="txttelefone" id="editar-telefone" value="<?php echo $res_1['telefone']; ?>" placeholder="Número para contato" type="name" class="form-control">
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="email-cliente" class="">Email</label>
-            <input name="email" id="editar-email" placeholder="E-mail do cliente" type="email" class="form-control">
+            <input name="txtemail" id="editar-email" value="<?php echo $res_1['email']; ?>" placeholder="E-mail do cliente" type="email" class="form-control">
         </div>
     </div>
 </div>
 <div class="position-relative form-group">
     <label for="exampleAddress" class="">Endereço</label>
-    <input name="address" id="editarAddress" placeholder="Rua Bairro Nº" type="text" class="form-control">
+    <input name="txtendereco" id="editarAddress" value="<?php echo $res_1['endereco']; ?>" placeholder="Rua Bairro Nº" type="text" class="form-control">
 </div>
 <div class="form-row">
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="exampleCity" class="">Cidade</label>
-            <input name="city" id="editarCity" type="text" class="form-control">
+            <input name="txtcidade" id="editarCity" value="<?php echo $res_1['cidade']; ?>" type="text" class="form-control">
         </div>
     </div>
     <div class="col-md-4">
         <div class="position-relative form-group">
             <label for="exampleState" class="">Estado</label>
-            <input name="state" id="editarState" type="text" class="form-control">
+            <input name="txtestado" id="editarState" value="<?php echo $res_1['estado']; ?>" type="text" class="form-control">
         </div>
     </div>
     <div class="col-md-2">
         <div class="position-relative form-group">
             <label for="exampleZip" class="">CEP</label>
-            <input name="zip" id="editarZip" type="text" class="form-control">
+            <input name="txtcep" id="editarZip" value="<?php echo $res_1['cep']; ?>" type="text" class="form-control">
         </div>
     </div>
 </div>
@@ -357,16 +424,75 @@ data-target=".bd-example-modal-lg">Novo cliente</button>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Salvar</button>
+                <button type="button" name="editar-cliente" class="btn btn-primary">Salvar</button>
             </div>
         </div>
     </div>
 </div>
 
+<!--Comando para editar os dados UPDATE -->
+<?php
+if(isset($_POST['editar-cliente'])){
+    $nome = $_POST['txtnome'];
+    $cpf = $_POST['txtcpf'];
+    $endereco = $_POST['txtendereco'];
+    $cidade = $_POST['txtcidade'];
+    $estado = $_POST['txtestado'];
+    $cep = $_POST['txtcep'];
+    $telefone = $_POST['txttelefone'];
+    $email = $_POST['txtemail'];
+
+
+  if ($res_1['cpf'] != $cpf){
+
+       //VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO
+    $query_verificar = "select * from tb_clientes where cpf = '$cpf' ";
+
+    $result_verificar = mysqli_query($conn, $query_verificar);
+    $row_verificar = mysqli_num_rows($result_verificar);
+
+    if($row_verificar > 0){
+        //Mensagem CPF já Cadastrado!
+    echo "<script language='javascript'></script>";
+    exit();
+    }
+
+  }
+
+ 
+$query_editar = "UPDATE tb_clientes set nome = '$nome', telefone = '$telefone', endereco = '$endereco', email = '$email', cpf = '$cpf' where id_cliente = '$id_cliente' ";
+
+$result_editar = mysqli_query($conn, $query_editar);
+
+if($result_editar == ''){
+    //Mensagem Ocorreu um erro ao Editar!
+  echo "<script language='javascript'></script>";
+}else{
+    //Mensagem Editado com Sucesso!
+    echo "<script language='javascript'></script>";
+    echo "<script language='javascript'> window.location='clientes.php'; </script>";
+}
+
+}
+?>
+
+
+<?php } }  ?>
+
 </body>
 <!-- /Body -->
 <?php
 require_once("footer.php");
+?>
+
+<!--EXCLUIR -->
+<?php
+if(@$_GET['func'] == 'deleta'){
+  $id_cliente = $_GET['id_cliente'];
+  $query = "DELETE FROM tb_clientes where id_cliente = '$id_cliente'";
+  mysqli_query($conn, $query);
+  echo "<script language='javascript'> window.location='clientes.php'; </script>";
+}
 ?>
 
 <!--MASCARAS -->
