@@ -1,4 +1,4 @@
-var texto = "Olá! Sou a Tess, Clique sobre o botão (Switch) para alterar a cor da interface.";
+var texto = "Olá! Sou a Tess. Em caso de dúvida consulte nossa central de suporte.";
 var result;
 
 var count = 0;

@@ -29,6 +29,10 @@ if($row > 0){
   $_SESSION['id_funcionario'] = $dado["id_funcionario"];
   $_SESSION['access_level'] = $dado["access_level"];
 
+  if ($_SESSION['access_level'] == 'Suporte'){
+    header('Location: painel_system/painel_system.php');
+    exit();
+  }
   if ($_SESSION['access_level'] == 'Administrador'){
   header('Location: painel_admin/painel_admin.php');
   exit();

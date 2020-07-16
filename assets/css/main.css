@@ -395,7 +395,7 @@ body {
   line-height: 1.5;
   color: #495057;
   text-align: left;
-  background-color: #fff
+  background-color: #1A1B25
 }
 
 [tabindex="-1"]:focus {
@@ -10297,8 +10297,8 @@ button,
 }
 
 .app-header__logo .logo-src {
-  height: 23px;
-  width: 97px;
+  height: 40px;
+  width: 150px;
   background: url(../images/logo-inverse.png)
 }
 
@@ -24482,7 +24482,7 @@ a.fc-more:hover {
 }
 
 .ui-theme-settings .theme-settings__inner {
-  background: #fff;
+  background: #1A1B25;
   width: 500px;
   height: 100vh;
   padding: 0

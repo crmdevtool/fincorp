@@ -1,6 +1,6 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
 	<title>Fincorp CRM - Controle de Estoque e venda.</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/index.css">
@@ -45,13 +45,13 @@
 </div>
 <ul class="header-menu nav">
 <li class="nav-item">
-<a href="javascript:void(0);" class="nav-link">
+<a href="/fincorp/index.php" class="nav-link">
 <i class="nav-link-icon fa fa-home" aria-hidden="true"> </i>
 Inicio
 </a>
 </li>
 <li class="btn-group nav-item">
-<a href="products.php" class="nav-link" data-toggle="modal" data-target=".bd-example-modal-lg-produto">
+<a href="javascript:void(0);" class="nav-link" data-toggle="modal" data-target=".bd-example-modal-lg-produto">
 <i class="nav-link-icon fa fa-blog" aria-hidden="true"></i>
 Blog
 </a>
