@@ -28,13 +28,13 @@ require_once("header.php");
     <ul class="navbar-nav ml-auto">
       <!-- Add Produtos -->
       <li class="nav-item dropdown">
-        <a class="nav-link" href="#">
-          <i class="fas fa-shopping-cart"></i>
+        <a class="nav-link" href="#" title="Add Produtos">
+          <i class="fas fa-cart-plus"></i>
         </a>
       </li>
       <!-- Add Funcionário -->
       <li class="nav-item dropdown">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="#" title="Add Funcionário">
           <i class="fas fa-user-plus"></i>
         </a>
       </li>
@@ -48,7 +48,7 @@ require_once("header.php");
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="../assets/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -64,7 +64,7 @@ require_once("header.php");
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="../assets/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -80,7 +80,7 @@ require_once("header.php");
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="../assets/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -125,7 +125,7 @@ require_once("header.php");
       </li>
       <!-- Logout -->
       <li class="nav-item dropdown">
-        <a class="nav-link" href="../logout.php">
+        <a class="nav-link" href="../logout.php" title="Sair">
           <i class="fas fa-sign-out-alt"></i>
         </a>
       </li>
@@ -137,7 +137,7 @@ require_once("header.php");
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="dashboard.php" class="brand-link">
-      <img src="dist/img/crm.png"
+      <img src="../assets/dist/img/crm.png"
            alt="AdminLTE Logo"
            class="brand-image img-circle elevation-3"
            style="opacity: .8">
@@ -149,10 +149,11 @@ require_once("header.php");
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="../assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block"><?php echo $_SESSION['nome_user']; ?></a>
+          <span class="access_level"><?php echo $_SESSION['access_level']; ?></span>
         </div>
       </div>
 
@@ -407,18 +408,18 @@ require_once("footer.php");
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
+<script src="../assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables -->
-<script src="plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+<script src="../assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
+<script src="../assets/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
   $(function () {

@@ -10894,6 +10894,11 @@ button,
   padding-left: 280px
 }
 
+.fixed-sidebar .app-main .app-main__outer-table {
+  z-index: 0;
+  padding-left: 0px
+}
+
 .fixed-sidebar.fixed-header .app-sidebar .app-header__logo {
   display: none
 }
@@ -11048,6 +11053,9 @@ button,
 .closed-sidebar.fixed-sidebar .app-main__outer {
   padding-left: 80px
 }
+.closed-sidebar.fixed-sidebar .app-main__outer-table {
+  padding-left: 0px
+}
 
 .closed-sidebar.fixed-header:not(.fixed-sidebar) .app-sidebar .app-header__logo {
   visibility: hidden
@@ -11105,6 +11113,12 @@ button,
 }
 
 .app-main .app-main__outer {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+  z-index: 12
+}
+.app-main .app-main__outer-table {
   flex: 1;
   flex-direction: column;
   display: flex;
@@ -11174,6 +11188,9 @@ button,
 }
 
 .fixed-footer .app-main .app-main__outer {
+  padding-bottom: 60px
+}
+.fixed-footer .app-main .app-main__outer-table {
   padding-bottom: 60px
 }
 
@@ -24201,6 +24218,9 @@ a.fc-more:hover {
   .app-main .app-main__outer {
       padding-left: 0 !important
   }
+  .app-main .app-main__outer-table {
+    padding-left: 0 !important
+}
   .app-header {
       justify-content: space-between
   }
