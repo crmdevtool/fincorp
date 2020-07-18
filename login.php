@@ -30,15 +30,15 @@ if($row > 0){
   $_SESSION['access_level'] = $dado["access_level"];
 
   if ($_SESSION['access_level'] == 'Suporte'){
-    header('Location: painel_system/painel_system.php');
+    header('Location: suporte/dashboard.php');
     exit();
   }
   if ($_SESSION['access_level'] == 'Administrador'){
-  header('Location: painel_admin/painel_admin.php');
+  header('Location: vv/dashboard.php');
   exit();
   }
   if ($_SESSION['access_level'] == 'Funcionário'){
-  header('Location: painel_funcionario/painel_funcionario.php');
+  header('Location: w/dashboard.php');
   exit();
   }
 
