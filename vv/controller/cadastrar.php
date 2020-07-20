@@ -14,14 +14,15 @@ if(isset($_POST['cadastrar-cliente'])){
   $email = $_POST['txtemail'];
 
 //VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO
-$query_verify = "SELECT * FROM tb_clientes WHERE cpf = '$cpf' ";
+$query_verify = "SELECT * FROM tb_clientes WHERE id_user = id_user AND cpf = '$cpf' ";
 
 $result_verify = mysqli_query($conn, $query_verify);
 $row_verify = mysqli_num_rows($result_verify);
 
 if($row_verify > 0){
   //Mensagem CPF já cadastrado!
-  echo "<script language='javascript'></script>";
+  echo "<script language='javascript'> window.alert('CPF já Cadastrado!'); </script>";
+  echo "<script language='javascript'> window.location='clientes.php'; </script>";
   exit();
 }
 
@@ -32,10 +33,13 @@ $result = mysqli_query($conn, $query);
 
 if($result == ''){
   //Mensagem Ocorreu um erro ao cadastrar!
-echo "<script language='javascript'></script>";
+  echo "<script language='javascript'> window.alert('Ocorreu um erro ao Cadastrar!'); </script>";
+  echo "<script language='javascript'> window.location='clientes.php'; </script>";
+
 } else {
   //Mensagem de Salvo com Sucesso!
-echo "<script language='javascript'></script>";
+  echo "<script language='javascript'></script>";
+  echo "<script language='javascript'> window.location='clientes.php'; </script>";
 }
 
 }

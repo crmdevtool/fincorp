@@ -69,7 +69,7 @@ Suporte
 	<div class="container">
 		<div class="login-content">
 			<form action="login.php" method="post">
-				<img src="assets/images/avatar.png">
+				<img src="assets/images/crm.png">
 				<h2 class="title">Fincorp</h2>
            		<div class="input-div one">
            		   <div class="i">

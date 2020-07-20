@@ -29,13 +29,15 @@ require_once("header.php");
     <ul class="navbar-nav ml-auto">
       <!-- Add Produtos -->
       <li class="nav-item dropdown">
-        <a class="nav-link" href="#" title="Add Produtos">
+        <a class="nav-link" href="#" title="Add Produtos" data-toggle="modal"
+        data-target=".bd-example-modal-lg-produto">
           <i class="fas fa-cart-plus"></i>
         </a>
       </li>
       <!-- Add Funcionário -->
       <li class="nav-item dropdown">
-        <a class="nav-link" href="#" title="Add Funcionário">
+        <a class="nav-link" href="#" title="Add cliente" data-toggle="modal"
+        data-target=".bd-example-modal-lg">
           <i class="fas fa-user-plus"></i>
         </a>
       </li>
@@ -441,6 +443,15 @@ require_once("footer.php");
 <script src="../assets/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../assets/dist/js/demo.js"></script>
-
+<!-- MASK -->
+<script type="text/javascript" src="../assets/js/jquery.mask.min.js"></script>
+  <!--MASCARAS -->
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('#telefone-cliente').mask('(00) 00000-0000');
+      $('#cpf-cliente').mask('000.000.000-00');
+      $('#cep-cliente').mask('00000-000');
+      });
+</script> 
 </body>
 </html>

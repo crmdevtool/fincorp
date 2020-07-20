@@ -13,8 +13,15 @@ include('controller/cadastrar.php');
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Fincorp</title>
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.png" type="../assets/images/crm.png" />
+  <link rel="shortcut icon" href="../assets/images/favicon.ico" />
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="../assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="../assets/plugins/toastr/toastr.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../assets/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
