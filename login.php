@@ -41,6 +41,11 @@ if($row > 0){
   header('Location: w/dashboard.php');
   exit();
   }
+  if ($_SESSION['access_level'] == 'Desativado'){
+    header('Location: index.php');
+    $_SESSION['permissao_negada'] = true;
+    exit();
+    }
 
   exit();
 }else{

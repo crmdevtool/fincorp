@@ -16,3 +16,12 @@ endif;
 endif;
 	unset($_SESSION['error_vazio']);
 ?>
+<?php
+	if(isset($_SESSION['permissao_negada'])): ?>
+	<div id="toast-container" class="toast-top-right">
+	<div class="toast toast-warning" aria-live="assertive" style="">
+	<div class="toast-message">Permissão de acesso negado!</div></div></div>
+<?php
+endif;
+	unset($_SESSION['permissao_negada']);
+?>

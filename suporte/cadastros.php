@@ -15,9 +15,9 @@ require_once("header.php");
     <!-- SEARCH FORM -->
     <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Pesquisar..." aria-label="Search">
+        <input name="txtpesquisar" class="form-control form-control-navbar" type="search" placeholder="Pesquisar..." aria-label="Search">
         <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
+          <button name="buttonPesquisar" class="btn btn-navbar" type="submit">
             <i class="fas fa-search"></i>
           </button>
         </div>
@@ -28,13 +28,15 @@ require_once("header.php");
     <ul class="navbar-nav ml-auto">
       <!-- Add Produtos -->
       <li class="nav-item dropdown">
-        <a class="nav-link" href="#" title="Add Produtos">
+        <a class="nav-link" href="#" title="Add Produtos" data-toggle="modal"
+        data-target=".bd-example-modal-lg-produto">
           <i class="fas fa-cart-plus"></i>
         </a>
       </li>
       <!-- Add Funcionário -->
       <li class="nav-item dropdown">
-        <a class="nav-link" href="#" title="Add Funcionário">
+        <a class="nav-link" href="#" title="Add cliente" data-toggle="modal"
+        data-target=".bd-example-modal-lg">
           <i class="fas fa-user-plus"></i>
         </a>
       </li>
@@ -301,7 +303,8 @@ require_once("header.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-          <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add Novo Usuário</span></a>
+          <a href="#" class="btn btn-secondary" data-toggle="modal"
+          data-target=".bd-example-modal-lg"><i class="material-icons">&#xE147;</i> <span>Add Novo Usuário</span></a>
           <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Exporta dados para o Excel</span></a>
           </div>
           <div class="col-sm-6">
@@ -325,62 +328,124 @@ require_once("header.php");
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+
+              <!--LISTAR TODOS OS CLIENTES -->
+
+      <?php
+
+
+      if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
+          $nome = $_GET['txtpesquisar'] . '%';
+          $query = "select * from usuarios where nome LIKE '$nome'  order by nome asc"; 
+      }else if(isset($_GET['buttonPesquisarCPF']) and $_GET['txtpesquisarcpf'] != ''){
+          $nome = $_GET['txtpesquisarcpf'];
+          $query = "select * from usuarios where cpf = '$nome'  order by nome asc"; 
+      }
+
+      else{ 
+      $query = "select * from usuarios where access_level != 'Funcionário'"; 
+      }
+
+          $result = mysqli_query($conn, $query);
+          //$dado = mysqli_fetch_array($result);
+          $row = mysqli_num_rows($result);
+
+      if($row == ''){
+
+          echo "<h3> Não existem dados cadastrados no banco </h3>";
+
+      }else{
+
+      ?>
+
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
+                    <th>ID</th>
                     <th>Foto</th>
                     <th>Nome</th>
-                    <th>E-mail</th>
+                    <th>Username</th>
                     <th>CPF</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Endereço</th>
+                    <th>Cidade</th>
+                    <th>Cep</th>
                     <th>NÍvel de acesso</th>
+                    <th>Data</th>
                     <th>Ação</th>
                   </tr>
                   </thead>
                   <tbody>
+
+      <?php 
+
+      while($res_1 = mysqli_fetch_array($result)){
+          $id_user = $res_1["id_user"];
+          $foto = $res_1["foto"];
+          $nome = $res_1["nome"];
+          $username = $res_1["username"];
+          $password = $res_1["password"];
+          $cpf = $res_1["cpf"];
+          $email = $res_1["email"];
+          $telefone = $res_1["telefone"];
+          $endereco = $res_1["endereco"];
+          $cidade = $res_1["cidade"];
+          $cep = $res_1["cep"];
+          $access_level = $res_1["access_level"];
+          $dt_registro = $res_1["dt_registro"];
+
+          $dt_registro = implode('/', array_reverse(explode('-', $dt_registro)));
+
+      ?>
+
                   <tr>
+                    <td><?php echo $id_user; ?></td>
                     <td><a href="#"><img src="../assets/images/avatars/1.jpg" class="avatar" alt="Avatar"></a></td>
-                    <td>Carlos Jose</td>
-                    <td>carlosgdu@gmail.com</td>
-                    <td>139.856.970-43</td>
-                    <td>Administrador(a)</td>
-                    <td>Ação</td>
+                    <td><?php echo $nome; ?></td>
+                    <td><?php echo $username; ?></td>
+                    <td><?php echo $cpf; ?></td>
+                    <td><?php echo $email; ?></td>
+                    <td><?php echo $telefone; ?></td>
+                    <td><?php echo $endereco; ?></td>
+                    <td><?php echo $cidade; ?></td>
+                    <td><?php echo $cep; ?></td>
+                    <td><?php echo $access_level; ?></td>
+                    <td><?php echo $dt_registro; ?></td>
+                    <td><div class="widget-content-right">
+                    <a href="#"><button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
+                    data-target=".bd-example-modal-lg-editar"><i class="fa fa-edit"></i>
+                    </button></a>
+                    <a href="cadastros.php?func=deleta&id_user=<?php echo $id_user; ?>"><button class="border-0 btn-transition btn btn-outline-danger">
+                    <i class="fa fa-trash-alt"></i>
+                    </button></a>
+                    </div></td>
                   </tr>
-                  <tr>
-                    <td><a href="#"><img src="../assets/images/avatars/1.jpg" class="avatar" alt="Avatar"></a></td>
-                    <td>Caroline Luana da Cruz</td>
-                    <td>carol@outlook.com</td>
-                    <td>798.528.641-14</td>
-                    <td>Funcionário(a)</td>
-                    <td>Ação</td>
-                  </tr>
-                  <tr>
-                    <td><a href="#"><img src="../assets/images/avatars/1.jpg" class="avatar" alt="Avatar"></a></td>
-                    <td>Isadora Luana da Rosa</td>
-                    <td>isaluana@outlook.com</td>
-                    <td>531.812.236-11</td>
-                    <td>Administrador(a)</td>
-                    <td>Ação</td>
-                  </tr>
-                  <tr>
-                    <td><a href="#"><img src="../assets/images/avatars/1.jpg" class="avatar" alt="Avatar"></a></td>
-                    <td>Bruno Kevin Silveira</td>
-                    <td>brunooliveira@gmail.com</td>
-                    <td>936.750.666-06</td>
-                    <td>Funcionário(a)</td>
-                    <td>Ação</td>
-                  </tr>
+                  <?php 
+                    }                        
+                  ?>
                   </tbody>
                   <tfoot>
                   <tr>
+                    <th>ID</th>
                     <th>Foto</th>
                     <th>Nome</th>
-                    <th>E-mail</th>
+                    <th>Username</th>
                     <th>CPF</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Endereço</th>
+                    <th>Cidade</th>
+                    <th>Cep</th>
                     <th>Nível de acesso</th>
+                    <th>Data</th>
                     <th>Ação</th>
                   </tr>
                   </tfoot>
                 </table>
+                <?php 
+                }                        
+                ?>
               </div>
               <!-- /.card-body -->
             </div>
@@ -438,5 +503,99 @@ require_once("footer.php");
     });
   });
 </script>
+<!-- MASK -->
+<script type="text/javascript" src="../assets/js/jquery.mask.min.js"></script>
+  <!--MASCARAS -->
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('#txttelefone').mask('(00) 00000-0000');
+      $('#txtcpf').mask('000.000.000-00');
+      $('#txtcep').mask('00000-000');
+      });
+</script> 
 </body>
 </html>
+
+<!--EXCLUIR -->
+<?php
+if(@$_GET['func'] == 'deleta'){
+  $id_user = $_GET['id_user'];
+  $query = "DELETE FROM usuarios where id_user = '$id_user'";
+  mysqli_query($conn, $query);
+  echo "<script language='javascript'> window.location='cadastros.php'; </script>";
+}
+?>
+
+  <!--MASCARAS -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#editar-telefone').mask('(00) 00000-0000');
+      $('#editar-cpf').mask('000.000.000-00');
+      $('#editar-cep').mask('00000-000');
+      });
+</script> 
+
+  <!-- modal Editar cliente-->
+  <div class="modal fade bd-example-modal-lg-editar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Editar usuário</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form method="POST" action="" class="">
+<div class="form-row">
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="editar-nome" class="">Nome do usuário</label>
+            <input name="txtnome" id="editar-nome" placeholder="Nome completo do cliente" type="text" class="form-control" required>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="editar-cpf" class="">CPF</label>
+            <input name="editar-cpf" id="editar-cpf" placeholder="Digite o CPF do cliente..." type="text" class="form-control" required>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="editar-email" class="">E-mail</label>
+            <input name="editar-email" id="editar-email" placeholder="E-mail para contato" type="email" class="form-control" required>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="editar-telefone" class="">Telefone</label>
+            <input name="editar-telefone" id="editar-telefone" placeholder="Número para contato" type="text" class="form-control">
+        </div>
+    </div>
+</div>
+<div class="position-relative form-group">
+    <label for="editar-fotoperfil" class="">Foto de perfil:</label>
+    <input name="editar-fotoperfil" id="editar-fotoperfil" type="file" class="form-control">
+</div>
+<div class="col-sm-6">
+                      <!-- select -->
+                      <div class="form-group">
+                        <label>Nível de acesso:</label>
+                        <select name="nivel-acesso" id="nivel-acesso" class="form-control">
+                        <option disabled selected>Selecione um nível de acesso</option>
+                          <option value="Suporte">Suporte</option>
+                          <option value="Administrador">Administrador</option>
+                          <option value="Desativado">Desativado</option>
+                        </select>
+                      </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" name="cadastrar-cliente">Atualizar</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

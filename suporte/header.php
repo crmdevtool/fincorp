@@ -5,6 +5,7 @@ if($_SESSION['access_level'] != 'Suporte'){
   header('Location: ../index.php');
   exit();
 }
+include('controller/cadastrar.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
