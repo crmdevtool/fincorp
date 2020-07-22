@@ -401,7 +401,7 @@ require_once("header.php");
 
                   <tr>
                     <td><?php echo $id_user; ?></td>
-                    <td><a href="#"><img src="../assets/images/avatars/1.jpg" class="avatar" alt="Avatar"></a></td>
+                    <td><?php echo "<img src='../assets/images/avatars/".$foto."' class='avatar' alt='Foto'"; ?></td>
                     <td><?php echo $nome; ?></td>
                     <td><?php echo $username; ?></td>
                     <td><?php echo $cpf; ?></td>
