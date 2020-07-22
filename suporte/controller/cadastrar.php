@@ -3,7 +3,7 @@
 include('../db/connection.php');
 
 if(isset($_POST['cadastrar-usuario'])){
-  $foto = $_POST['fotoperfil'];
+  $foto = $_FILES['fotoperfil'];
   $nome = $_POST['txtnome'];
   $username = $_POST['txtusername'];
   $password = $_POST['txtpassword'];

@@ -6,7 +6,7 @@
     </div>
   </footer>
 
-   <!-- modal Cadastrar novo cliente-->
+  <!-- modal Cadastrar novo usuário-->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -18,7 +18,7 @@
                 </button>
             </div>
             <div class="modal-body">
-            <form method="POST" action="" class="">
+            <form method="POST" enctype="multipart/form-data" action="" class="">
     <div class="form-row">
     <div class="col-md-6">
         <div class="position-relative form-group">
@@ -92,6 +92,8 @@
                         </select>
                       </div>
                     </div>
+            </div>
+            </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

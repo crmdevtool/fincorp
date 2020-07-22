@@ -413,7 +413,7 @@ require_once("header.php");
                     <td><?php echo $access_level; ?></td>
                     <td><?php echo $dt_registro; ?></td>
                     <td><div class="widget-content-right">
-                    <a href="#"><button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
+                    <a href="cadastros.php?func=edita&id_user=<?php echo $id_user; ?>"><button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
                     data-target=".bd-example-modal-lg-editar"><i class="fa fa-edit"></i>
                     </button></a>
                     <a href="cadastros.php?func=deleta&id_user=<?php echo $id_user; ?>"><button class="border-0 btn-transition btn btn-outline-danger">
@@ -481,6 +481,10 @@ require_once("footer.php");
 <script src="../assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="../assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="../assets/plugins/toastr/toastr.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -529,14 +533,25 @@ if(@$_GET['func'] == 'deleta'){
   <!--MASCARAS -->
   <script type="text/javascript">
     $(document).ready(function(){
-      $('#editar-telefone').mask('(00) 00000-0000');
-      $('#editar-cpf').mask('000.000.000-00');
-      $('#editar-cep').mask('00000-000');
+      $('#editartelefone').mask('(00) 00000-0000');
+      $('#editarcpf').mask('000.000.000-00');
+      $('#editarcep').mask('00000-000');
       });
 </script> 
 
-  <!-- modal Editar cliente-->
-  <div class="modal fade bd-example-modal-lg-editar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<!--EDITAR -->
+<?php
+if(@$_GET['func'] == 'edita'){ 
+  $id_user = $_GET['id_user'];
+  $query = "select * from usuarios where id_user = '$id_user'";
+  $result = mysqli_query($conn, $query);
+
+  while($res_1 = mysqli_fetch_array($result)){
+
+?>
+
+  <!-- modal Editar usuário-->
+  <div id="modalEditar" class="modal fade bd-example-modal-lg-editar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -548,44 +563,76 @@ if(@$_GET['func'] == 'deleta'){
             </div>
             <div class="modal-body">
             <form method="POST" action="" class="">
-<div class="form-row">
+            <div class="form-row">
     <div class="col-md-6">
         <div class="position-relative form-group">
-            <label for="editar-nome" class="">Nome do usuário</label>
-            <input name="txtnome" id="editar-nome" placeholder="Nome completo do cliente" type="text" class="form-control" required>
+            <label for="nome-cliente" class="">Nome do usuário</label>
+            <input name="txtnome" id="editarnome" value="<?php echo $res_1['nome']; ?>" placeholder="Nome completo do cliente" type="text" class="form-control" required>
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
-            <label for="editar-cpf" class="">CPF</label>
-            <input name="editar-cpf" id="editar-cpf" placeholder="Digite o CPF do cliente..." type="text" class="form-control" required>
+            <label for="cpf_cliente" class="">CPF</label>
+            <input name="txtcpf" id="editarcpf" value="<?php echo $res_1['cpf']; ?>" placeholder="Digite o CPF do cliente..." type="text" class="form-control" required>
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
-            <label for="editar-email" class="">E-mail</label>
-            <input name="editar-email" id="editar-email" placeholder="E-mail para contato" type="email" class="form-control" required>
+            <label for="email_cliente" class="">E-mail</label>
+            <input name="txtemail" id="editaremail" value="<?php echo $res_1['email']; ?>" placeholder="E-mail para contato" type="email" class="form-control">
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
-            <label for="editar-telefone" class="">Telefone</label>
-            <input name="editar-telefone" id="editar-telefone" placeholder="Número para contato" type="text" class="form-control">
+            <label for="telefone_cliente" class="">Telefone</label>
+            <input name="txttelefone" id="editartelefone" value="<?php echo $res_1['telefone']; ?>" placeholder="Número para contato" type="text" class="form-control" required>
         </div>
     </div>
 </div>
+<div class="form-row">
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="txtendereco" class="">Endereço</label>
+            <input name="txtendereco" value="<?php echo $res_1['endereco']; ?>" placeholder="Ex: Rua, bairro, nº" id="editarendereco" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="position-relative form-group">
+            <label for="txtcidade" class="">Cidade/Estado</label>
+            <input name="txtcidade" value="<?php echo $res_1['cidade']; ?>" placeholder="Informe cidade & estado" id="editarcidade" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="position-relative form-group">
+            <label for="exampleZip" class="">CEP</label>
+            <input name="txtcep" value="<?php echo $res_1['cep']; ?>" id="editarcep" type="text" class="form-control">
+        </div>
+    </div>
+<div class="form-row">
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="txtusername" class="">Username</label>
+            <input name="txtusername" value="<?php echo $res_1['username']; ?>" id="editarusername" placeholder="Nome completo do cliente" type="text" class="form-control" required>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="txtpassword" class="">Password</label>
+            <input name="txtpassword" value="<?php echo $res_1['password']; ?>" id="editarpassword" placeholder="Digite o CPF do cliente..." type="password" class="form-control" required>
+        </div>
+    </div>
 <div class="position-relative form-group">
-    <label for="editar-fotoperfil" class="">Foto de perfil:</label>
-    <input name="editar-fotoperfil" id="editar-fotoperfil" type="file" class="form-control">
+    <label for="fotoperfil" class="">Foto de perfil:</label>
+    <input name="fotoperfil" value="<?php echo $res_1['foto']; ?>" id="editarfotoperfil" type="file" class="form-control">
 </div>
 <div class="col-sm-6">
                       <!-- select -->
                       <div class="form-group">
-                        <label>Nível de acesso:</label>
-                        <select name="nivel-acesso" id="nivel-acesso" class="form-control">
-                        <option disabled selected>Selecione um nível de acesso</option>
+                        <label>Nível de acesso Atual: <input disabled value="<?php echo $res_1['access_level']; ?>"></label>
+                        <select name="access_level" class="form-control">
+                        <option disabled>Selecione um nível de acesso</option>
                           <option value="Suporte">Suporte</option>
-                          <option value="Administrador">Administrador</option>
+                          <option value="Administrador" selected>Administrador</option>
                           <option value="Desativado">Desativado</option>
                         </select>
                       </div>
@@ -593,9 +640,64 @@ if(@$_GET['func'] == 'deleta'){
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" name="cadastrar-cliente">Atualizar</button>
-            </form>
+                <button type="submit" class="btn btn-primary" name="editar-usuario">Atualizar</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
+</div>
+</div>
+
+<script> $("#modalEditar").modal("show"); </script> 
+
+<!--Comando para editar os dados UPDATE -->
+<?php
+if(isset($_POST['editar-usuario'])){
+  $nome = $_POST['txtnome'];
+  $username = $_POST['txtusername'];
+  $password = $_POST['txtpassword'];
+  $cpf = $_POST['txtcpf'];
+  $email = $_POST['txtemail'];
+  $telefone = $_POST['txttelefone'];
+  $endereco = $_POST['txtendereco'];
+  $cidade = $_POST['txtcidade'];
+  $cep = $_POST['txtcep'];
+  $access_level = $_POST['access_level'];
+
+  if ($res_1['cpf'] != $cpf){
+
+    //VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO
+ $query_verificar= "SELECT * FROM usuarios WHERE cpf = '$cpf' ";
+
+ $result_verificar = mysqli_query($conn, $query_verificar);
+ $row_verificar = mysqli_num_rows($result_verificar);
+
+ if($row_verificar > 0){
+     //Mensagem CPF já Cadastrado!
+     echo "<script language='javascript'> window.alert('CPF já Cadastrado!'); </script>";
+     echo "<script language='javascript'> window.location='cadastros.php'; </script>";
+ exit();
+ }
+
+}
+
+//CADASTRO DE CLIENTES
+$query_editar = "UPDATE usuarios SET nome = '$nome', cpf = '$cpf', endereco = '$endereco', cidade = '$cidade', cep = '$cep', telefone = '$telefone', email = '$email', email = '$email', username = '$username', password = '$password', access_level = '$access_level' WHERE id_user = '$id_user' ";
+
+$result_editar = mysqli_query($conn, $query_editar);
+
+if($result_editar == ''){
+  //Mensagem Ocorreu um erro ao cadastrar!
+  echo "<script language='javascript'> window.alert('Ocorreu um erro ao Editar!'); </script>";
+  echo "<script language='javascript'> window.location='cadastros.php'; </script>";
+
+} else {
+  //Mensagem de Salvo com Sucesso!
+  echo "<script language='javascript'> window.alert('Editado com Sucesso!'); </script>";
+  echo "<script language='javascript'> window.location='cadastros.php'; </script>";
+}
+}
+?>
+
+<?php } } ?>

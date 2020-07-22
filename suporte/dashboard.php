@@ -29,13 +29,15 @@ require_once("header.php");
     <ul class="navbar-nav ml-auto">
       <!-- Add Produtos -->
       <li class="nav-item dropdown">
-        <a class="nav-link" href="#" title="Add Produtos">
+        <a class="nav-link" href="#" title="Add Produtos" data-toggle="modal"
+        data-target=".bd-example-modal-lg-produto">
           <i class="fas fa-cart-plus"></i>
         </a>
       </li>
       <!-- Add Funcionário -->
       <li class="nav-item dropdown">
-        <a class="nav-link" href="#" title="Add Funcionário">
+        <a class="nav-link" href="#" title="Add Funcionário" data-toggle="modal"
+        data-target=".bd-example-modal-lg">
           <i class="fas fa-user-plus"></i>
         </a>
       </li>
