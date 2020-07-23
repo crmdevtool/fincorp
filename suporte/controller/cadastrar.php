@@ -3,7 +3,7 @@
 include('../db/connection.php');
 
 if(isset($_POST['cadastrar-usuario'])){
-  $foto = $_FILES['fotoperfil'];
+  $foto = $_FILES["fotoperfil"];
   $nome = $_POST['txtnome'];
   $username = $_POST['txtusername'];
   $password = $_POST['txtpassword'];
@@ -14,6 +14,29 @@ if(isset($_POST['cadastrar-usuario'])){
   $cidade = $_POST['txtcidade'];
   $cep = $_POST['txtcep'];
   $access_level = $_POST['access_level'];
+
+  //Define a constante
+  define('ROOT_PATH', dirname(__FILE__) . '/');
+
+if(isset($_FILES['fotoperfil'])){
+  $extensao = strtolower(substr($_FILES['fotoperfil']['name'], -4));
+  $novo_nome = md5(time()). $extensao;
+  
+  $diretorio = ROOT_PATH . "../../assets/images/avatars/";
+
+  if ( strstr ( '.jpg;.jpeg;.gif;.png', $extensao ) ) {
+
+  if ( @move_uploaded_file($_FILES['fotoperfil']['tmp_name'], $diretorio.$novo_nome) ){
+    echo "<script language='javascript'> window.alert('Arquivo salvo com sucesso em: . $diretorio .'); </script>";
+  }
+  else
+    echo "<script language='javascript'> window.alert('Erro ao salvar o arquivo. Aparentemente você não tem permissão de escrita.'); </script>";
+    }
+    else{
+        echo "<script language='javascript'> window.alert('Você poderá enviar apenas arquivos '*.jpg;*.jpeg;*.gif;*.png''); </script>";
+}
+
+}
 
 //VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO
 $query_verify = "SELECT * FROM usuarios WHERE cpf = '$cpf' ";
@@ -28,8 +51,8 @@ if($row_verify > 0){
   exit();
 }
 
-//CADASTRO DE CLIENTES
-$query = "INSERT into usuarios (foto, nome, username, password, cpf, email, telefone, endereco, cidade, cep, access_level, dt_registro) VALUES ('$foto', '$nome', '$username', '$password', '$cpf', '$email', '$telefone', '$endereco', '$cidade', '$cep', '$access_level', curDate() )";
+//CADASTRO DE USUÁRIOS
+$query = "INSERT into usuarios (foto, nome, username, password, cpf, email, telefone, endereco, cidade, cep, access_level, dt_registro) VALUES ('$novo_nome', '$nome', '$username', '$password', '$cpf', '$email', '$telefone', '$endereco', '$cidade', '$cep', '$access_level', curDate() )";
 
 $result = mysqli_query($conn, $query);
 

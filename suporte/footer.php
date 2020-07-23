@@ -23,7 +23,7 @@
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="nome-cliente" class="">Nome do usuário</label>
-            <input name="txtnome" id="txtnome" placeholder="Nome completo do cliente" type="text" class="form-control" required>
+            <input name="txtnome" id="txtnome" placeholder="Nome completo do cliente" type="text" spellcheck="false" class="form-control" required>
         </div>
     </div>
     <div class="col-md-6">
@@ -35,7 +35,7 @@
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="email_cliente" class="">E-mail</label>
-            <input name="txtemail" id="txtemail" placeholder="E-mail para contato" type="email" class="form-control">
+            <input name="txtemail" id="txtemail" placeholder="E-mail para contato" type="email" spellcheck="false" class="form-control">
         </div>
     </div>
     <div class="col-md-6">
@@ -49,13 +49,13 @@
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="txtendereco" class="">Endereço</label>
-            <input name="txtendereco" placeholder="Ex: Rua, bairro, nº" id="txtendereco" type="text" class="form-control">
+            <input name="txtendereco" placeholder="Ex: Rua, bairro, nº" id="txtendereco" type="text" spellcheck="false" class="form-control">
         </div>
     </div>
     <div class="col-md-4">
         <div class="position-relative form-group">
             <label for="txtcidade" class="">Cidade/Estado</label>
-            <input name="txtcidade" placeholder="Informe cidade & estado" id="txtcidade" type="text" class="form-control">
+            <input name="txtcidade" placeholder="Informe cidade & estado" id="txtcidade" type="text" spellcheck="false" class="form-control">
         </div>
     </div>
     <div class="col-md-2">
@@ -68,7 +68,7 @@
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="txtusername" class="">Username</label>
-            <input name="txtusername" id="txtusername" placeholder="Nome completo do cliente" type="text" class="form-control" required>
+            <input name="txtusername" id="txtusername" placeholder="Nome completo do cliente" spellcheck="false" type="text" class="form-control" required>
         </div>
     </div>
     <div class="col-md-6">
@@ -79,7 +79,7 @@
     </div>
 <div class="position-relative form-group">
     <label for="fotoperfil" class="">Foto de perfil:</label>
-    <input name="fotoperfil" id="fotoperfil" type="file" class="form-control">
+    <input name="fotoperfil" id="fotoperfil" type="file" class="form-control" required>
 </div>
 <div class="col-sm-6">
                       <!-- select -->
