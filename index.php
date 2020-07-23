@@ -31,7 +31,6 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/toast.css">
 		<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 		<script src="https://kit.fontawesome.com/a81368914c.js"></script>
-    <link href="assets/css/darkmode.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
     <link href="assets/css/scrollbar.css" rel="stylesheet">
 </head>
@@ -253,12 +252,7 @@
 </div>
         </div>
     </div>
-				<script type="text/javascript" src="assets/js/darkmode.js"></script>
 				<script type="text/javascript" src="assets/js/index.js"></script>
 <script type="text/javascript" src="assets/js/main.js"></script>
-				<!-- SweetAlert2 -->
-<script src="../assets/plugins/sweetalert2/sweetalert2.min.js"></script>
-<!-- Toastr -->
-<script src="../assets/plugins/toastr/toastr.min.js"></script>
 </body>
 </html>
