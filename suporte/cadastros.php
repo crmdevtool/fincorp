@@ -151,7 +151,7 @@ require_once("header.php");
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="../assets/images/avatars/<?=$_SESSION['foto_user'];?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block"><?php echo $_SESSION['nome_user']; ?></a>
@@ -369,6 +369,7 @@ require_once("header.php");
                     <th>E-mail</th>
                     <th>Telefone</th>
                     <th>Endereço</th>
+                    <th>Empresa</th>
                     <th>Cidade</th>
                     <th>Cep</th>
                     <th>NÍvel de acesso</th>
@@ -390,6 +391,7 @@ require_once("header.php");
           $email = $res_1["email"];
           $telefone = $res_1["telefone"];
           $endereco = $res_1["endereco"];
+          $empresa = $res_1["empresa"];
           $cidade = $res_1["cidade"];
           $cep = $res_1["cep"];
           $access_level = $res_1["access_level"];
@@ -408,6 +410,7 @@ require_once("header.php");
                     <td><?php echo $email; ?></td>
                     <td><?php echo $telefone; ?></td>
                     <td><?php echo $endereco; ?></td>
+                    <td><?php echo $empresa; ?></td>
                     <td><?php echo $cidade; ?></td>
                     <td><?php echo $cep; ?></td>
                     <td><?php echo $access_level; ?></td>
@@ -435,6 +438,7 @@ require_once("header.php");
                     <th>E-mail</th>
                     <th>Telefone</th>
                     <th>Endereço</th>
+                    <th>empresa</th>
                     <th>Cidade</th>
                     <th>Cep</th>
                     <th>Nível de acesso</th>
@@ -562,12 +566,12 @@ if(@$_GET['func'] == 'edita'){
                 </button>
             </div>
             <div class="modal-body">
-            <form method="POST" action="" class="">
+            <form method="POST" enctype="multipart/form-data" action="" class="">
             <div class="form-row">
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="nome-cliente" class="">Nome do usuário</label>
-            <input name="txtnome" id="editarnome" value="<?php echo $res_1['nome']; ?>" placeholder="Nome completo do cliente" type="text" class="form-control" required>
+            <input name="txtnome" id="editarnome" value="<?php echo $res_1['nome']; ?>" placeholder="Nome completo do cliente" type="text" spellcheck="false" class="form-control" required>
         </div>
     </div>
     <div class="col-md-6">
@@ -579,27 +583,31 @@ if(@$_GET['func'] == 'edita'){
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="email_cliente" class="">E-mail</label>
-            <input name="txtemail" id="editaremail" value="<?php echo $res_1['email']; ?>" placeholder="E-mail para contato" type="email" class="form-control">
+            <input name="txtemail" id="editaremail" value="<?php echo $res_1['email']; ?>" placeholder="E-mail para contato" type="email" spellcheck="false" class="form-control">
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="telefone_cliente" class="">Telefone</label>
-            <input name="txttelefone" id="editartelefone" value="<?php echo $res_1['telefone']; ?>" placeholder="Número para contato" type="text" class="form-control" required>
+            <input name="txttelefone" id="editartelefone" value="<?php echo $res_1['telefone']; ?>" placeholder="Número para contato" type="text" spellcheck="false" class="form-control" required>
         </div>
     </div>
+</div>
+<div class="position-relative form-group">
+    <label for="txtendereco" class="">Endereço</label>
+    <input name="txtendereco" id="editarendereco" value="<?php echo $res_1['endereco']; ?>" placeholder="Rua Bairro Nº" type="text" spellcheck="false" class="form-control">
 </div>
 <div class="form-row">
     <div class="col-md-6">
         <div class="position-relative form-group">
-            <label for="txtendereco" class="">Endereço</label>
-            <input name="txtendereco" value="<?php echo $res_1['endereco']; ?>" placeholder="Ex: Rua, bairro, nº" id="editarendereco" type="text" class="form-control">
+            <label for="txtempresa" class="">Nome da Empresa:</label>
+            <input name="txtempresa" value="<?php echo $res_1['empresa']; ?>" placeholder="Nome da empresa..." id="editarempresa" spellcheck="false" type="text" class="form-control">
         </div>
     </div>
     <div class="col-md-4">
         <div class="position-relative form-group">
             <label for="txtcidade" class="">Cidade/Estado</label>
-            <input name="txtcidade" value="<?php echo $res_1['cidade']; ?>" placeholder="Informe cidade & estado" id="editarcidade" type="text" class="form-control">
+            <input name="txtcidade" value="<?php echo $res_1['cidade']; ?>" placeholder="Informe cidade & estado" id="editarcidade" type="text" spellcheck="false" class="form-control">
         </div>
     </div>
     <div class="col-md-2">
@@ -612,7 +620,7 @@ if(@$_GET['func'] == 'edita'){
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="txtusername" class="">Username</label>
-            <input name="txtusername" value="<?php echo $res_1['username']; ?>" id="editarusername" placeholder="Nome completo do cliente" type="text" class="form-control" required>
+            <input name="txtusername" value="<?php echo $res_1['username']; ?>" id="editarusername" placeholder="Nome completo do cliente" type="text" spellcheck="false" class="form-control" required>
         </div>
     </div>
     <div class="col-md-6">
@@ -654,6 +662,7 @@ if(@$_GET['func'] == 'edita'){
 <!--Comando para editar os dados UPDATE -->
 <?php
 if(isset($_POST['editar-usuario'])){
+  $foto = $_FILES["fotoperfil"];
   $nome = $_POST['txtnome'];
   $username = $_POST['txtusername'];
   $password = $_POST['txtpassword'];
@@ -682,8 +691,32 @@ if(isset($_POST['editar-usuario'])){
 
 }
 
+//Define a constante
+define('ROOT_PATH', dirname(__FILE__) . '/');
+
+if(isset($_FILES['fotoperfil'])){
+  $extensao = strtolower(substr($_FILES['fotoperfil']['name'], -4));
+  $novo_nome = $res_1['foto'];
+  
+  $diretorio = ROOT_PATH . "../assets/images/avatars/";
+
+  if ( strstr ( '.jpg;.jpeg;.gif;.png', $extensao ) ) {
+    echo "<script language='javascript'> window.alert('Você poderá enviar apenas arquivos '*.jpg;*.jpeg;*.gif;*.png''); </script>";
+
+  if ( @move_uploaded_file($_FILES['fotoperfil']['tmp_name'], $diretorio.$novo_nome) ){
+    echo "<script language='javascript'> window.alert('Arquivo salvo com sucesso em: . $diretorio .'); </script>";
+  }
+  else
+    echo "<script language='javascript'> window.alert('Erro ao salvar o arquivo. Aparentemente você não tem permissão de escrita.'); </script>";
+    }
+    else{
+        echo "<script language='javascript'> window.alert('Você poderá enviar apenas arquivos '*.jpg;*.jpeg;*.gif;*.png''); </script>";
+}
+
+}
+
 //CADASTRO DE CLIENTES
-$query_editar = "UPDATE usuarios SET nome = '$nome', cpf = '$cpf', endereco = '$endereco', cidade = '$cidade', cep = '$cep', telefone = '$telefone', email = '$email', email = '$email', username = '$username', password = '$password', access_level = '$access_level' WHERE id_user = '$id_user' ";
+$query_editar = "UPDATE usuarios SET foto = '$novo_nome', nome = '$nome', cpf = '$cpf', endereco = '$endereco', cidade = '$cidade', cep = '$cep', telefone = '$telefone', email = '$email', email = '$email', username = '$username', password = '$password', access_level = '$access_level' WHERE id_user = '$id_user' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
 

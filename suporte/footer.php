@@ -45,11 +45,15 @@
         </div>
     </div>
 </div>
+<div class="position-relative form-group">
+    <label for="txtendereco" class="">Endereço</label>
+    <input name="txtendereco" id="txtendereco" placeholder="Rua Bairro Nº" type="text" spellcheck="false" class="form-control">
+</div>
 <div class="form-row">
     <div class="col-md-6">
         <div class="position-relative form-group">
-            <label for="txtendereco" class="">Endereço</label>
-            <input name="txtendereco" placeholder="Ex: Rua, bairro, nº" id="txtendereco" type="text" spellcheck="false" class="form-control">
+            <label for="txtempresa" class="">Nome da Empresa:</label>
+            <input name="txtempresa" placeholder="Digite o nome da empresa..." id="txtempresa" type="text" spellcheck="false" class="form-control">
         </div>
     </div>
     <div class="col-md-4">
@@ -83,9 +87,9 @@
 </div>
 <div class="col-sm-6">
                       <!-- select -->
-                      <div class="form-group">
+                      <div class="form-group" required>
                         <label>Nível de acesso:</label>
-                        <select name="access_level" class="form-control">
+                        <select name="access_level" class="form-control" required>
                         <option disabled selected>Selecione um nível de acesso</option>
                           <option value="Suporte">Suporte</option>
                           <option value="Administrador">Administrador</option>

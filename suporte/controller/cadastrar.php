@@ -11,6 +11,7 @@ if(isset($_POST['cadastrar-usuario'])){
   $email = $_POST['txtemail'];
   $telefone = $_POST['txttelefone'];
   $endereco = $_POST['txtendereco'];
+  $empresa = $_POST['txtempresa'];
   $cidade = $_POST['txtcidade'];
   $cep = $_POST['txtcep'];
   $access_level = $_POST['access_level'];
@@ -20,11 +21,12 @@ if(isset($_POST['cadastrar-usuario'])){
 
 if(isset($_FILES['fotoperfil'])){
   $extensao = strtolower(substr($_FILES['fotoperfil']['name'], -4));
-  $novo_nome = md5(time()). $extensao;
+  $novo_nome = rand().$_FILES['fotoperfil']['name'];
   
   $diretorio = ROOT_PATH . "../../assets/images/avatars/";
 
   if ( strstr ( '.jpg;.jpeg;.gif;.png', $extensao ) ) {
+    echo "<script language='javascript'> window.alert('Você poderá enviar apenas arquivos '*.jpg;*.jpeg;*.gif;*.png''); </script>";
 
   if ( @move_uploaded_file($_FILES['fotoperfil']['tmp_name'], $diretorio.$novo_nome) ){
     echo "<script language='javascript'> window.alert('Arquivo salvo com sucesso em: . $diretorio .'); </script>";
@@ -52,7 +54,7 @@ if($row_verify > 0){
 }
 
 //CADASTRO DE USUÁRIOS
-$query = "INSERT into usuarios (foto, nome, username, password, cpf, email, telefone, endereco, cidade, cep, access_level, dt_registro) VALUES ('$novo_nome', '$nome', '$username', '$password', '$cpf', '$email', '$telefone', '$endereco', '$cidade', '$cep', '$access_level', curDate() )";
+$query = "INSERT into usuarios (foto, nome, username, password, cpf, email, telefone, endereco, empresa, cidade, cep, access_level, dt_registro) VALUES ('$novo_nome', '$nome', '$username', '$password', '$cpf', '$email', '$telefone', '$endereco', '$empresa', '$cidade', '$cep', '$access_level', curDate() )";
 
 $result = mysqli_query($conn, $query);
 
