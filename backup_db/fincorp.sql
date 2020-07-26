@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Jul-2020 às 20:30
+-- Tempo de geração: 26-Jul-2020 às 17:29
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.4.6
 
@@ -73,7 +73,7 @@ CREATE TABLE `tb_produtos` (
 
 CREATE TABLE `usuarios` (
   `id_user` int(11) NOT NULL,
-  `foto` varchar(128) DEFAULT NULL,
+  `foto` varchar(128) NOT NULL,
   `nome` varchar(32) NOT NULL,
   `username` varchar(32) NOT NULL,
   `password` varchar(256) NOT NULL,
@@ -81,6 +81,7 @@ CREATE TABLE `usuarios` (
   `email` varchar(100) DEFAULT NULL,
   `telefone` varchar(45) NOT NULL,
   `endereco` varchar(128) DEFAULT NULL,
+  `empresa` varchar(32) DEFAULT NULL,
   `cidade` varchar(45) DEFAULT NULL,
   `cep` varchar(20) DEFAULT NULL,
   `access_level` varchar(32) NOT NULL,
@@ -92,11 +93,11 @@ CREATE TABLE `usuarios` (
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_user`, `foto`, `nome`, `username`, `password`, `cpf`, `email`, `telefone`, `endereco`, `cidade`, `cep`, `access_level`, `id_funcionario`, `dt_registro`) VALUES
-(1, '', 'Adimael Santos', 'admin', '123', '861.670.545-76', 'adimaelbr@gmail.com', '(73)99973-8916', NULL, NULL, NULL, 'Administrador', NULL, '0000-00-00'),
-(2, '', 'Ricardo Funcionário', 'funcionario', 'root', '802.107.880-46', 'funcionario@gmail.com', '(73)99952-3243', NULL, NULL, NULL, 'Funcionário', 1, '0000-00-00'),
-(3, '', 'Suporte', 'suporte', '123', '255.025.540-23', 'suporte@suporte.com', '(73)99921-8356', NULL, NULL, NULL, 'Suporte', NULL, '0000-00-00'),
-(12, '', 'Pedro Oliveira', 'admin2', '112233sk', '858.488.720-23', 'pedro@outlook.com', '(73) 99989-5321', 'Rua Humberto Campos, 80', 'Gandu-Ba', '45450-000', 'Administrador', NULL, '2020-07-21');
+INSERT INTO `usuarios` (`id_user`, `foto`, `nome`, `username`, `password`, `cpf`, `email`, `telefone`, `endereco`, `empresa`, `cidade`, `cep`, `access_level`, `id_funcionario`, `dt_registro`) VALUES
+(1, '1018827128user.jpg', 'Adimael Santos', 'admin', '123', '861.670.545-76', 'adimaelbr@gmail.com', '(73) 99973-8916', 'Rua Jurandir Velame, 477', 'Planeta Assistência', 'Gandu-Bahia', '45450-000', 'Administrador', NULL, '0000-00-00'),
+(2, '1018827128user1.jpg', 'Ricardo Funcionário', 'funcionario', 'root', '802.107.880-46', 'funcionario@gmail.com', '(73)99952-3243', NULL, 'Planeta Assistência', NULL, NULL, 'Funcionário', 1, '0000-00-00'),
+(3, '1018827128user2.jpg', 'Suporte', 'suporte', '123', '255.025.540-23', 'suporte@suporte.com', '(73) 99921-8356', 'Rua Polivalente, 77', 'Microsoft', 'Gandu-Bahia', '45450-000', 'Suporte', NULL, '0000-00-00'),
+(12, '1018827128user3.jpg', 'Pedro Oliveira', 'admin2', '112233sk', '858.488.720-23', 'pedro@outlook.com', '(73) 99989-5321', 'Rua Humberto Campos, 80', 'Clinica dos celulares', 'Gandu-Ba', '45450-000', 'Administrador', NULL, '2020-07-21');
 
 --
 -- Índices para tabelas despejadas
@@ -143,7 +144,7 @@ ALTER TABLE `tb_produtos`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Restrições para despejos de tabelas
