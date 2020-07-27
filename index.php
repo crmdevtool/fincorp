@@ -148,33 +148,33 @@
     <ul class="vertical-nav-menu">
     <li class="app-sidebar__heading">Home-Inicial</li>
     <li>
-        <a href="dashboard.php" class="mm-active">
+        <a href="javascript:void(0);" class="mm-active">
             <i class="metismenu-icon pe-7s-home"></i>
             Página principal
         </a>
     </li>
 		<li class="app-sidebar__heading">Menu do Cliente</li>
 		<li>
-        <a href="#">
+        <a href="javascript:void(0);">
             <i class="metismenu-icon pe-7s-user">
             </i>Painel do cliente
         </a>
     </li>
     <li>
-        <a href="forms-layouts.html">
+        <a href="javascript:void(0);">
             <i class="metismenu-icon pe-7s-cart">
             </i>Loja Virtual
         </a>
     </li>
     <li>
-        <a href="forms-validation.html">
+        <a href="javascript:void(0);">
             <i class="metismenu-icon pe-7s-news-paper">
             </i>Blog
         </a>
     </li>
     <li class="app-sidebar__heading">Suporte</li>
     <li>
-        <a href="">
+        <a href="javascript:void(0);">
             <i class="metismenu-icon pe-7s-info">
             </i>Central de Suporte
         </a>
