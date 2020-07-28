@@ -230,7 +230,7 @@ require_once("header.php");
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="funcionarios.php" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>Funcionários</p>
                 </a>
@@ -336,14 +336,14 @@ require_once("header.php");
 
 if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
     $nome = $_GET['txtpesquisar'] . '%';
-    $query = "select * from tb_clientes where nome LIKE '$nome'  order by nome asc"; 
+    $query = "select * from tb_clientes where id_user = $_SESSION[id_user]  order by nome asc"; 
 }else if(isset($_GET['buttonPesquisarCPF']) and $_GET['txtpesquisarcpf'] != ''){
     $nome = $_GET['txtpesquisarcpf'];
     $query = "select * from tb_clientes where cpf = '$nome'  order by nome asc"; 
 }
 
 else{ 
-$query = "select * from tb_clientes order by nome asc"; 
+$query = "select * from tb_clientes WHERE id_user = '$_SESSION[id_user]' order by nome ASC"; 
 }
 
     $result = mysqli_query($conn, $query);

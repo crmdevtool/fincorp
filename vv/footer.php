@@ -53,19 +53,19 @@
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="exampleCity" class="">Cidade</label>
-            <input name="txtcidade" id="exampleCity" type="text" class="form-control" required>
+            <input name="txtcidade" id="exampleCity" placeholder="Cidade" type="text" class="form-control" required>
         </div>
     </div>
     <div class="col-md-4">
         <div class="position-relative form-group">
             <label for="exampleState" class="">Estado</label>
-            <input name="txtestado" id="exampleState" type="text" class="form-control" required>
+            <input name="txtestado" id="exampleState" type="text" placeholder="Estado" class="form-control" required>
         </div>
     </div>
     <div class="col-md-2">
         <div class="position-relative form-group">
             <label for="exampleZip" class="">CEP</label>
-            <input name="txtcep" id="cep-cliente" type="text" class="form-control" required>
+            <input name="txtcep" id="cep-cliente" placeholder="CEP" type="text" class="form-control" required>
         </div>
     </div>
 </div>
