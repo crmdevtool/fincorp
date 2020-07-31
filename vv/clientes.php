@@ -206,6 +206,12 @@ require_once("header.php");
               </p>
             </a>
             <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="orcamentos.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>Orçamentos</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="pages/UI/general.html" class="nav-link">
                   <i class="nav-icon"></i>
@@ -303,7 +309,7 @@ require_once("header.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-          <a href="#" class="btn btn-secondary" data-toggle="modal"
+          <a href="#" class="btn btn-success" data-toggle="modal"
           data-target=".bd-example-modal-lg"><i class="material-icons">&#xE147;</i> <span>Add Novo Cliente</span></a>
           <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Exporta dados para o Excel</span></a>
           </div>

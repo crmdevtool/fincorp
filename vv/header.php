@@ -42,6 +42,10 @@ include('controller/cadastrar.php');
   <link rel="stylesheet" href="../assets/plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <!-- Select2 -->
+  <link rel="stylesheet" href="../assets/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="../assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../assets/plugins/fontawesome-free/css/all.min.css">
