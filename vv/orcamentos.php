@@ -373,6 +373,7 @@ if($row == ''){
     <th>Aparelho</th>
     <th>Modelo</th>
     <th>Nº Série</th>
+    <th>Valor</th>
     <th>status</th>
     <th>Data</th>
     <th>Ação</th>
@@ -404,6 +405,7 @@ if($row == ''){
     <td><?php echo $aparelho; ?></td>
     <td><?php echo $modelo; ?></td>
     <td><?php echo $serie; ?></td>
+    <td><?php echo $valor_total; ?></td>
     <td><?php echo $status; ?></td>
     <td><?php echo $data_abertura2; ?></td>
     <td><div class="widget-content-right">
@@ -695,55 +697,55 @@ aria-hidden="true">
             </div>
             <div class="position-relative form-group">
             <label for="laudo" class="">Laudo</label>
-            <input name="txtlaudo" id="laudo" placeholder="Laudo técnico..." type="text" spellcheck="false" class="form-control">
+            <input name="txtlaudo" value="<?php echo $res_1['laudo']; ?>" id="laudo" placeholder="Laudo técnico..." type="text" spellcheck="false" class="form-control">
             </div>
             <div class="form-row">
             <div class="col-md-4">
         <div class="position-relative form-group">
             <label for="peca1" class="">Peça 1</label>
-            <input name="txtpeca1" placeholder="Peça utilizada no reparo..." id="peca1" type="text" spellcheck="false" class="form-control">
+            <input name="txtpeca1" value="<?php echo $res_1['peca1']; ?>" placeholder="Peça utilizada no reparo..." id="peca1" type="text" spellcheck="false" class="form-control">
         </div>
     </div>
     <div class="col-md-2">
         <div class="position-relative form-group">
             <label for="valor_peca1" class="">Valor da peça</label>
-            <input name="txtvalorpeca1" placeholder="R$" id="valorpeca1" type="text" class="form-control">
+            <input name="txtvalorpeca1" value="<?php echo $res_1['valor_peca1']; ?>" placeholder="R$" id="valorpeca1" type="text" class="form-control">
         </div>
     </div>
     <div class="col-md-4">
         <div class="position-relative form-group">
             <label for="peca2" class="">Peça 2</label>
-            <input name="txtpeca2" placeholder="Peça utilizada no reparo..." id="peca2" type="text" spellcheck="false" class="form-control">
+            <input name="txtpeca2" value="<?php echo $res_1['peca2']; ?>" placeholder="Peça utilizada no reparo..." id="peca2" type="text" spellcheck="false" class="form-control">
         </div>
     </div>
     <div class="col-md-2">
         <div class="position-relative form-group">
             <label for="valorpeca2" class="">Valor da peça</label>
-            <input name="txtvalorpeca2" placeholder="R$" id="valorpeca2" type="text" class="form-control">
+            <input name="txtvalorpeca2" value="<?php echo $res_1['valor_peca2']; ?>" placeholder="R$" id="valorpeca2" type="text" class="form-control">
         </div>
     </div>
     <div class="col-md-4">
         <div class="position-relative form-group">
             <label for="peca3" class="">Peça 3</label>
-            <input name="txtpeca3" placeholder="Peça utilizada no reparo..." id="peca3" type="text" spellcheck="false" class="form-control">
+            <input name="txtpeca3" value="<?php echo $res_1['peca3']; ?>" placeholder="Peça utilizada no reparo..." id="peca3" type="text" spellcheck="false" class="form-control">
         </div>
     </div>
     <div class="col-md-2">
         <div class="position-relative form-group">
             <label for="valorpeca3" class="">Valor da peça</label>
-            <input name="txtvalorpeca3" placeholder="R$" id="valorpeca3" type="text" class="form-control">
+            <input name="txtvalorpeca3" value="<?php echo $res_1['valor_peca3']; ?>" placeholder="R$" id="valorpeca3" type="text" class="form-control">
         </div>
     </div>
     <div class="col-md-4">
         <div class="position-relative form-group">
             <label for="peca4" class="">Peça 4</label>
-            <input name="txtpeca4" placeholder="Peça utilizada no reparo..." id="peca4" type="text" spellcheck="false" class="form-control">
+            <input name="txtpeca4" value="<?php echo $res_1['peca4']; ?>" placeholder="Peça utilizada no reparo..." id="peca4" type="text" spellcheck="false" class="form-control">
         </div>
     </div>
     <div class="col-md-2">
         <div class="position-relative form-group">
             <label for="valorpeca4" class="">Valor da peça</label>
-            <input name="txtvalorpeca4" placeholder="R$" id="valorpeca4" type="text" class="form-control">
+            <input name="txtvalorpeca4" value="<?php echo $res_1['valor_peca4']; ?>" placeholder="R$" id="valorpeca4" type="text" class="form-control">
         </div>
     </div>
     <div class="col-md-3">
@@ -760,13 +762,13 @@ aria-hidden="true">
     <div class="col-md-2">
         <div class="position-relative form-group">
             <label for="total" class="">Valor do Serviço</label>
-            <input name="txttotal" placeholder="R$" id="total" type="text" spellcheck="false" class="form-control">
+            <input name="txttotal" value="<?php echo $res_1['valor_servico']; ?>" placeholder="R$" id="total" type="text" spellcheck="false" class="form-control">
         </div>
     </div>
     <div class="col-md-2">
         <div class="position-relative form-group">
             <label for="valortotal" class="">Valor total</label>
-            <input name="txtvalortotal" id="valortotal" placeholder="R$" type="text" class="form-control">
+            <input name="txtvalortotal" value="<?php echo $res_1['valor_total']; ?>" id="valortotal" placeholder="R$" type="text" class="form-control">
         </div>
     </div>
             </div>
@@ -785,46 +787,40 @@ aria-hidden="true">
 <?php
 if(isset($_POST['editar-orcamento'])){
   $id_user = $_SESSION['id_user'];
-  $nome = $_POST['txtnome'];
-  $cpf = $_POST['txtcpf'];
-  $endereco = $_POST['txtendereco'];
-  $cidade = $_POST['txtcidade'];
-  $estado = $_POST['txtestado'];
-  $cep = $_POST['txtcep'];
-  $telefone = $_POST['txttelefone'];
-  $email = $_POST['txtemail'];
-
-  if ($res_1['cpf'] != $cpf){
-
-    //VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO
- $query_verificar= "SELECT * FROM tb_clientes WHERE cpf = '$cpf' ";
-
- $result_verificar = mysqli_query($conn, $query_verificar);
- $row_verificar = mysqli_num_rows($result_verificar);
-
- if($row_verificar > 0){
-     //Mensagem CPF já Cadastrado!
-     echo "<script language='javascript'> window.alert('CPF já Cadastrado!'); </script>";
-     echo "<script language='javascript'> window.location='clientes.php'; </script>";
- exit();
- }
-
-}
+  $cliente = $_POST['txtcliente'];
+  $tecnico = $_POST['txttecnico'];
+  $aparelho = $_POST['txtaparelho'];
+  $modelo = $_POST['txtmodelo'];
+  $serie = $_POST['txtserie'];
+  $defeito = $_POST['txtdefeito'];
+  $obs = $_POST['txtobs'];
+  $laudo = $_POST['txtlaudo'];
+  $peca1 = $_POST['txtpeca1'];
+  $valor_peca1 = $_POST['txtvalorpeca1'];
+  $peca2 = $_POST['txtpeca2'];
+  $valor_peca2 = $_POST['txtvalorpeca2'];
+  $peca3 = $_POST['txtpeca3'];
+  $valor_peca3 = $_POST['txtvalorpeca3'];
+  $peca4 = $_POST['txtpeca4'];
+  $valor_peca4 = $_POST['txtvalorpeca4'];
+  $pagamento = $_POST['txtpagamento'];
+  $valor_servico = $_POST['txttotal'];
+  $valor_total = $_POST['txtvalortotal'];
 
 //CADASTRO DE CLIENTES
-$query_editar = "UPDATE tb_clientes SET nome = '$nome', cpf = '$cpf', endereco = '$endereco', cidade = '$cidade', estado = '$estado', cep = '$cep', telefone = '$telefone', email = '$email' WHERE id_cliente = '$id_cliente' ";
+$query_editar = "UPDATE tb_orcamentos SET cliente = '$cliente', tecnico = '$tecnico', aparelho = '$aparelho', modelo = '$modelo', serie = '$serie', defeito = '$defeito', obs = '$obs', laudo = '$laudo', peca1 = '$peca1', valor_peca1 = '$valor_peca1', peca2 = '$peca2', valor_peca2 = '$valor_peca2', peca3 = '$peca3', valor_peca3 = '$valor_peca3', peca4 = '$peca4', valor_peca4 = '$valor_peca4', pagamento = '$pagamento', valor_servico = '$valor_servico', valor_total = '$valor_total' WHERE id_user = '$id_user' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
 
 if($result_editar == ''){
   //Mensagem Ocorreu um erro ao cadastrar!
   echo "<script language='javascript'> window.alert('Ocorreu um erro ao Editar!'); </script>";
-  echo "<script language='javascript'> window.location='clientes.php'; </script>";
+  echo "<script language='javascript'> window.location='orcamentos.php'; </script>";
 
 } else {
   //Mensagem de Salvo com Sucesso!
   echo "<script language='javascript'> window.alert('Editado com Sucesso!'); </script>";
-  echo "<script language='javascript'> window.location='clientes.php'; </script>";
+  echo "<script language='javascript'> window.location='orcamentos.php'; </script>";
 }
 }
 ?>

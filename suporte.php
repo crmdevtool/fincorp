@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!doctype html>
 <html lang="pt-br">
 
@@ -89,7 +88,7 @@
 			</a>
 		</li>
 		<li class="dropdown nav-item">
-			<a href="suporte.php" class="nav-link">
+			<a href="javascript:void(0);" class="nav-link">
 			<i class="nav-link-icon fa fa-info" aria-hidden="true"></i>
 				Suporte
 			</a>
@@ -174,7 +173,7 @@
     </li>
     <li class="app-sidebar__heading">Suporte</li>
     <li>
-        <a href="suporte.php">
+        <a href="javascript:void(0);">
             <i class="metismenu-icon pe-7s-info">
             </i>Central de Suporte
         </a>
@@ -190,62 +189,8 @@
             </div>
         </div>
 		</div>
-		<div class="container">
-		<div class="login-content">
-			<form action="login.php" method="post">
-				<img src="assets/images/crm.png">
-				<h2 class="title">Fincorp</h2>
-           		<div class="input-div one">
-           		   <div class="i">
-           		   		<i class="fas fa-user"></i>
-           		   </div>
-           		   <div class="div">
-           		   		<h5>Username</h5>
-           		   		<input type="text" spellcheck="false" name="username" class="input">
-           		   </div>
-           		</div>
-           		<div class="input-div pass">
-           		   <div class="i"> 
-           		    	<i class="fas fa-lock"></i>
-           		   </div>
-           		   <div class="div">
-           		    	<h5>Password</h5>
-           		    	<input type="password" name="password" class="input">
-            	   </div>
-            	</div>
-            	<a href="#">Esqueceu a senha?</a>
-							<input type="submit" class="btn" value="Login">
-							<?php include("error.php") ?>
-            </form>
-        </div>
-    </div>
-						</div>
-						<div class="app-wrapper-footer">
-                        <div class="app-footer">
-                            <div class="app-footer__inner">
-                                <div class="app-footer-left">
-                                    <ul class="nav">
-                                        <li class="nav-item">
-                                            <a href="javascript:void(0);" class="nav-link">
-																						Copyright © 2020-2021 Fincorp. All rights reserved.
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="app-footer-right">
-                                    <ul class="nav">
-                                        <li class="nav-item">
-                                            <a href="javascript:void(0);" class="nav-link">
-                                                <div class="badge badge-success mr-1 ml-0">
-                                                </div>
-                                                Version 1.0.0
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>    </div>
+		<h5>Bem-Vindo a nossa página de suporte!</h5>
+    <img src="./assets/images/icons.png" alt="">
 </div>            
 </div>
 </div>
