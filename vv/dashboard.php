@@ -212,6 +212,12 @@ require_once("header.php");
                 </a>
               </li>
               <li class="nav-item">
+                <a href="rel_orcamentos.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>Relatório Orçamentos</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="pages/UI/general.html" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>Ordem de serviço</p>

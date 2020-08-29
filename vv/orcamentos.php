@@ -207,13 +207,19 @@ require_once("header.php");
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="pages/UI/general.html" class="nav-link active">
+                <a href="orcamentos.php" class="nav-link active">
                   <i class="nav-icon"></i>
                   <p>Orçamentos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/UI/general.html" class="nav-link">
+                <a href="rel_orcamentos.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>Relatório Orçamentos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="orderservices.php" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>Ordem de serviço</p>
                 </a>
@@ -311,7 +317,6 @@ require_once("header.php");
           <div class="col-sm-6">
           <a href="#" class="btn btn-warning" data-toggle="modal"
           data-target=".bd-example-modal-orcamento"><i class="material-icons">&#xE147;</i> <span>Inserir Novo Orçamento</span></a>
-          <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Exporta dados para o Excel</span></a>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -330,7 +335,7 @@ require_once("header.php");
 <div class="col-12">
 <div class="card">
 <div class="card-header">
-<h3 class="card-title">Cadastros de Orçamentos</h3>
+<h3 class="card-title">Orçamentos abertos</h3>
 </div>
 <!-- /.card-header -->
 <div class="card-body">
@@ -349,7 +354,7 @@ if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
 }
 
 else{ 
-$query = "select * from tb_orcamentos WHERE id_user = '$_SESSION[id_user]' order by cliente ASC"; 
+$query = "select * from tb_orcamentos WHERE id_user = '$_SESSION[id_user]' AND status = 'Aberto' order by cliente ASC"; 
 }
 
     $result = mysqli_query($conn, $query);
@@ -409,9 +414,6 @@ if($row == ''){
     <td><?php echo $status; ?></td>
     <td><?php echo $data_abertura2; ?></td>
     <td><div class="widget-content-right">
-    <a href="orcamentos.php?func=edita&id=<?php echo $id; ?>"><button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
-    data-target=".bd-example-modal-lg-editar"><i class="fa fa-check"></i>
-    </button></a>
     <a href="orcamentos.php?func=edita&id=<?php echo $id; ?>"><button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
     data-target=".bd-example-modal-lg-editar"><i class="fa fa-edit"></i>
     </button></a>
@@ -582,7 +584,7 @@ require_once("footer.php");
             </div>
             <div class="position-relative form-group">
             <label for="obs" class="">Observações</label>
-            <input name="txtobs" id="txtobs" placeholder="Observações..." type="text" spellcheck="false" class="form-control">
+            <textarea name="txtobs" id="txtobs" placeholder="Observações..." type="text" spellcheck="false" class="form-control"></textarea>
             </div>
             </div>
             <div class="modal-footer">
@@ -596,12 +598,10 @@ require_once("footer.php");
  <!-- MASCARAS -->
  <script type="text/javascript">
     $(document).ready(function(){
-      $('#valorpeca1').mask('R$ 000,00');
-      $('#valorpeca2').mask('R$ 000,00');
-      $('#valorpeca3').mask('R$ 000,00');
-      $('#valorpeca4').mask('R$ 000,00');
-      $('#total').mask('R$ 000,00');
-      $('#valortotal').mask('R$ 000,00');
+      $('#valorpeca1').mask('R$000,00');
+      $('#valorpeca2').mask('R$000,00');
+      $('#total').mask('R$000,00');
+      $('#valortotal').mask('R$000,00');
       });
 </script>  
 </body>
@@ -693,11 +693,11 @@ aria-hidden="true">
             </div>
             <div class="position-relative form-group">
             <label for="obs" class="">Observações</label>
-            <input name="txtobs" value="<?php echo $res_1['obs']; ?>" id="obs" placeholder="Observações..." type="text" spellcheck="false" class="form-control">
+            <textarea name="txtobs" id="obs" placeholder="Observações..." type="text" spellcheck="false" class="form-control"><?php echo $res_1['obs']; ?></textarea>
             </div>
             <div class="position-relative form-group">
             <label for="laudo" class="">Laudo</label>
-            <input name="txtlaudo" value="<?php echo $res_1['laudo']; ?>" id="laudo" placeholder="Laudo técnico..." type="text" spellcheck="false" class="form-control">
+            <textarea name="txtlaudo" id="laudo" placeholder="Laudo técnico..." type="text" spellcheck="false" class="form-control"><?php echo $res_1['laudo']; ?></textarea>
             </div>
             <div class="form-row">
             <div class="col-md-4">
@@ -722,30 +722,6 @@ aria-hidden="true">
         <div class="position-relative form-group">
             <label for="valorpeca2" class="">Valor da peça</label>
             <input name="txtvalorpeca2" value="<?php echo $res_1['valor_peca2']; ?>" placeholder="R$" id="valorpeca2" type="text" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="position-relative form-group">
-            <label for="peca3" class="">Peça 3</label>
-            <input name="txtpeca3" value="<?php echo $res_1['peca3']; ?>" placeholder="Peça utilizada no reparo..." id="peca3" type="text" spellcheck="false" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-2">
-        <div class="position-relative form-group">
-            <label for="valorpeca3" class="">Valor da peça</label>
-            <input name="txtvalorpeca3" value="<?php echo $res_1['valor_peca3']; ?>" placeholder="R$" id="valorpeca3" type="text" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="position-relative form-group">
-            <label for="peca4" class="">Peça 4</label>
-            <input name="txtpeca4" value="<?php echo $res_1['peca4']; ?>" placeholder="Peça utilizada no reparo..." id="peca4" type="text" spellcheck="false" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-2">
-        <div class="position-relative form-group">
-            <label for="valorpeca4" class="">Valor da peça</label>
-            <input name="txtvalorpeca4" value="<?php echo $res_1['valor_peca4']; ?>" placeholder="R$" id="valorpeca4" type="text" class="form-control">
         </div>
     </div>
     <div class="col-md-3">
@@ -808,7 +784,7 @@ if(isset($_POST['editar-orcamento'])){
   $valor_total = $_POST['txtvalortotal'];
 
 //CADASTRO DE CLIENTES
-$query_editar = "UPDATE tb_orcamentos SET cliente = '$cliente', tecnico = '$tecnico', aparelho = '$aparelho', modelo = '$modelo', serie = '$serie', defeito = '$defeito', obs = '$obs', laudo = '$laudo', peca1 = '$peca1', valor_peca1 = '$valor_peca1', peca2 = '$peca2', valor_peca2 = '$valor_peca2', peca3 = '$peca3', valor_peca3 = '$valor_peca3', peca4 = '$peca4', valor_peca4 = '$valor_peca4', pagamento = '$pagamento', valor_servico = '$valor_servico', valor_total = '$valor_total' WHERE id_user = '$id_user' ";
+$query_editar = "UPDATE tb_orcamentos SET cliente = '$cliente', tecnico = '$tecnico', aparelho = '$aparelho', modelo = '$modelo', serie = '$serie', defeito = '$defeito', obs = '$obs', laudo = '$laudo', peca1 = '$peca1', valor_peca1 = '$valor_peca1', peca2 = '$peca2', valor_peca2 = '$valor_peca2', peca3 = '$peca3', valor_peca3 = '$valor_peca3', peca4 = '$peca4', valor_peca4 = '$valor_peca4', pagamento = '$pagamento', valor_servico = '$valor_servico', valor_total = '$valor_total', status = 'Aguardando' WHERE id_user = '$id_user' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
 

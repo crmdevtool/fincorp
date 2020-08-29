@@ -1,0 +1,43 @@
+@page {
+  margin: 0px;
+
+}
+
+.footer {
+position:absolute;
+bottom:0;
+width:100%;
+background-color: #ebebeb;
+padding:10px;
+}
+
+.cabecalho {    
+background-color: #ebebeb;
+padding-top:15px;
+margin-bottom:15px;
+}
+
+.titulo{
+margin:0;
+}
+
+.areaTotais{
+border : 0.5px solid #bcbcbc;
+padding: 15px;
+border-radius: 5px;
+margin-right:25px;
+}
+
+.areaTotal{
+border : 0.5px solid #bcbcbc;
+padding: 15px;
+border-radius: 5px;
+margin-right:25px;
+background-color: #f9f9f9;
+margin-top:2px;
+}
+
+.pgto{
+margin:1px;
+}
+
