@@ -3,6 +3,15 @@ require_once("header.php");
 ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
+  <!-- Preloader -->
+	<div id="iot-preloader">
+		<div class="center-preloader d-flex align-items-center">
+			<div class="spinners">
+				<div class="spinner01"></div>
+				<div class="spinner02"></div>
+			</div>
+		</div>
+	</div>
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
     <!-- Left navbar links -->
@@ -464,7 +473,7 @@ require_once("footer.php");
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="../assets/plugins/jquery/jquery.min.js"></script>
+<script src="../assets/plugins/jquery/jquery.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables -->
@@ -480,6 +489,10 @@ require_once("footer.php");
 <script src="../assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../assets/dist/js/demo.js"></script>
+<!-- Preloader -->
+<script src="../assets/js/preloadtime.js"></script>
+<script src="../assets/js/iot-timer.min.js"></script>
+<script src="../assets/js/svg4everybody.min.js"></script>
 <!-- page script -->
 <script>
   $(function () {

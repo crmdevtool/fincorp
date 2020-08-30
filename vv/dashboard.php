@@ -3,7 +3,15 @@ require_once("header.php");
 ?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
+  <!-- Preloader -->
+	<div id="iot-preloader">
+		<div class="center-preloader d-flex align-items-center">
+			<div class="spinners">
+				<div class="spinner01"></div>
+				<div class="spinner02"></div>
+			</div>
+		</div>
+	</div>
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
     <!-- Left navbar links -->
@@ -422,7 +430,7 @@ require_once("footer.php");
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="../assets/plugins/jquery/jquery.min.js"></script>
+<script src="../assets/plugins/jquery/jquery.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -436,7 +444,7 @@ require_once("footer.php");
 <!-- Sparkline -->
 <script src="../assets/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
-<script src="../assets/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="../assets/plugins/jqvmap/jquery.vmap.js"></script>
 <script src="../assets/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
 <!-- jQuery Knob Chart -->
 <script src="../assets/plugins/jquery-knob/jquery.knob.min.js"></script>
@@ -457,6 +465,10 @@ require_once("footer.php");
 <script src="../assets/dist/js/demo.js"></script>
 <!-- MASK -->
 <script type="text/javascript" src="../assets/js/jquery.mask.min.js"></script>
+<!-- Preloader -->
+<script src="../assets/js/preloadtime.js"></script>
+<script src="../assets/js/iot-timer.min.js"></script>
+<script src="../assets/js/svg4everybody.min.js"></script>
   <!--MASCARAS -->
 <script type="text/javascript">
     $(document).ready(function(){

@@ -58,4 +58,7 @@ include('controller/cadastrar.php');
   <link rel="stylesheet" href="../assets/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Preloader -->
+  <link rel="stylesheet" href="../assets/css/iot-theme-bundle.css">
+  <link rel="stylesheet" href="../assets/css/scrollbar.css">
 </head>
