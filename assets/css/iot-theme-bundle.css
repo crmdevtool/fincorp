@@ -2664,13 +2664,13 @@
  }
  .dropdown-item:focus,
  .dropdown-item:hover {
-     color: #fff;
+     color: #000;
      text-decoration: none;
      background-color: none
  }
  .dropdown-item.active,
  .dropdown-item:active {
-     color: #fff;
+     color: #000;
      text-decoration: none;
      background-color: none
  }
