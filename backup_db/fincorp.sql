@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01-Set-2020 às 04:31
+-- Tempo de geração: 01-Set-2020 às 21:25
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.4.6
 
@@ -32,7 +32,7 @@ CREATE TABLE `tb_clientes` (
   `id_user` int(11) NOT NULL,
   `nome` varchar(32) NOT NULL,
   `cpf` varchar(20) NOT NULL,
-  `c_endereco` varchar(128) NOT NULL,
+  `endereco` varchar(128) NOT NULL,
   `cidade` varchar(45) NOT NULL,
   `estado` varchar(20) NOT NULL,
   `cep` varchar(20) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE `tb_clientes` (
 -- Extraindo dados da tabela `tb_clientes`
 --
 
-INSERT INTO `tb_clientes` (`id_cliente`, `id_user`, `nome`, `cpf`, `c_endereco`, `cidade`, `estado`, `cep`, `telefone`, `email`, `dt_registro`) VALUES
+INSERT INTO `tb_clientes` (`id_cliente`, `id_user`, `nome`, `cpf`, `endereco`, `cidade`, `estado`, `cep`, `telefone`, `email`, `dt_registro`) VALUES
 (28, 1, 'Larissa', '255.665.896-62', 'Lago azul-centro, 33', 'Gandu', 'Bahia', '45450-000', '(73) 99985-0332', 'larissa@outlook.com', '2020-07-27 14:18:24'),
 (29, 12, 'Gabriel', '257.956.563-21', 'Rua Gilberto Gil, 87', 'Gandu', 'Bahia', '45450-000', '(73) 99978-5236', 'gabrielgdu@gmail.com', '2020-07-27 14:37:47');
 

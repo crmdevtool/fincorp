@@ -3,7 +3,7 @@ $id = $_GET['id'];
 
 include('../db/connection.php');
 
-$query = "select usuarios.empresa, usuarios.endereco, usuarios.cidade, usuarios.cep, tb_orcamentos.id, tb_orcamentos.cliente, tb_orcamentos.tecnico, tb_orcamentos.aparelho, tb_orcamentos.modelo, tb_orcamentos.serie, tb_orcamentos.defeito, tb_orcamentos.laudo, tb_orcamentos.peca1, tb_orcamentos.valor_peca1, tb_orcamentos.peca2, tb_orcamentos.valor_peca2, tb_clientes.telefone, tb_clientes.email, tb_clientes.c_endereco, tb_orcamentos.valor_servico, tb_orcamentos.valor_total, tb_orcamentos.status, tb_orcamentos.data_abertura from tb_orcamentos join tb_clientes join usuarios WHERE tb_orcamentos.id_user = usuarios.id_user order by cliente ASC limit 1";
+$query = "select usuarios.empresa, usuarios.endereco, usuarios.cidade, usuarios.cep, tb_orcamentos.id, tb_orcamentos.cliente, tb_orcamentos.tecnico, tb_orcamentos.aparelho, tb_orcamentos.modelo, tb_orcamentos.serie, tb_orcamentos.defeito, tb_orcamentos.laudo, tb_orcamentos.peca1, tb_orcamentos.valor_peca1, tb_orcamentos.peca2, tb_orcamentos.valor_peca2, tb_clientes.telefone, tb_clientes.email, tb_clientes.endereco as c_endereco, tb_orcamentos.valor_servico, tb_orcamentos.valor_total, tb_orcamentos.status, tb_orcamentos.data_abertura from tb_orcamentos join tb_clientes join usuarios WHERE tb_orcamentos.id_user = tb_clientes.id_user && tb_orcamentos.id_user = usuarios.id_user order by cliente ASC limit 1";
 $result = mysqli_query($conn, $query);
 
  while($res_1 = mysqli_fetch_array($result)){
@@ -125,7 +125,7 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data_abertura'])));
 
 		<table class="table">
 			<tr bgcolor="#f9f9f9">
-				<td> <b>Peça 1</b> </td>
+				<td> <b>Peça</b> </td>
 				<td> <b>Valor da Peça</b> </td>
 				<td> <b> Quantidade</b> </td>
 				
@@ -136,15 +136,6 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data_abertura'])));
 				<td> 1 </td>
 				
 			</tr>
-		</table>
-
-		<table class="table">
-			<tr bgcolor="#f9f9f9">
-				<td> <b>Peça 2</b> </td>
-				<td> <b>Valor da Peça</b> </td>
-				<td> <b> Quantidade</b> </td>
-				
-			</tr>
 			<tr>
 				<td> <?php echo $res_1['peca2']; ?> </td>
 				<td> <?php echo $res_1['valor_peca2']; ?> </td>
@@ -152,7 +143,6 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data_abertura'])));
 				
 			</tr>
 		</table>
-
 
 		<hr>
 		<br>
@@ -184,6 +174,7 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data_abertura'])));
 				
 		</div>
 
+		<br>
 		<br>
 
 		<div class="row">
