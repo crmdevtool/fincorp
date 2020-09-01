@@ -362,7 +362,7 @@ if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
 }
 
 else{ 
-$query = "select * from tb_orcamentos WHERE id_user = '$_SESSION[id_user]' AND status = 'Aprovado' order by cliente ASC"; 
+  $query = "select tb_orcamentos.id, tb_orcamentos.cliente, tb_orcamentos.tecnico, tb_orcamentos.aparelho, tb_orcamentos.modelo, tb_orcamentos.serie, tb_orcamentos.laudo, tb_clientes.telefone, tb_clientes.email, tb_orcamentos.valor_total, tb_orcamentos.status, tb_orcamentos.data_aprovacao from tb_orcamentos join tb_clientes WHERE tb_orcamentos.id_user = tb_clientes.id_user AND status = 'Aprovado' order by cliente ASC"; 
 }
 
     $result = mysqli_query($conn, $query);
@@ -388,6 +388,9 @@ if($row == ''){
     <th>Nº Série</th>
     <th>Valor</th>
     <th>status</th>
+    <th>Email</th>
+    <th>Telefone</th>
+    <th>Laudo</th>
     <th>Data</th>
     <th>Ação</th>
   </tr>
@@ -405,9 +408,12 @@ if($row == ''){
         $serie = $res_1["serie"];
         $valor_total = $res_1["valor_total"];
         $status = $res_1["status"];
-        $data_abertura = $res_1["data_abertura"];
+        $email = $res_1["email"];
+        $telefone = $res_1["telefone"];
+        $laudo = $res_1["laudo"];
+        $data_aprovacao = $res_1["data_aprovacao"];
 
-        $data_abertura2 = implode('/', array_reverse(explode('-', $data_abertura)));
+        $data_aprovacao2 = implode('/', array_reverse(explode('-', $data_aprovacao)));
 
     ?>
 
@@ -420,13 +426,13 @@ if($row == ''){
     <td><?php echo $serie; ?></td>
     <td><?php echo $valor_total; ?></td>
     <td><?php echo $status; ?></td>
-    <td><?php echo $data_abertura2; ?></td>
+    <td><?php echo $email; ?></td>
+    <td><?php echo $telefone; ?></td>
+    <td><?php echo $laudo; ?></td>
+    <td><?php echo $data_aprovacao2; ?></td>
     <td><div class="widget-content-right">
-    <a href="orcamentos.php?func=edita&id=<?php echo $id; ?>"><button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
-    data-target=".bd-example-modal-lg-editar"><i class="fa fa-check"></i>
-    </button></a>
-    <a href="orcamentos.php?func=edita&id=<?php echo $id; ?>"><button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
-    data-target=".bd-example-modal-lg-editar"><i class="fa fa-edit"></i>
+    <a href="../rel/rel_orcamentos_class.php?id=<?php echo $id; ?>" target="_blank"><button class="border-0 btn-transition btn btn-outline-info" data-toggle="modal"
+    data-target=".bd-example-modal-lg-editar"><i class="fa fa-file-invoice"></i>
     </button></a>
     <a href="orcamentos.php?func=deleta&id=<?php echo $id; ?>"><button class="border-0 btn-transition btn btn-outline-danger">
     <i class="fa fa-times-circle"></i>

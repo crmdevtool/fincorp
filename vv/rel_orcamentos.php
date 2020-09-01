@@ -547,4 +547,65 @@ if(@$_GET['func'] == 'deleta'){
   echo "<script language='javascript'> window.location='orcamentos.php'; </script>";
 }
 ?>
-<?php?>
+<!--EDITAR -->
+<?php
+if(@$_GET['func'] == 'aprovar'){ 
+  $id = $_GET['id'];
+  $query = "select * from tb_orcamentos where id = '$id'";
+  $result = mysqli_query($conn, $query);
+
+  while($res_1 = mysqli_fetch_array($result)){
+
+?>
+
+<!-- modal Editar -->
+<div id="modalEditar" class="modal fade bd-example-modal-lg-editar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+aria-hidden="true">
+    <div class="modal-dialog modal-small">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Aprovar Orçamento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form method="POST" enctype="multipart/form-data" action="" class="">
+    <div class="form-row">
+    <h6>Tem certeza que deseja aprovar esse orçamento?</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success" name="editar-orcamento">Aprovar</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script> $("#modalEditar").modal("show"); </script> 
+
+<!--Comando para editar os dados UPDATE -->
+<?php
+if(isset($_POST['editar-orcamento'])){
+  $id_user = $_SESSION['id_user'];
+
+//CADASTRO DE CLIENTES
+$query_editar = "UPDATE tb_orcamentos SET status = 'Aprovado', data_aprovacao = curDate() WHERE id_user = '$id_user' ";
+
+$result_editar = mysqli_query($conn, $query_editar);
+
+if($result_editar == ''){
+  //Mensagem Ocorreu um erro ao cadastrar!
+  echo "<script language='javascript'> window.alert('Ocorreu um erro ao Editar!'); </script>";
+  echo "<script language='javascript'> window.location='orcamentos.php'; </script>";
+
+} else {
+  //Mensagem de Salvo com Sucesso!
+  echo "<script language='javascript'> window.alert('Editado com Sucesso!'); </script>";
+  echo "<script language='javascript'> window.location='orcamentos.php'; </script>";
+}
+}
+?>
+
+<?php } } ?>
