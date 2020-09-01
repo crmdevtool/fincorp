@@ -398,7 +398,7 @@ if($row == ''){
     while($res_1 = mysqli_fetch_array($result)){
         $nome = $res_1["nome"];
         $telefone = $res_1["telefone"];
-        $endereco = $res_1["endereco"];
+        $endereco = $res_1["c_endereco"];
         $cidade = $res_1["cidade"];
         $email = $res_1["email"];
         $cpf = $res_1["cpf"];
@@ -592,7 +592,7 @@ if(@$_GET['func'] == 'edita'){
 </div>
 <div class="position-relative form-group">
     <label for="exampleAddress" class="">Endereço</label>
-    <input name="txtendereco" id="editarAddress" value="<?php echo $res_1['endereco']; ?>" placeholder="Rua Bairro Nº" type="text" class="form-control">
+    <input name="txtendereco" id="editarAddress" value="<?php echo $res_1['c_endereco']; ?>" placeholder="Rua Bairro Nº" type="text" class="form-control">
 </div>
 <div class="form-row">
     <div class="col-md-6">
@@ -657,7 +657,7 @@ if(isset($_POST['editar-cliente'])){
 }
 
 //CADASTRO DE CLIENTES
-$query_editar = "UPDATE tb_clientes SET nome = '$nome', cpf = '$cpf', endereco = '$endereco', cidade = '$cidade', estado = '$estado', cep = '$cep', telefone = '$telefone', email = '$email' WHERE id_cliente = '$id_cliente' ";
+$query_editar = "UPDATE tb_clientes SET nome = '$nome', cpf = '$cpf', c_endereco = '$endereco', cidade = '$cidade', estado = '$estado', cep = '$cep', telefone = '$telefone', email = '$email' WHERE id_cliente = '$id_cliente' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
 

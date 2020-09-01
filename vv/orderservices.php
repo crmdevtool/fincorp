@@ -362,7 +362,7 @@ if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
 }
 
 else{ 
-$query = "select * from tb_orcamentos WHERE id_user = '$_SESSION[id_user]' AND status = 'Fechado' order by cliente ASC"; 
+$query = "select * from tb_orcamentos WHERE id_user = '$_SESSION[id_user]' AND status = 'Aprovado' order by cliente ASC"; 
 }
 
     $result = mysqli_query($conn, $query);
