@@ -423,7 +423,7 @@ if($row == ''){
     <td><?php echo $aparelho; ?></td>
     <td><?php echo $modelo; ?></td>
     <td><?php echo $serie; ?></td>
-    <td><?php echo $valor_total; ?></td>
+    <td>R$<?php echo $valor_total; ?></td>
     <td><?php echo $status; ?></td>
     <td><?php echo $email; ?></td>
     <td><?php echo $telefone; ?></td>

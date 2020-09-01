@@ -419,7 +419,7 @@ if($row == ''){
     <td><?php echo $aparelho; ?></td>
     <td><?php echo $modelo; ?></td>
     <td><?php echo $serie; ?></td>
-    <td><?php echo $valor_total; ?></td>
+    <td>R$<?php echo $valor_total; ?></td>
     <td><?php echo $status; ?></td>
     <td><?php echo $data_abertura2; ?></td>
     <td><div class="widget-content-right">
@@ -608,15 +608,6 @@ require_once("footer.php");
         </div>
     </div>
 </div>
- <!-- MASCARAS -->
- <script type="text/javascript">
-    $(document).ready(function(){
-      $('#valorpeca1').mask('R$000,00');
-      $('#valorpeca2').mask('R$000,00');
-      $('#total').mask('R$000,00');
-      $('#valortotal').mask('R$000,00');
-      });
-</script>  
 </body>
 </html>
 <!--EXCLUIR -->
@@ -742,15 +733,14 @@ aria-hidden="true">
     <div class="form-group" required>
                         <label>Forma de pagamento</label>
                         <select name="txtpagamento" class="form-control" required>
-                          <option disabled selected>Forma de pagamento...</option>
-                          <option value="Dinheiro">Dinheiro</option>
+                          <option selected value="Dinheiro">Dinheiro</option>
                           <option value="Cartão">Cartão</option>
                         </select>
                       </div>
                     </div>
     <div class="col-md-2">
         <div class="position-relative form-group">
-            <label for="total" class="">Valor do Serviço</label>
+            <label for="total" class="">Valor Serviço</label>
             <input name="txttotal" value="<?php echo $res_1['valor_servico']; ?>" placeholder="R$" id="total" type="text" spellcheck="false" class="form-control">
         </div>
     </div>
@@ -788,16 +778,12 @@ if(isset($_POST['editar-orcamento'])){
   $valor_peca1 = $_POST['txtvalorpeca1'];
   $peca2 = $_POST['txtpeca2'];
   $valor_peca2 = $_POST['txtvalorpeca2'];
-  $peca3 = $_POST['txtpeca3'];
-  $valor_peca3 = $_POST['txtvalorpeca3'];
-  $peca4 = $_POST['txtpeca4'];
-  $valor_peca4 = $_POST['txtvalorpeca4'];
   $pagamento = $_POST['txtpagamento'];
   $valor_servico = $_POST['txttotal'];
   $valor_total = $_POST['txtvalortotal'];
 
 //CADASTRO DE CLIENTES
-$query_editar = "UPDATE tb_orcamentos SET cliente = '$cliente', tecnico = '$tecnico', aparelho = '$aparelho', modelo = '$modelo', serie = '$serie', defeito = '$defeito', obs = '$obs', laudo = '$laudo', peca1 = '$peca1', valor_peca1 = '$valor_peca1', peca2 = '$peca2', valor_peca2 = '$valor_peca2', peca3 = '$peca3', valor_peca3 = '$valor_peca3', peca4 = '$peca4', valor_peca4 = '$valor_peca4', pagamento = '$pagamento', valor_servico = '$valor_servico', valor_total = '$valor_total', status = 'Aguardando' WHERE id_user = '$id_user' ";
+$query_editar = "UPDATE tb_orcamentos SET cliente = '$cliente', tecnico = '$tecnico', aparelho = '$aparelho', modelo = '$modelo', serie = '$serie', defeito = '$defeito', obs = '$obs', laudo = '$laudo', peca1 = '$peca1', valor_peca1 = '$valor_peca1', peca2 = '$peca2', valor_peca2 = '$valor_peca2', pagamento = '$pagamento', valor_servico = '$valor_servico', valor_total = '$valor_total', status = 'Aguardando' WHERE id_user = '$id_user' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
 

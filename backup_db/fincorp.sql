@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01-Set-2020 às 21:25
+-- Tempo de geração: 01-Set-2020 às 23:50
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.4.6
 
@@ -66,17 +66,13 @@ CREATE TABLE `tb_orcamentos` (
   `defeito` varchar(255) NOT NULL,
   `laudo` varchar(255) DEFAULT NULL,
   `obs` varchar(255) DEFAULT NULL,
-  `valor_servico` varchar(11) DEFAULT NULL,
+  `valor_servico` decimal(10,2) DEFAULT NULL,
   `peca1` varchar(32) DEFAULT NULL,
-  `valor_peca1` varchar(11) DEFAULT NULL,
+  `valor_peca1` decimal(10,2) DEFAULT NULL,
   `peca2` varchar(32) DEFAULT NULL,
-  `valor_peca2` varchar(11) DEFAULT NULL,
-  `peca3` varchar(32) DEFAULT NULL,
-  `valor_peca3` varchar(11) DEFAULT NULL,
-  `peca4` varchar(32) DEFAULT NULL,
-  `valor_peca4` varchar(11) DEFAULT NULL,
+  `valor_peca2` decimal(10,2) DEFAULT NULL,
   `desconto` varchar(11) DEFAULT NULL,
-  `valor_total` varchar(11) DEFAULT NULL,
+  `valor_total` decimal(10,2) DEFAULT NULL,
   `pagamento` varchar(32) DEFAULT NULL,
   `data_abertura` date NOT NULL,
   `status` varchar(32) NOT NULL,
@@ -87,8 +83,8 @@ CREATE TABLE `tb_orcamentos` (
 -- Extraindo dados da tabela `tb_orcamentos`
 --
 
-INSERT INTO `tb_orcamentos` (`id`, `id_user`, `cliente`, `tecnico`, `aparelho`, `serie`, `modelo`, `defeito`, `laudo`, `obs`, `valor_servico`, `peca1`, `valor_peca1`, `peca2`, `valor_peca2`, `peca3`, `valor_peca3`, `peca4`, `valor_peca4`, `desconto`, `valor_total`, `pagamento`, `data_abertura`, `status`, `data_aprovacao`) VALUES
-(5, 1, 'Larissa', 'Adimael Santos', 'Celular SM-J3', 'SH17WTR07315', 'J320ds', 'Troca de tela', 'Substituição do touch+display', 'Nenhuma', 'R$260,00', '', '', '', '', '', '', '', '', NULL, 'R$260,00', 'Dinheiro', '2020-07-31', 'Aguardando', NULL);
+INSERT INTO `tb_orcamentos` (`id`, `id_user`, `cliente`, `tecnico`, `aparelho`, `serie`, `modelo`, `defeito`, `laudo`, `obs`, `valor_servico`, `peca1`, `valor_peca1`, `peca2`, `valor_peca2`, `desconto`, `valor_total`, `pagamento`, `data_abertura`, `status`, `data_aprovacao`) VALUES
+(5, 1, 'Larissa', 'Adimael Santos', 'Celular SM-J3', 'SH17WTR07315', 'J320ds', 'Troca de tela', 'Substituição do touch+display', 'Nenhuma', '180.00', '', '0.00', '', '0.00', NULL, '180.00', 'Dinheiro', '2020-07-31', 'Aguardando', NULL);
 
 -- --------------------------------------------------------
 

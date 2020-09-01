@@ -132,13 +132,13 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data_abertura'])));
 			</tr>
 			<tr>
 				<td> <?php echo $res_1['peca1']; ?> </td>
-				<td> <?php echo $res_1['valor_peca1']; ?> </td>
+				<td> R$ <?php echo $res_1['valor_peca1']; ?> </td>
 				<td> 1 </td>
 				
 			</tr>
 			<tr>
 				<td> <?php echo $res_1['peca2']; ?> </td>
-				<td> <?php echo $res_1['valor_peca2']; ?> </td>
+				<td> R$ <?php echo $res_1['valor_peca2']; ?> </td>
 				<td> 1 </td>
 				
 			</tr>
@@ -153,8 +153,8 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data_abertura'])));
 				 
 				</div>
 				<div class="col-sm-4 areaTotais">	
-				 <p class="pgto" style="font-size:14px">  <b>Total de Peças: </b> R$ </p>
-				 <p class="pgto" style="font-size:14px">  <b>Total Mão de Obra: </b> <?php echo $res_1['valor_servico']; ?> </p>
+				 <p class="pgto" style="font-size:14px">  <b>Total de Peças: </b> R$ <?php echo $res_1['valor_peca1'] + $res_1['valor_peca2']; ?>.00 </p>
+				 <p class="pgto" style="font-size:14px">  <b>Total Mão de Obra: </b> R$ <?php echo $res_1['valor_servico']; ?> </p>
 				
 				</div>
 				
@@ -168,7 +168,7 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data_abertura'])));
 				</div>
 				<div class="col-sm-4 areaTotal">	
 				
-				 <p class="pgto" style="font-size:14px">  <b>Total a Pagar: </b> <?php echo $res_1['valor_total']; ?> </p>
+				 <p class="pgto" style="font-size:14px">  <b>Total a Pagar: </b> R$ <?php echo $res_1['valor_total']; ?> </p>
 				</div>
 				
 				
