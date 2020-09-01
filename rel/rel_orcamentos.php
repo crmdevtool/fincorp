@@ -164,7 +164,7 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data_abertura'])));
 				</div>
 				<div class="col-sm-4 areaTotais">	
 				 <p class="pgto" style="font-size:14px">  <b>Total de Peças: </b> R$ </p>
-				 <p class="pgto" style="font-size:14px">  <b>Total Mão de Obra: </b> R$ <?php echo $res_1['valor_servico']; ?> </p>
+				 <p class="pgto" style="font-size:14px">  <b>Total Mão de Obra: </b> <?php echo $res_1['valor_servico']; ?> </p>
 				
 				</div>
 				
@@ -178,7 +178,7 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data_abertura'])));
 				</div>
 				<div class="col-sm-4 areaTotal">	
 				
-				 <p class="pgto" style="font-size:14px">  <b>Total a Pagar: </b> R$ <?php echo $res_1['valor_total']; ?> </p>
+				 <p class="pgto" style="font-size:14px">  <b>Total a Pagar: </b> <?php echo $res_1['valor_total']; ?> </p>
 				</div>
 				
 				
