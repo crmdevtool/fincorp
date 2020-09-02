@@ -783,7 +783,7 @@ if(isset($_POST['editar-orcamento'])){
   $valor_total = $_POST['txtvalortotal'];
 
 //CADASTRO DE CLIENTES
-$query_editar = "UPDATE tb_orcamentos SET cliente = '$cliente', tecnico = '$tecnico', aparelho = '$aparelho', modelo = '$modelo', serie = '$serie', defeito = '$defeito', obs = '$obs', laudo = '$laudo', peca1 = '$peca1', valor_peca1 = '$valor_peca1', peca2 = '$peca2', valor_peca2 = '$valor_peca2', pagamento = '$pagamento', valor_servico = '$valor_servico', valor_total = '$valor_total', status = 'Aguardando' WHERE id_user = '$id_user' ";
+$query_editar = "UPDATE tb_orcamentos SET cliente = '$cliente', tecnico = '$tecnico', aparelho = '$aparelho', modelo = '$modelo', serie = '$serie', defeito = '$defeito', obs = '$obs', laudo = '$laudo', peca1 = '$peca1', valor_peca1 = '$valor_peca1', peca2 = '$peca2', valor_peca2 = '$valor_peca2', pagamento = '$pagamento', valor_servico = '$valor_servico', valor_total = '$valor_total', status = 'Aguardando' WHERE id = '$id' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
 

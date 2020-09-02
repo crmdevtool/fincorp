@@ -361,7 +361,7 @@ if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
 }
 
 else{ 
-$query = "select tb_orcamentos.id, tb_orcamentos.cliente, tb_orcamentos.tecnico, tb_orcamentos.aparelho, tb_orcamentos.modelo, tb_orcamentos.serie, tb_orcamentos.laudo, tb_clientes.telefone, tb_clientes.email, tb_orcamentos.valor_total, tb_orcamentos.status, tb_orcamentos.data_abertura from tb_orcamentos join tb_clientes WHERE tb_orcamentos.id_user = tb_clientes.id_user AND status = 'Aguardando' order by cliente ASC"; 
+$query = "select tb_orcamentos.id, tb_orcamentos.cliente, tb_orcamentos.tecnico, tb_orcamentos.aparelho, tb_orcamentos.modelo, tb_orcamentos.serie, tb_orcamentos.laudo, tb_clientes.telefone, tb_clientes.email, tb_orcamentos.valor_total, tb_orcamentos.status, tb_orcamentos.data_abertura from tb_orcamentos join tb_clientes WHERE tb_orcamentos.id_user = tb_clientes.id_user AND status = 'Aguardando' GROUP BY cliente ASC"; 
 }
 
     $result = mysqli_query($conn, $query);
@@ -436,7 +436,7 @@ if($row == ''){
     <a href="../rel/rel_orcamentos_class.php?id=<?php echo $id; ?>" target="_blank"><button class="border-0 btn-transition btn btn-outline-info" data-toggle="modal"
     data-target=".bd-example-modal-lg-editar"><i class="fa fa-file-invoice"></i>
     </button></a>
-    <a href="orcamentos.php?func=deleta&id=<?php echo $id; ?>"><button class="border-0 btn-transition btn btn-outline-danger">
+    <a href="rel_orcamentos.php?func=deleta&id=<?php echo $id; ?>"><button class="border-0 btn-transition btn btn-outline-danger">
     <i class="fa fa-times-circle"></i>
     </button></a>
     </div></td>
@@ -544,7 +544,7 @@ if(@$_GET['func'] == 'deleta'){
   $id_cliente = $_GET['id_cliente'];
   $query = "DELETE FROM tb_orcamentos where id = '$id'";
   mysqli_query($conn, $query);
-  echo "<script language='javascript'> window.location='orcamentos.php'; </script>";
+  echo "<script language='javascript'> window.location='rel_orcamentos.php'; </script>";
 }
 ?>
 <!--EDITAR -->
@@ -591,19 +591,19 @@ if(isset($_POST['editar-orcamento'])){
   $id_user = $_SESSION['id_user'];
 
 //CADASTRO DE CLIENTES
-$query_editar = "UPDATE tb_orcamentos SET status = 'Aprovado', data_aprovacao = curDate() WHERE id_user = '$id_user' ";
+$query_editar = "UPDATE tb_orcamentos SET status = 'Aprovado', data_aprovacao = curDate() WHERE id = '$id' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
 
 if($result_editar == ''){
   //Mensagem Ocorreu um erro ao cadastrar!
   echo "<script language='javascript'> window.alert('Ocorreu um erro ao Editar!'); </script>";
-  echo "<script language='javascript'> window.location='orcamentos.php'; </script>";
+  echo "<script language='javascript'> window.location='rel_orcamentos.php'; </script>";
 
 } else {
   //Mensagem de Salvo com Sucesso!
   echo "<script language='javascript'> window.alert('Editado com Sucesso!'); </script>";
-  echo "<script language='javascript'> window.location='orcamentos.php'; </script>";
+  echo "<script language='javascript'> window.location='rel_orcamentos.php'; </script>";
 }
 }
 ?>
