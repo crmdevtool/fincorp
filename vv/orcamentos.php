@@ -539,7 +539,8 @@ require_once("footer.php");
             if(count($result)){
               while($res_1 = mysqli_fetch_array($result)){
                    ?>                                       
-            <option value="<?php echo $res_1['nome']; ?>"><?php echo $res_1['nome']; ?></option> 
+            <option value="<?php echo $res_1['nome']; ?>"></option> 
+            <option value="<?php echo $res_1['id_cliente']; ?>"></option> 
                          <?php      
                        }
                    }

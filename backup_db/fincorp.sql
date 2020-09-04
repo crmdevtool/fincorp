@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01-Set-2020 às 23:50
+-- Tempo de geração: 04-Set-2020 às 03:14
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.4.6
 
@@ -47,7 +47,8 @@ CREATE TABLE `tb_clientes` (
 
 INSERT INTO `tb_clientes` (`id_cliente`, `id_user`, `nome`, `cpf`, `endereco`, `cidade`, `estado`, `cep`, `telefone`, `email`, `dt_registro`) VALUES
 (28, 1, 'Larissa', '255.665.896-62', 'Lago azul-centro, 33', 'Gandu', 'Bahia', '45450-000', '(73) 99985-0332', 'larissa@outlook.com', '2020-07-27 14:18:24'),
-(29, 12, 'Gabriel', '257.956.563-21', 'Rua Gilberto Gil, 87', 'Gandu', 'Bahia', '45450-000', '(73) 99978-5236', 'gabrielgdu@gmail.com', '2020-07-27 14:37:47');
+(29, 12, 'Gabriel', '257.956.563-21', 'Rua Gilberto Gil, 87', 'Gandu', 'Bahia', '45450-000', '(73) 99978-5236', 'gabrielgdu@gmail.com', '2020-07-27 14:37:47'),
+(30, 1, 'Lucas', '447.854.548-78', 'Rua Humberto Campos 80', 'Gandu', 'Bahia', '45450-000', '(73) 99985-2669', 'lucas@gmail.com', '2020-09-02 00:59:54');
 
 -- --------------------------------------------------------
 
@@ -58,6 +59,7 @@ INSERT INTO `tb_clientes` (`id_cliente`, `id_user`, `nome`, `cpf`, `endereco`, `
 CREATE TABLE `tb_orcamentos` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
   `cliente` varchar(32) NOT NULL,
   `tecnico` varchar(32) NOT NULL,
   `aparelho` varchar(32) NOT NULL,
@@ -83,8 +85,9 @@ CREATE TABLE `tb_orcamentos` (
 -- Extraindo dados da tabela `tb_orcamentos`
 --
 
-INSERT INTO `tb_orcamentos` (`id`, `id_user`, `cliente`, `tecnico`, `aparelho`, `serie`, `modelo`, `defeito`, `laudo`, `obs`, `valor_servico`, `peca1`, `valor_peca1`, `peca2`, `valor_peca2`, `desconto`, `valor_total`, `pagamento`, `data_abertura`, `status`, `data_aprovacao`) VALUES
-(5, 1, 'Larissa', 'Adimael Santos', 'Celular SM-J3', 'SH17WTR07315', 'J320ds', 'Troca de tela', 'Substituição do touch+display', 'Nenhuma', '180.00', '', '0.00', '', '0.00', NULL, '180.00', 'Dinheiro', '2020-07-31', 'Aguardando', NULL);
+INSERT INTO `tb_orcamentos` (`id`, `id_user`, `id_cliente`, `cliente`, `tecnico`, `aparelho`, `serie`, `modelo`, `defeito`, `laudo`, `obs`, `valor_servico`, `peca1`, `valor_peca1`, `peca2`, `valor_peca2`, `desconto`, `valor_total`, `pagamento`, `data_abertura`, `status`, `data_aprovacao`) VALUES
+(10, 1, 28, 'Larissa', 'Adimael Santos', 'Samsung', 'sa541d5sas', 'J810', 'Não carrega', 'Troca do conector de carga', '', '120.00', '', '0.00', '', '0.00', NULL, '120.00', 'Dinheiro', '2020-09-01', 'Aguardando', NULL),
+(11, 1, 30, 'Lucas', 'Adimael Santos', 'Alcatel', 'ad54asd454a74w', 'S203', 'Tela preta', 'Instalação da stock rom', '', '40.00', '', '0.00', '', '0.00', NULL, '40.00', 'Dinheiro', '2020-09-01', 'Aguardando', NULL);
 
 -- --------------------------------------------------------
 
@@ -178,13 +181,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `tb_clientes`
 --
 ALTER TABLE `tb_clientes`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de tabela `tb_orcamentos`
 --
 ALTER TABLE `tb_orcamentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `tb_produtos`

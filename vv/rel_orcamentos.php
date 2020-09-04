@@ -361,7 +361,7 @@ if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
 }
 
 else{ 
-$query = "select tb_orcamentos.id, tb_orcamentos.cliente, tb_orcamentos.tecnico, tb_orcamentos.aparelho, tb_orcamentos.modelo, tb_orcamentos.serie, tb_orcamentos.laudo, tb_clientes.telefone, tb_clientes.email, tb_orcamentos.valor_total, tb_orcamentos.status, tb_orcamentos.data_abertura from tb_orcamentos join tb_clientes WHERE tb_orcamentos.id_user = tb_clientes.id_user AND status = 'Aguardando' GROUP BY cliente ASC"; 
+$query = "select tb_orcamentos.*, tb_clientes.* from tb_orcamentos join tb_clientes ON tb_orcamentos.id_cliente = tb_clientes.id_cliente"; 
 }
 
     $result = mysqli_query($conn, $query);

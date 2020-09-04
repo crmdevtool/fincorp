@@ -3,7 +3,7 @@ $id = $_GET['id'];
 
 include('../db/connection.php');
 
-$query = "select usuarios.empresa, usuarios.endereco, usuarios.cidade, usuarios.cep, tb_orcamentos.id, tb_orcamentos.cliente, tb_orcamentos.tecnico, tb_orcamentos.aparelho, tb_orcamentos.modelo, tb_orcamentos.serie, tb_orcamentos.defeito, tb_orcamentos.laudo, tb_orcamentos.peca1, tb_orcamentos.valor_peca1, tb_orcamentos.peca2, tb_orcamentos.valor_peca2, tb_clientes.telefone, tb_clientes.email, tb_clientes.endereco as c_endereco, tb_orcamentos.valor_servico, tb_orcamentos.valor_total, tb_orcamentos.status, tb_orcamentos.data_abertura from tb_orcamentos join tb_clientes join usuarios WHERE tb_orcamentos.id_user = tb_clientes.id_user && tb_orcamentos.id_user = usuarios.id_user order by cliente ASC limit 1";
+$query = "select * from usuarios join tb_orcamentos join tb_clientes on tb_orcamentos.id_cliente = tb_clientes.id_cliente and tb_orcamentos.id = $id group by tb_orcamentos.id = $id, tb_clientes.id_cliente = tb_clientes.id_cliente";
 $result = mysqli_query($conn, $query);
 
  while($res_1 = mysqli_fetch_array($result)){
@@ -56,7 +56,7 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data_abertura'])));
 				 <p style="font-size:12px">  Email: <?php echo $res_1['email']; ?> </p>
 				</div>
 				<div class="col-sm-3">	
-				 <p style="font-size:12px">  Endereço: <?php echo $res_1['c_endereco']; ?> </p>
+				 <p style="font-size:12px">  Endereço: <?php echo $res_1['endereco']; ?> </p>
 				</div>
 				
 			</div>
@@ -66,7 +66,7 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data_abertura'])));
 				 <p style="font-size:12px">  Telefone: <?php echo $res_1['telefone']; ?> </p>
 				</div>
 				<div class="col-sm-3">	
-				 <p style="font-size:12px">  CPF: <?php echo $res_1['cliente']; ?> </p>
+				 <p style="font-size:12px">  CPF: <?php echo $res_1['cpf']; ?> </p>
 				</div>
 				
 				
