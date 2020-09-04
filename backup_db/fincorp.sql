@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04-Set-2020 às 03:14
+-- Tempo de geração: 04-Set-2020 às 22:38
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.4.6
 
@@ -60,7 +60,6 @@ CREATE TABLE `tb_orcamentos` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_cliente` int(11) NOT NULL,
-  `cliente` varchar(32) NOT NULL,
   `tecnico` varchar(32) NOT NULL,
   `aparelho` varchar(32) NOT NULL,
   `serie` varchar(30) DEFAULT NULL,
@@ -85,9 +84,9 @@ CREATE TABLE `tb_orcamentos` (
 -- Extraindo dados da tabela `tb_orcamentos`
 --
 
-INSERT INTO `tb_orcamentos` (`id`, `id_user`, `id_cliente`, `cliente`, `tecnico`, `aparelho`, `serie`, `modelo`, `defeito`, `laudo`, `obs`, `valor_servico`, `peca1`, `valor_peca1`, `peca2`, `valor_peca2`, `desconto`, `valor_total`, `pagamento`, `data_abertura`, `status`, `data_aprovacao`) VALUES
-(10, 1, 28, 'Larissa', 'Adimael Santos', 'Samsung', 'sa541d5sas', 'J810', 'Não carrega', 'Troca do conector de carga', '', '120.00', '', '0.00', '', '0.00', NULL, '120.00', 'Dinheiro', '2020-09-01', 'Aguardando', NULL),
-(11, 1, 30, 'Lucas', 'Adimael Santos', 'Alcatel', 'ad54asd454a74w', 'S203', 'Tela preta', 'Instalação da stock rom', '', '40.00', '', '0.00', '', '0.00', NULL, '40.00', 'Dinheiro', '2020-09-01', 'Aguardando', NULL);
+INSERT INTO `tb_orcamentos` (`id`, `id_user`, `id_cliente`, `tecnico`, `aparelho`, `serie`, `modelo`, `defeito`, `laudo`, `obs`, `valor_servico`, `peca1`, `valor_peca1`, `peca2`, `valor_peca2`, `desconto`, `valor_total`, `pagamento`, `data_abertura`, `status`, `data_aprovacao`) VALUES
+(10, 1, 28, 'Adimael Santos', 'Samsung', 'sa541d5sas', 'J810', 'Não carrega', 'Troca do conector de carga', '', '120.00', '', '0.00', '', '0.00', NULL, '120.00', 'Dinheiro', '2020-09-01', 'Aprovado', '2020-09-04'),
+(11, 1, 30, 'Adimael Santos', 'Alcatel', 'ad54asd454a74w', 'S203', 'Tela preta', 'Instalação da stock rom', '', '40.00', '', '0.00', '', '0.00', NULL, '40.00', 'Dinheiro', '2020-09-01', 'Aguardando', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -157,7 +156,8 @@ ALTER TABLE `tb_clientes`
 --
 ALTER TABLE `tb_orcamentos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_cliente` (`id_cliente`);
 
 --
 -- Índices para tabela `tb_produtos`
@@ -187,7 +187,7 @@ ALTER TABLE `tb_clientes`
 -- AUTO_INCREMENT de tabela `tb_orcamentos`
 --
 ALTER TABLE `tb_orcamentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de tabela `tb_produtos`

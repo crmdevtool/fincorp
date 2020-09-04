@@ -361,7 +361,7 @@ if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
 }
 
 else{ 
-$query = "select tb_orcamentos.*, tb_clientes.* from tb_orcamentos join tb_clientes ON tb_orcamentos.id_cliente = tb_clientes.id_cliente"; 
+$query = "select tb_orcamentos.*, tb_clientes.* from tb_orcamentos join tb_clientes where tb_orcamentos.id_cliente = tb_clientes.id_cliente AND status = 'Aguardando' order by nome ASC"; 
 }
 
     $result = mysqli_query($conn, $query);
@@ -400,7 +400,7 @@ if($row == ''){
 
     while($res_1 = mysqli_fetch_array($result)){
         $id = $res_1["id"];
-        $cliente = $res_1["cliente"];
+        $cliente = $res_1["nome"];
         $tecnico = $res_1["tecnico"];
         $aparelho = $res_1["aparelho"];
         $modelo = $res_1["modelo"];
@@ -597,12 +597,12 @@ $result_editar = mysqli_query($conn, $query_editar);
 
 if($result_editar == ''){
   //Mensagem Ocorreu um erro ao cadastrar!
-  echo "<script language='javascript'> window.alert('Ocorreu um erro ao Editar!'); </script>";
+  echo "<script language='javascript'> window.alert('Ocorreu um erro ao Aprovar Orçamento!'); </script>";
   echo "<script language='javascript'> window.location='rel_orcamentos.php'; </script>";
 
 } else {
   //Mensagem de Salvo com Sucesso!
-  echo "<script language='javascript'> window.alert('Editado com Sucesso!'); </script>";
+  echo "<script language='javascript'> window.alert('Orçamento aprovado com Sucesso!'); </script>";
   echo "<script language='javascript'> window.location='rel_orcamentos.php'; </script>";
 }
 }

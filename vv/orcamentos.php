@@ -363,7 +363,7 @@ if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
 }
 
 else{ 
-$query = "select * from tb_orcamentos WHERE id_user = '$_SESSION[id_user]' AND status = 'Aberto' order by cliente ASC"; 
+$query = "select tb_orcamentos.*, tb_clientes.* from tb_orcamentos join tb_clientes WHERE tb_clientes.id_cliente = tb_orcamentos.id_cliente AND status = 'Aberto' order by nome ASC"; 
 }
 
     $result = mysqli_query($conn, $query);
@@ -387,8 +387,12 @@ if($row == ''){
     <th>Aparelho</th>
     <th>Modelo</th>
     <th>Nº Série</th>
-    <th>Valor</th>
+    <th>defeito</th>
     <th>status</th>
+    <th>Email</th>
+    <th>Telefone</th>
+    <th>Cidade</th>
+    <th>Endereco</th>
     <th>Data</th>
     <th>Ação</th>
   </tr>
@@ -399,13 +403,17 @@ if($row == ''){
 
     while($res_1 = mysqli_fetch_array($result)){
         $id = $res_1["id"];
-        $cliente = $res_1["cliente"];
+        $cliente = $res_1["nome"];
         $tecnico = $res_1["tecnico"];
         $aparelho = $res_1["aparelho"];
         $modelo = $res_1["modelo"];
         $serie = $res_1["serie"];
-        $valor_total = $res_1["valor_total"];
+        $defeito = $res_1["defeito"];
         $status = $res_1["status"];
+        $telefone = $res_1["telefone"];
+        $email = $res_1["email"];
+        $cidade = $res_1["cidade"];
+        $endereco = $res_1["endereco"];
         $data_abertura = $res_1["data_abertura"];
 
         $data_abertura2 = implode('/', array_reverse(explode('-', $data_abertura)));
@@ -419,8 +427,12 @@ if($row == ''){
     <td><?php echo $aparelho; ?></td>
     <td><?php echo $modelo; ?></td>
     <td><?php echo $serie; ?></td>
-    <td>R$<?php echo $valor_total; ?></td>
+    <td><?php echo $defeito; ?></td>
     <td><?php echo $status; ?></td>
+    <td><?php echo $email; ?></td>
+    <td><?php echo $telefone; ?></td>
+    <td><?php echo $cidade; ?></td>
+    <td><?php echo $endereco; ?></td>
     <td><?php echo $data_abertura2; ?></td>
     <td><div class="widget-content-right">
     <a href="orcamentos.php?func=edita&id=<?php echo $id; ?>"><button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
@@ -469,6 +481,8 @@ require_once("footer.php");
 <script src="../assets/plugins/jquery/jquery.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Select2 -->
+<script src="../assets/plugins/select2/js/select2.full.min.js"></script>
 <!-- DataTables -->
 <script src="../assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -503,6 +517,78 @@ require_once("footer.php");
       "responsive": true,
     });
   });
+
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    //Date range picker
+    $('#reservationdate').datetimepicker({
+        format: 'L'
+    });
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({
+      timePicker: true,
+      timePickerIncrement: 30,
+      locale: {
+        format: 'MM/DD/YYYY hh:mm A'
+      }
+    })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Timepicker
+    $('#timepicker').datetimepicker({
+      format: 'LT'
+    })
+    
+    //Bootstrap Duallistbox
+    $('.duallistbox').bootstrapDualListbox()
+
+    //Colorpicker
+    $('.my-colorpicker1').colorpicker()
+    //color picker with addon
+    $('.my-colorpicker2').colorpicker()
+
+    $('.my-colorpicker2').on('colorpickerChange', function(event) {
+      $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+    });
+
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    });
+
+  })
 </script>
 <!-- MASK -->
 <script type="text/javascript" src="../assets/js/jquery.mask.min.js"></script>
@@ -530,41 +616,39 @@ require_once("footer.php");
     <div class="form-row">
     <div class="col-md-6">
         <div class="position-relative form-group">
-            <label for="nome-cliente" class="">Nome do Cliente</label>
-            <input name="txtcliente" list="browsers" id="txtcliente" placeholder="Nome do cliente..." type="text" spellcheck="false" class="form-control" required>
-            <datalist id="browsers">
-            <?php
+                  <label for="nome-cliente" class="">Nome do Cliente</label>
+                  <select name="txtcliente" class="form-control select2" style="width: 100%;">
+                    <option selected="selected" disabled>Selecione o nome do cliente...</option>
+                    <?php
             $query = "SELECT * FROM tb_clientes where id_user = $_SESSION[id_user] ORDER BY nome asc";
             $result = mysqli_query($conn, $query);
             if(count($result)){
               while($res_1 = mysqli_fetch_array($result)){
                    ?>                                       
-            <option value="<?php echo $res_1['nome']; ?>"></option> 
-            <option value="<?php echo $res_1['id_cliente']; ?>"></option> 
+            <option value="<?php echo $res_1['id_cliente']; ?>"><?php echo $res_1['nome']; ?></option> 
                          <?php      
                        }
                    }
                   ?>
-            </datalist>
+                  </select>
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="tecnico" class="">Técnico</label>
-            <input name="txttecnico" list="browser" id="txttecnico" placeholder="Técnico responsável..." type="text" class="form-control" required>
-            <datalist id="browser">
-            <?php
+            <select name="txttecnico" class="form-control select2" style="width: 100%;">
+                    <?php
             $query = "SELECT * FROM usuarios where id_user = $_SESSION[id_user] ORDER BY nome asc";
             $result = mysqli_query($conn, $query);
             if(count($result)){
               while($res_1 = mysqli_fetch_array($result)){
                    ?>                                       
-            <option value="<?php echo $res_1['nome']; ?>"><?php echo $res_1['nome']; ?></option> 
+            <option selected="selected" value="<?php echo $res_1['nome']; ?>"><?php echo $res_1['nome']; ?></option> 
                          <?php      
                        }
                    }
                   ?>
-            </datalist>
+                  </select>
         </div>
     </div>
     <div class="col-md-6">
@@ -634,7 +718,7 @@ if(@$_GET['func'] == 'deleta'){
 <?php
 if(@$_GET['func'] == 'edita'){ 
   $id = $_GET['id'];
-  $query = "select * from tb_orcamentos where id = '$id'";
+  $query = "select * from tb_orcamentos join tb_clientes where id = '$id'";
   $result = mysqli_query($conn, $query);
 
   while($res_1 = mysqli_fetch_array($result)){
@@ -657,14 +741,18 @@ aria-hidden="true">
     <div class="form-row">
     <div class="col-md-6">
         <div class="position-relative form-group">
-            <label for="nome-cliente" class="">Nome do Cliente</label>
-            <input name="txtcliente" value="<?php echo $res_1['cliente']; ?>" id="cliente" placeholder="Nome do cliente..." type="text" spellcheck="false" class="form-control" required>
+                  <label for="nome-cliente" class="">Nome do Cliente</label>
+                  <select name="txtcliente" class="form-control select2" style="width: 100%;">                
+            <option selected="selected" value="<?php echo $res_1['id_cliente']; ?>"><?php echo $res_1['nome']; ?></option> 
+                  </select>
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="tecnico" class="">Técnico</label>
-            <input name="txttecnico" value="<?php echo $res_1['tecnico']; ?>" id="tecnico" placeholder="Técnico responsável..." type="text" class="form-control" required>
+            <select name="txttecnico" class="form-control select2" style="width: 100%;">
+            <option selected="selected" value="<?php echo $res_1['tecnico']; ?>"><?php echo $res_1['tecnico']; ?></option> 
+                  </select>
         </div>
     </div>
     <div class="col-md-6">
@@ -767,7 +855,7 @@ aria-hidden="true">
 <?php
 if(isset($_POST['editar-orcamento'])){
   $id_user = $_SESSION['id_user'];
-  $cliente = $_POST['txtcliente'];
+  $id_cliente = $_POST['txtcliente'];
   $tecnico = $_POST['txttecnico'];
   $aparelho = $_POST['txtaparelho'];
   $modelo = $_POST['txtmodelo'];
@@ -784,7 +872,7 @@ if(isset($_POST['editar-orcamento'])){
   $valor_total = $_POST['txtvalortotal'];
 
 //CADASTRO DE CLIENTES
-$query_editar = "UPDATE tb_orcamentos SET cliente = '$cliente', tecnico = '$tecnico', aparelho = '$aparelho', modelo = '$modelo', serie = '$serie', defeito = '$defeito', obs = '$obs', laudo = '$laudo', peca1 = '$peca1', valor_peca1 = '$valor_peca1', peca2 = '$peca2', valor_peca2 = '$valor_peca2', pagamento = '$pagamento', valor_servico = '$valor_servico', valor_total = '$valor_total', status = 'Aguardando' WHERE id = '$id' ";
+$query_editar = "UPDATE tb_orcamentos SET id_cliente = '$id_cliente', tecnico = '$tecnico', aparelho = '$aparelho', modelo = '$modelo', serie = '$serie', defeito = '$defeito', obs = '$obs', laudo = '$laudo', peca1 = '$peca1', valor_peca1 = '$valor_peca1', peca2 = '$peca2', valor_peca2 = '$valor_peca2', pagamento = '$pagamento', valor_servico = '$valor_servico', valor_total = '$valor_total', status = 'Aguardando' WHERE id = '$id' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
 

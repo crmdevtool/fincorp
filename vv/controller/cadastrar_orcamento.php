@@ -4,7 +4,7 @@ include('../db/connection.php');
 
 if(isset($_POST['criar-orcamento'])){
   $id_user = $_SESSION['id_user'];
-  $cliente = $_POST['txtcliente'];
+  $id_cliente = $_POST['txtcliente'];
   $tecnico = $_POST['txttecnico'];
   $aparelho = $_POST['txtaparelho'];
   $modelo = $_POST['txtmodelo'];
@@ -25,7 +25,7 @@ if(isset($_POST['criar-orcamento'])){
   $valor_total = $_POST['txtvalortotal'];
 
 //CADASTRO DE USUÁRIOS
-$query = "INSERT into tb_orcamentos (id_user, cliente, tecnico, aparelho, modelo, serie, defeito, obs, laudo, peca1, valor_peca1, peca2, valor_peca2, peca3, valor_peca3, peca4, valor_peca4, pagamento, total, valor_total, status, data_abertura) VALUES ('$id_user', '$cliente', '$tecnico', '$aparelho', '$modelo', '$serie', '$defeito', '$obs', '$laudo', '$peca1', '$valor_peca1', '$peca2', '$valor_peca2', '$peca3', '$valor_peca3', '$peca4', '$valor_peca4', '$pagamento', '$total', '$valor_total', curDate() )";
+$query = "INSERT into tb_orcamentos (id_user, id_cliente, tecnico, aparelho, modelo, serie, defeito, obs, laudo, peca1, valor_peca1, peca2, valor_peca2, peca3, valor_peca3, peca4, valor_peca4, pagamento, total, valor_total, status, data_abertura) VALUES ('$id_user', '$id_cliente', '$tecnico', '$aparelho', '$modelo', '$serie', '$defeito', '$obs', '$laudo', '$peca1', '$valor_peca1', '$peca2', '$valor_peca2', '$peca3', '$valor_peca3', '$peca4', '$valor_peca4', '$pagamento', '$total', '$valor_total', curDate() )";
 
 $result = mysqli_query($conn, $query);
 

@@ -362,7 +362,7 @@ if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
 }
 
 else{ 
-  $query = "select tb_orcamentos.id, tb_orcamentos.cliente, tb_orcamentos.tecnico, tb_orcamentos.aparelho, tb_orcamentos.modelo, tb_orcamentos.serie, tb_orcamentos.laudo, tb_clientes.telefone, tb_clientes.email, tb_orcamentos.valor_total, tb_orcamentos.status, tb_orcamentos.data_aprovacao from tb_orcamentos join tb_clientes WHERE tb_orcamentos.id_user = tb_clientes.id_user AND status = 'Aprovado' order by cliente ASC"; 
+  $query = "select tb_orcamentos.*, tb_clientes.* from tb_orcamentos join tb_clientes where tb_orcamentos.id_cliente = tb_clientes.id_cliente AND status = 'Aprovado' order by nome ASC"; 
 }
 
     $result = mysqli_query($conn, $query);
@@ -401,7 +401,7 @@ if($row == ''){
 
     while($res_1 = mysqli_fetch_array($result)){
         $id = $res_1["id"];
-        $cliente = $res_1["cliente"];
+        $cliente = $res_1["nome"];
         $tecnico = $res_1["tecnico"];
         $aparelho = $res_1["aparelho"];
         $modelo = $res_1["modelo"];

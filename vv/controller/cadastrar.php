@@ -115,7 +115,7 @@ if($result == ''){
 
 if(isset($_POST['criar-orcamento'])){
   $id_user = $_SESSION['id_user'];
-  $cliente = $_POST['txtcliente'];
+  $id_cliente = $_POST['txtcliente'];
   $tecnico = $_POST['txttecnico'];
   $aparelho = $_POST['txtaparelho'];
   $modelo = $_POST['txtmodelo'];
@@ -124,7 +124,7 @@ if(isset($_POST['criar-orcamento'])){
   $obs = $_POST['txtobs'];
 
 //CADASTRO DE USUÁRIOS
-$query = "INSERT into tb_orcamentos (id_user, cliente, tecnico, aparelho, serie, modelo, defeito, obs, status, data_abertura) VALUES ('$id_user', '$cliente', '$tecnico', '$aparelho', '$serie', '$modelo', '$defeito', '$obs', 'Aberto', curDate() )";
+$query = "INSERT into tb_orcamentos (id_user, id_cliente, tecnico, aparelho, serie, modelo, defeito, obs, status, data_abertura) VALUES ('$id_user', '$id_cliente', '$tecnico', '$aparelho', '$serie', '$modelo', '$defeito', '$obs', 'Aberto', curDate() )";
 
 $result = mysqli_query($conn, $query);
 
