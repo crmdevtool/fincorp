@@ -233,6 +233,18 @@ require_once("header.php");
                   <p>Ordem de serviço</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="osfinalizadas.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>OS - Finalizadas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="oscanceladas.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>OS - Canceladas</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
@@ -431,6 +443,9 @@ if($row == ''){
     <td><?php echo $laudo; ?></td>
     <td><?php echo $data_aprovacao2; ?></td>
     <td><div class="widget-content-right">
+    <a href="orderservices.php?func=finalizar&id=<?php echo $id; ?>"><button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
+    data-target=".bd-example-modal-lg-finalizar"><i class="fa fa-check"></i>
+    </button></a>
     <a href="../rel/rel_orcamentos_class.php?id=<?php echo $id; ?>" target="_blank"><button class="border-0 btn-transition btn btn-outline-info" data-toggle="modal"
     data-target=".bd-example-modal-lg-editar"><i class="fa fa-file-invoice"></i>
     </button></a>
@@ -554,9 +569,9 @@ if(@$_GET['func'] == 'deleta'){
       });
 </script> 
 
-<!--EDITAR -->
+<!-- Finalizar OS -->
 <?php
-if(@$_GET['func'] == 'edita'){ 
+if(@$_GET['func'] == 'finalizar'){ 
   $id = $_GET['id'];
   $query = "select * from tb_orcamentos where id = '$id'";
   $result = mysqli_query($conn, $query);
@@ -565,191 +580,52 @@ if(@$_GET['func'] == 'edita'){
 
 ?>
 
-<!-- modal Editar -->
-<div id="modalEditar" class="modal fade bd-example-modal-lg-editar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<!-- modal Aprovar OS -->
+<div id="modalfinalizar" class="modal fade bd-example-modal-lg-finalizar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-small">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Editar Orçamento</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Finalizar Ordem de Serviço</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
             <form method="POST" enctype="multipart/form-data" action="" class="">
-    <div class="form-row">
-    <div class="col-md-6">
-        <div class="position-relative form-group">
-            <label for="nome-cliente" class="">Nome do Cliente</label>
-            <input name="txtcliente" value="<?php echo $res_1['cliente']; ?>" id="cliente" placeholder="Nome do cliente..." type="text" spellcheck="false" class="form-control" required>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="position-relative form-group">
-            <label for="tecnico" class="">Técnico</label>
-            <input name="txttecnico" value="<?php echo $res_1['tecnico']; ?>" id="tecnico" placeholder="Técnico responsável..." type="text" class="form-control" required>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="position-relative form-group">
-            <label for="aparelho" class="">Aparelho</label>
-            <input name="txtaparelho" value="<?php echo $res_1['aparelho']; ?>" id="aparelho" placeholder="Tipo de aparelho..." type="text" spellcheck="false" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="position-relative form-group">
-            <label for="modelo" class="">Modelo</label>
-            <input name="txtmodelo" value="<?php echo $res_1['modelo']; ?>" id="modelo" placeholder="Modelo do aparelho" type="text" class="form-control" required>
-        </div>
-    </div>
-</div>
-<div class="form-row">
-    <div class="col-md-6">
-        <div class="position-relative form-group">
-            <label for="serie" class="">Nº de Série</label>
-            <input name="txtserie" value="<?php echo $res_1['serie']; ?>" placeholder="Número de série do aparelho..." id="serie" type="text" spellcheck="false" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="position-relative form-group">
-            <label for="defeito" class="">Defeito</label>
-            <input name="txtdefeito" value="<?php echo $res_1['defeito']; ?>" placeholder="Defeito relatado pelo cliente..." id="defeito" type="text" spellcheck="false" class="form-control">
-        </div>
-    </div>
-<div class="form-row">
-            </div>
-            </div>
-            <div class="position-relative form-group">
-            <label for="obs" class="">Observações</label>
-            <textarea name="txtobs" id="obs" placeholder="Observações..." type="text" spellcheck="false" class="form-control"><?php echo $res_1['obs']; ?></textarea>
-            </div>
-            <div class="position-relative form-group">
-            <label for="laudo" class="">Laudo</label>
-            <textarea name="txtlaudo" id="laudo" placeholder="Laudo técnico..." type="text" spellcheck="false" class="form-control"><?php echo $res_1['laudo']; ?></textarea>
-            </div>
-            <div class="form-row">
-            <div class="col-md-4">
-        <div class="position-relative form-group">
-            <label for="peca1" class="">Peça 1</label>
-            <input name="txtpeca1" value="<?php echo $res_1['peca1']; ?>" placeholder="Peça utilizada no reparo..." id="peca1" type="text" spellcheck="false" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-2">
-        <div class="position-relative form-group">
-            <label for="valor_peca1" class="">Valor da peça</label>
-            <input name="txtvalorpeca1" value="<?php echo $res_1['valor_peca1']; ?>" placeholder="R$" id="valorpeca1" type="text" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="position-relative form-group">
-            <label for="peca2" class="">Peça 2</label>
-            <input name="txtpeca2" value="<?php echo $res_1['peca2']; ?>" placeholder="Peça utilizada no reparo..." id="peca2" type="text" spellcheck="false" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-2">
-        <div class="position-relative form-group">
-            <label for="valorpeca2" class="">Valor da peça</label>
-            <input name="txtvalorpeca2" value="<?php echo $res_1['valor_peca2']; ?>" placeholder="R$" id="valorpeca2" type="text" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="position-relative form-group">
-            <label for="peca3" class="">Peça 3</label>
-            <input name="txtpeca3" value="<?php echo $res_1['peca3']; ?>" placeholder="Peça utilizada no reparo..." id="peca3" type="text" spellcheck="false" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-2">
-        <div class="position-relative form-group">
-            <label for="valorpeca3" class="">Valor da peça</label>
-            <input name="txtvalorpeca3" value="<?php echo $res_1['valor_peca3']; ?>" placeholder="R$" id="valorpeca3" type="text" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="position-relative form-group">
-            <label for="peca4" class="">Peça 4</label>
-            <input name="txtpeca4" value="<?php echo $res_1['peca4']; ?>" placeholder="Peça utilizada no reparo..." id="peca4" type="text" spellcheck="false" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-2">
-        <div class="position-relative form-group">
-            <label for="valorpeca4" class="">Valor da peça</label>
-            <input name="txtvalorpeca4" value="<?php echo $res_1['valor_peca4']; ?>" placeholder="R$" id="valorpeca4" type="text" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-3">
-    <!-- select -->
-    <div class="form-group" required>
-                        <label>Forma de pagamento</label>
-                        <select name="txtpagamento" class="form-control" required>
-                          <option disabled selected>Forma de pagamento...</option>
-                          <option value="Dinheiro">Dinheiro</option>
-                          <option value="Cartão">Cartão</option>
-                        </select>
-                      </div>
-                    </div>
-    <div class="col-md-2">
-        <div class="position-relative form-group">
-            <label for="total" class="">Valor do Serviço</label>
-            <input name="txttotal" value="<?php echo $res_1['valor_servico']; ?>" placeholder="R$" id="total" type="text" spellcheck="false" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-2">
-        <div class="position-relative form-group">
-            <label for="valortotal" class="">Valor total</label>
-            <input name="txtvalortotal" value="<?php echo $res_1['valor_total']; ?>" id="valortotal" placeholder="R$" type="text" class="form-control">
-        </div>
-    </div>
+    <div class="form-row">               
+            <h6>Tem certeza que deseja Finalizar OS?</h6>                     
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-warning" name="editar-orcamento">Atualizar</button>
+                <button type="submit" class="btn btn-success" name="editar-orcamento">Finalizar</button>
             </form>
             </div>
         </div>
     </div>
 </div>
 
-<script> $("#modalEditar").modal("show"); </script> 
+<script> $("#modalfinalizar").modal("show"); </script> 
 
 <!--Comando para editar os dados UPDATE -->
 <?php
-if(isset($_POST['editar-orcamento'])){
+if(isset($_POST['finalizar-OS'])){
   $id_user = $_SESSION['id_user'];
-  $cliente = $_POST['txtcliente'];
-  $tecnico = $_POST['txttecnico'];
-  $aparelho = $_POST['txtaparelho'];
-  $modelo = $_POST['txtmodelo'];
-  $serie = $_POST['txtserie'];
-  $defeito = $_POST['txtdefeito'];
-  $obs = $_POST['txtobs'];
-  $laudo = $_POST['txtlaudo'];
-  $peca1 = $_POST['txtpeca1'];
-  $valor_peca1 = $_POST['txtvalorpeca1'];
-  $peca2 = $_POST['txtpeca2'];
-  $valor_peca2 = $_POST['txtvalorpeca2'];
-  $peca3 = $_POST['txtpeca3'];
-  $valor_peca3 = $_POST['txtvalorpeca3'];
-  $peca4 = $_POST['txtpeca4'];
-  $valor_peca4 = $_POST['txtvalorpeca4'];
-  $pagamento = $_POST['txtpagamento'];
-  $valor_servico = $_POST['txttotal'];
-  $valor_total = $_POST['txtvalortotal'];
 
 //CADASTRO DE CLIENTES
-$query_editar = "UPDATE tb_orcamentos SET cliente = '$cliente', tecnico = '$tecnico', aparelho = '$aparelho', modelo = '$modelo', serie = '$serie', defeito = '$defeito', obs = '$obs', laudo = '$laudo', peca1 = '$peca1', valor_peca1 = '$valor_peca1', peca2 = '$peca2', valor_peca2 = '$valor_peca2', peca3 = '$peca3', valor_peca3 = '$valor_peca3', peca4 = '$peca4', valor_peca4 = '$valor_peca4', pagamento = '$pagamento', valor_servico = '$valor_servico', valor_total = '$valor_total' WHERE id_user = '$id_user' ";
+$query_editar = "UPDATE tb_orcamentos SET status = 'Finalizado', data_aprovacao = curDate() WHERE id = '$id' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
 
 if($result_editar == ''){
   //Mensagem Ocorreu um erro ao cadastrar!
-  echo "<script language='javascript'> window.alert('Ocorreu um erro ao Editar!'); </script>";
-  echo "<script language='javascript'> window.location='orcamentos.php'; </script>";
+  echo "<script language='javascript'> window.alert('Ocorreu um erro ao finalizar OS!'); </script>";
+  echo "<script language='javascript'> window.location='orderservices.php'; </script>";
 
 } else {
   //Mensagem de Salvo com Sucesso!
-  echo "<script language='javascript'> window.alert('Editado com Sucesso!'); </script>";
-  echo "<script language='javascript'> window.location='orcamentos.php'; </script>";
+  echo "<script language='javascript'> window.alert('Ordem de serviço finalizada com Sucesso!'); </script>";
+  echo "<script language='javascript'> window.location='orderservices.php'; </script>";
 }
 }
 ?>

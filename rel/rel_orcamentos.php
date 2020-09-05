@@ -8,7 +8,7 @@ $result = mysqli_query($conn, $query);
 
  while($res_1 = mysqli_fetch_array($result)){
 
-$data2 = implode('/', array_reverse(explode('-', $res_1['data_abertura'])));
+$data2 = implode('/', array_reverse(explode('-', $res_1['data_geracao'])));
 
  ?>
 
@@ -50,7 +50,7 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data_abertura'])));
 			</div>
 			<div class="row">
 				<div class="col-sm-3">	
-				 <p style="font-size:12px">  Nome: <?php echo $res_1['cliente']; ?> </p>
+				 <p style="font-size:12px">  Nome: <?php echo $res_1['nome']; ?> </p>
 				</div>
 				<div class="col-sm-3">	
 				 <p style="font-size:12px">  Email: <?php echo $res_1['email']; ?> </p>
@@ -190,7 +190,9 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data_abertura'])));
 				
 		</div>
 
-			
+		<div class="col-sm-3">	
+				<p style="font-size:12px">Orçamento válido até: <?php echo date('d/m/Y', strtotime("+5 days",strtotime($res_1['data_geracao']))); ?></p>
+				</div>
 
 	
 </div>

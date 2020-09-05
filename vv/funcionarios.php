@@ -233,6 +233,18 @@ require_once("header.php");
                   <p>Ordem de serviço</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="osfinalizadas.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>OS - Finalizadas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="oscanceladas.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>OS - Canceladas</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
@@ -449,24 +461,6 @@ require_once("header.php");
                     }                        
                   ?>
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>ID</th>
-                    <th>Foto</th>
-                    <th>Nome</th>
-                    <th>Username</th>
-                    <th>CPF</th>
-                    <th>E-mail</th>
-                    <th>Telefone</th>
-                    <th>Endereço</th>
-                    <th>empresa</th>
-                    <th>Cidade</th>
-                    <th>Cep</th>
-                    <th>Nível de acesso</th>
-                    <th>Data</th>
-                    <th>Ação</th>
-                  </tr>
-                  </tfoot>
                 </table>
                 <?php 
                 }                        

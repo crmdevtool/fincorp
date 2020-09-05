@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04-Set-2020 às 22:38
+-- Tempo de geração: 05-Set-2020 às 23:00
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.4.6
 
@@ -48,7 +48,7 @@ CREATE TABLE `tb_clientes` (
 INSERT INTO `tb_clientes` (`id_cliente`, `id_user`, `nome`, `cpf`, `endereco`, `cidade`, `estado`, `cep`, `telefone`, `email`, `dt_registro`) VALUES
 (28, 1, 'Larissa', '255.665.896-62', 'Lago azul-centro, 33', 'Gandu', 'Bahia', '45450-000', '(73) 99985-0332', 'larissa@outlook.com', '2020-07-27 14:18:24'),
 (29, 12, 'Gabriel', '257.956.563-21', 'Rua Gilberto Gil, 87', 'Gandu', 'Bahia', '45450-000', '(73) 99978-5236', 'gabrielgdu@gmail.com', '2020-07-27 14:37:47'),
-(30, 1, 'Lucas', '447.854.548-78', 'Rua Humberto Campos 80', 'Gandu', 'Bahia', '45450-000', '(73) 99985-2669', 'lucas@gmail.com', '2020-09-02 00:59:54');
+(30, 1, 'Lucas', '447.854.548-78', 'Rua Humberto Campos 80', 'Gandu', 'Bahia', '45450-000', '(73) 99985-2669', 'adimaelbr@gmail.com', '2020-09-02 00:59:54');
 
 -- --------------------------------------------------------
 
@@ -76,17 +76,18 @@ CREATE TABLE `tb_orcamentos` (
   `valor_total` decimal(10,2) DEFAULT NULL,
   `pagamento` varchar(32) DEFAULT NULL,
   `data_abertura` date NOT NULL,
+  `data_geracao` date NOT NULL,
   `status` varchar(32) NOT NULL,
-  `data_aprovacao` date DEFAULT NULL
+  `data_aprovacao` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tb_orcamentos`
 --
 
-INSERT INTO `tb_orcamentos` (`id`, `id_user`, `id_cliente`, `tecnico`, `aparelho`, `serie`, `modelo`, `defeito`, `laudo`, `obs`, `valor_servico`, `peca1`, `valor_peca1`, `peca2`, `valor_peca2`, `desconto`, `valor_total`, `pagamento`, `data_abertura`, `status`, `data_aprovacao`) VALUES
-(10, 1, 28, 'Adimael Santos', 'Samsung', 'sa541d5sas', 'J810', 'Não carrega', 'Troca do conector de carga', '', '120.00', '', '0.00', '', '0.00', NULL, '120.00', 'Dinheiro', '2020-09-01', 'Aprovado', '2020-09-04'),
-(11, 1, 30, 'Adimael Santos', 'Alcatel', 'ad54asd454a74w', 'S203', 'Tela preta', 'Instalação da stock rom', '', '40.00', '', '0.00', '', '0.00', NULL, '40.00', 'Dinheiro', '2020-09-01', 'Aguardando', '0000-00-00');
+INSERT INTO `tb_orcamentos` (`id`, `id_user`, `id_cliente`, `tecnico`, `aparelho`, `serie`, `modelo`, `defeito`, `laudo`, `obs`, `valor_servico`, `peca1`, `valor_peca1`, `peca2`, `valor_peca2`, `desconto`, `valor_total`, `pagamento`, `data_abertura`, `data_geracao`, `status`, `data_aprovacao`) VALUES
+(10, 1, 28, 'Adimael Santos', 'Samsung', 'sa541d5sas', 'J810', 'Não carrega', 'Troca do conector de carga', '', '120.00', '', '0.00', '', '0.00', NULL, '120.00', 'Dinheiro', '2020-09-05', '2020-09-05', 'Aprovado', '2020-09-05'),
+(11, 1, 30, 'Adimael Santos', 'Alcatel', 'ad54asd454a74w', 'S203', 'Tela preta', 'Instalação da stock rom', '', '40.00', '', '0.00', '', '0.00', NULL, '40.00', 'Dinheiro', '2020-09-05', '2020-09-05', 'Aguardando', '2020-09-04');
 
 -- --------------------------------------------------------
 
@@ -134,7 +135,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_user`, `foto`, `nome`, `username`, `password`, `cpf`, `email`, `telefone`, `endereco`, `empresa`, `cidade`, `cep`, `access_level`, `id_funcionario`, `dt_registro`) VALUES
-(1, '1018827128user.jpg', 'Adimael Santos', 'admin', '123', '861.670.545-76', 'adimaelbr@gmail.com', '(73) 99973-8916', 'Rua Jurandir Velame, 477', 'Planeta Assistência', 'Gandu-Bahia', '45450-000', 'Administrador', NULL, '0000-00-00'),
+(1, '1018827128user.jpg', 'Adimael Santos', 'admin', '123', '861.670.545-76', 'adimael@gmail.com', '(73) 99973-8916', 'Rua Jurandir Velame, 477', 'Planeta Assistência', 'Gandu-Bahia', '45450-000', 'Administrador', NULL, '0000-00-00'),
 (2, '1018827128user1.jpg', 'Ricardo Funcionário', 'funcionario', 'root', '802.107.880-46', 'funcionario@gmail.com', '(73) 99952-3243', 'Rua Carlos Drumont, 22', 'Planeta Assistência', 'Gandu-Ba', '45450-000', 'Funcionário', 1, '0000-00-00'),
 (3, '1018827128user2.jpg', 'Suporte', 'suporte', '123', '255.025.540-23', 'suporte@suporte.com', '(73) 99921-8356', 'Rua Polivalente, 77', 'Microsoft', 'Gandu-Bahia', '45450-000', 'Suporte', NULL, '0000-00-00'),
 (4, '1018827128user4.jpg', 'Tales', 'tales', 'root', '858.455.202-51', 'tales@gmail.com', '(73) 99985-2314', 'Rua Eliseu Leal, 44', 'Clinica dos celulares', 'Gandu-Ba', '45450-000', 'Funcionário', 12, '0000-00-00'),

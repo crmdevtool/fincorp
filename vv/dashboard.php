@@ -231,6 +231,18 @@ require_once("header.php");
                   <p>Ordem de serviço</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="osfinalizadas.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>OS - Finalizadas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="oscanceladas.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>OS - Canceladas</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">

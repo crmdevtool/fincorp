@@ -233,6 +233,18 @@ require_once("header.php");
                   <p>Ordem de serviço</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="osfinalizadas.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>OS - Finalizadas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="oscanceladas.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>OS - Canceladas</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
@@ -731,7 +743,7 @@ aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Editar Orçamento</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Fechar Orçamento</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -872,7 +884,7 @@ if(isset($_POST['editar-orcamento'])){
   $valor_total = $_POST['txtvalortotal'];
 
 //CADASTRO DE CLIENTES
-$query_editar = "UPDATE tb_orcamentos SET id_cliente = '$id_cliente', tecnico = '$tecnico', aparelho = '$aparelho', modelo = '$modelo', serie = '$serie', defeito = '$defeito', obs = '$obs', laudo = '$laudo', peca1 = '$peca1', valor_peca1 = '$valor_peca1', peca2 = '$peca2', valor_peca2 = '$valor_peca2', pagamento = '$pagamento', valor_servico = '$valor_servico', valor_total = '$valor_total', status = 'Aguardando' WHERE id = '$id' ";
+$query_editar = "UPDATE tb_orcamentos SET id_cliente = '$id_cliente', tecnico = '$tecnico', aparelho = '$aparelho', modelo = '$modelo', serie = '$serie', defeito = '$defeito', obs = '$obs', laudo = '$laudo', peca1 = '$peca1', valor_peca1 = '$valor_peca1', peca2 = '$peca2', valor_peca2 = '$valor_peca2', pagamento = '$pagamento', valor_servico = '$valor_servico', valor_total = '$valor_total', data_geracao = curDate(), status = 'Aguardando' WHERE id = '$id' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
 

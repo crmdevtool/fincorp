@@ -3,6 +3,19 @@ session_start();
 session_id();
 include('db/connection.php');
 
+//CANCELAR ORÇAMENTOS APÓS 5 DIAS
+$query = "SELECT * from tb_orcamentos where status = 'Aguardando'";
+$result = mysqli_query($conn, $query);
+ while($res_1 = mysqli_fetch_array($result)){
+$data_geracao = $res_1['data_geracao'];
+$data_cancelamento = date('Y/m/d', strtotime("-7 days",strtotime(date('Y/m/d'))));
+
+$query_editar = "UPDATE tb_orcamentos set status = 'Cancelado' where data_geracao = '$data_cancelamento' and status = 'Aguardando' ";
+
+$result_editar = mysqli_query($conn, $query_editar);
+
+}
+
 if(empty($_POST['username']) || empty($_POST['password'])){
   header('Location: index.php');
   $_SESSION['error_vazio'] = true;
