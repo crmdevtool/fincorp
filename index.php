@@ -201,7 +201,7 @@
            		   </div>
            		   <div class="div">
            		   		<h5>Username</h5>
-           		   		<input type="text" spellcheck="false" name="username" class="input">
+           		   		<input type="text" spellcheck="false" autocomplete="off" name="username" class="input">
            		   </div>
            		</div>
            		<div class="input-div pass">
