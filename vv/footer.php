@@ -23,7 +23,7 @@
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="nome-cliente" class="">Nome do cliente</label>
-            <input name="txtnome" id="nome-cliente" placeholder="Nome completo do cliente" type="text" class="form-control" required>
+            <input name="txtnome" id="nome-cliente" placeholder="Nome completo do cliente" type="text" autocomplete="off" class="form-control" required>
         </div>
     </div>
     <div class="col-md-6">
@@ -97,7 +97,7 @@
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="nome-produto" class="">Nome/Marca do produto</label>
-            <input name="nome" id="nome-produto" placeholder="Nome do produto" type="text" class="form-control">
+            <input name="nome" autocomplete="off" id="nome-produto" placeholder="Nome do produto" type="text" class="form-control">
         </div>
     </div>
     <div class="col-md-6">

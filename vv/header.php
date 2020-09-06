@@ -11,6 +11,7 @@ include('controller/cadastrar.php');
 <html lang="pt-br">
 <head>
   <meta charset="utf-8">
+  <meta name="theme-color" content="#1A1B25">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Fincorp</title>
   <!-- Favicon -->
