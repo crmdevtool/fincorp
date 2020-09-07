@@ -208,9 +208,9 @@ require_once("header.php");
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-file-signature"></i>
+              <i class="nav-icon fas fa-money-check-alt"></i>
               <p>
-                Ordem de serviço
+                Orçamentos
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -228,6 +228,23 @@ require_once("header.php");
                 </a>
               </li>
               <li class="nav-item">
+                <a href="orcancelados.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>Orçamento Cancelado</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-file-signature"></i>
+              <p>
+                Ordem de serviço
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
                 <a href="orderservices.php" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>Ordem de serviço</p>
@@ -237,12 +254,6 @@ require_once("header.php");
                 <a href="osfinalizadas.php" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>OS - Finalizadas</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="oscanceladas.php" class="nav-link">
-                  <i class="nav-icon"></i>
-                  <p>OS - Canceladas</p>
                 </a>
               </li>
             </ul>
@@ -354,7 +365,7 @@ require_once("header.php");
 <div class="col-12">
 <div class="card">
 <div class="card-header">
-<h3 class="card-title">Orçamentos aguardando aprovação</h3>
+<h3 class="card-title">Relatório de Orçamentos</h3>
 </div>
 <!-- /.card-header -->
 <div class="card-body">
@@ -373,7 +384,7 @@ if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
 }
 
 else{ 
-$query = "select tb_orcamentos.*, tb_clientes.* from tb_orcamentos join tb_clientes where tb_orcamentos.id_cliente = tb_clientes.id_cliente AND status = 'Aguardando' order by nome ASC"; 
+$query = "select tb_orcamentos.*, tb_clientes.* from tb_orcamentos join tb_clientes where tb_orcamentos.id_cliente = tb_clientes.id_cliente AND status != 'Aberto' order by nome ASC"; 
 }
 
     $result = mysqli_query($conn, $query);
@@ -417,7 +428,7 @@ if($row == ''){
         $aparelho = $res_1["aparelho"];
         $modelo = $res_1["modelo"];
         $serie = $res_1["serie"];
-        $valor_total = $res_1["valor_total"];
+        $valor_total = $res_1["valor_total"] - $res_1["desconto"];
         $status = $res_1["status"];
         $email = $res_1["email"];
         $telefone = $res_1["telefone"];
@@ -536,18 +547,6 @@ require_once("footer.php");
       $('#cep-cliente').mask('00000-000');
       });
 </script>
-
- <!-- MASCARAS -->
- <script type="text/javascript">
-    $(document).ready(function(){
-      $('#valorpeca1').mask('R$ 000,00');
-      $('#valorpeca2').mask('R$ 000,00');
-      $('#valorpeca3').mask('R$ 000,00');
-      $('#valorpeca4').mask('R$ 000,00');
-      $('#total').mask('R$ 000,00');
-      $('#valortotal').mask('R$ 000,00');
-      });
-</script>  
 </body>
 </html>
 <!--EXCLUIR -->
@@ -567,6 +566,11 @@ if(@$_GET['func'] == 'aprovar'){
   $result = mysqli_query($conn, $query);
 
   while($res_1 = mysqli_fetch_array($result)){
+    $id_user = $_SESSION['id_user'];
+    $id_cliente = $_POST['id_cliente'];
+    $tecnico = $_POST['tecnico'];
+    $aparelho = $_POST['aparelho'];
+    $total = $_POST['total'];
 
 ?>
 
@@ -576,7 +580,7 @@ aria-hidden="true">
     <div class="modal-dialog modal-small">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Aprovar Orçamento</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Aprovar Orçamento <?php echo $id; ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -584,7 +588,20 @@ aria-hidden="true">
             <div class="modal-body">
             <form method="POST" enctype="multipart/form-data" action="" class="">
     <div class="form-row">
-    <h6>Tem certeza que deseja aprovar esse orçamento?</h6>
+    <!-- select -->
+    <div class="form-group" required>
+                        <label>Forma de pagamento__</label>
+                        <select name="txtpagamento" class="form-control" required>
+                          <option selected value="Dinheiro">Dinheiro</option>
+                          <option value="Cartão">Cartão</option>
+                        </select>
+                      </div>
+                      
+                      <div class="position-relative form-group">
+            <label for="total" class="">Desconto</label>
+            <input name="txtdesconto" placeholder="R$" id="total" type="text" spellcheck="false" class="form-control">
+        </div>
+    </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -601,11 +618,23 @@ aria-hidden="true">
 <?php
 if(isset($_POST['editar-orcamento'])){
   $id_user = $_SESSION['id_user'];
+  $pagamento = $_POST['txtpagamento'];
+  $desconto = $_POST['txtdesconto'];
+  $id_cliente = $_POST['id_cliente'];
+  $tecnico = $_POST['tecnico'];
+  $aparelho = $_POST['aparelho'];
+  $valor_total = $valor_total - $desconto;
 
 //CADASTRO DE CLIENTES
-$query_editar = "UPDATE tb_orcamentos SET status = 'Aprovado', data_aprovacao = curDate() WHERE id = '$id' ";
+$query_editar = "UPDATE tb_orcamentos SET desconto = '$desconto', total = '$total', pagamento = '$pagamento', status = 'Aprovado', data_aprovacao = curDate() WHERE id = '$id' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
+
+//Fazer abertura da OS
+$query_os = "INSERT INTO tb_os (id_user, id_cliente, aparelho, tecnico, total, data_abertura, status) VALUES ('$id_user', '$id_cliente', '$aparelho', '$tecnico', '$valor_total', curDate(), 'Aberto')";
+
+mysqli_query($conn, $query_os);
+
 
 if($result_editar == ''){
   //Mensagem Ocorreu um erro ao cadastrar!

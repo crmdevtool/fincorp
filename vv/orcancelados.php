@@ -208,9 +208,9 @@ require_once("header.php");
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-file-signature"></i>
+              <i class="nav-icon fas fa-money-check-alt"></i>
               <p>
-                Ordem de serviço
+                Orçamentos
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -228,6 +228,23 @@ require_once("header.php");
                 </a>
               </li>
               <li class="nav-item">
+                <a href="orcancelados.php" class="nav-link active">
+                  <i class="nav-icon"></i>
+                  <p>Orçamento Cancelado</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-file-signature"></i>
+              <p>
+                Ordem de serviço
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
                 <a href="orderservices.php" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>Ordem de serviço</p>
@@ -237,12 +254,6 @@ require_once("header.php");
                 <a href="osfinalizadas.php" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>OS - Finalizadas</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="oscanceladas.php" class="nav-link active">
-                  <i class="nav-icon"></i>
-                  <p>OS - Canceladas</p>
                 </a>
               </li>
             </ul>
@@ -341,7 +352,7 @@ require_once("header.php");
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-              <li class="breadcrumb-item active">OS-canceladas</li>
+              <li class="breadcrumb-item active">orçamentos-cancelados</li>
             </ol>
           </div>
         </div>
@@ -355,7 +366,7 @@ require_once("header.php");
 <div class="col-12">
 <div class="card">
 <div class="card-header">
-<h3 class="card-title">Ordem de serviço Canceladas</h3>
+<h3 class="card-title">Orçamentos Cancelados</h3>
 </div>
 <!-- /.card-header -->
 <div class="card-body">
@@ -418,7 +429,7 @@ if($row == ''){
         $aparelho = $res_1["aparelho"];
         $modelo = $res_1["modelo"];
         $serie = $res_1["serie"];
-        $valor_total = $res_1["valor_total"];
+        $valor_total = $res_1["valor_total"] - $res_1["desconto"];
         $status = $res_1["status"];
         $email = $res_1["email"];
         $telefone = $res_1["telefone"];

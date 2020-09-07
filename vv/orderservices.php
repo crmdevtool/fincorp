@@ -207,10 +207,10 @@ require_once("header.php");
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-file-signature"></i>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-money-check-alt"></i>
               <p>
-                Ordem de serviço
+                Orçamentos
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -228,6 +228,23 @@ require_once("header.php");
                 </a>
               </li>
               <li class="nav-item">
+                <a href="orcancelados.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>Orçamento Cancelado</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-file-signature"></i>
+              <p>
+                Ordem de serviço
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
                 <a href="orderservices.php" class="nav-link active">
                   <i class="nav-icon"></i>
                   <p>Ordem de serviço</p>
@@ -237,12 +254,6 @@ require_once("header.php");
                 <a href="osfinalizadas.php" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>OS - Finalizadas</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="oscanceladas.php" class="nav-link">
-                  <i class="nav-icon"></i>
-                  <p>OS - Canceladas</p>
                 </a>
               </li>
             </ul>
@@ -418,7 +429,8 @@ if($row == ''){
         $aparelho = $res_1["aparelho"];
         $modelo = $res_1["modelo"];
         $serie = $res_1["serie"];
-        $valor_total = $res_1["valor_total"];
+        $desconto = $res_1["desconto"];
+        $total = $res_1["total"] - $res_1["desconto"];
         $status = $res_1["status"];
         $email = $res_1["email"];
         $telefone = $res_1["telefone"];
@@ -436,7 +448,7 @@ if($row == ''){
     <td><?php echo $aparelho; ?></td>
     <td><?php echo $modelo; ?></td>
     <td><?php echo $serie; ?></td>
-    <td><?php echo $valor_total; ?></td>
+    <td>R$<?php echo $total; ?></td>
     <td><?php echo $status; ?></td>
     <td><?php echo $email; ?></td>
     <td><?php echo $telefone; ?></td>
@@ -446,7 +458,7 @@ if($row == ''){
     <a href="orderservices.php?func=finalizar&id=<?php echo $id; ?>"><button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
     data-target=".bd-example-modal-lg-finalizar"><i class="fa fa-check"></i>
     </button></a>
-    <a href="../rel/rel_orcamentos_class.php?id=<?php echo $id; ?>" target="_blank"><button class="border-0 btn-transition btn btn-outline-info" data-toggle="modal"
+    <a href="../rel/rel_orcamentos_class.php?id=<?php echo $id; ?>&email=<?php echo $email; ?>" target="_blank"><button class="border-0 btn-transition btn btn-outline-info" data-toggle="modal"
     data-target=".bd-example-modal-lg-editar"><i class="fa fa-file-invoice"></i>
     </button></a>
     <a href="orderservices.php?func=deleta&id=<?php echo $id; ?>"><button class="border-0 btn-transition btn btn-outline-danger">
@@ -594,7 +606,7 @@ aria-hidden="true">
             <div class="modal-body">
             <form method="POST" enctype="multipart/form-data" action="" class="">
     <div class="form-row">               
-            <h6>Tem certeza que deseja Finalizar OS?</h6>                     
+            <h6>Tem certeza que deseja Finalizar OS com o ID(<?php echo $id; ?>)?</h6>                     
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

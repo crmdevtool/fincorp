@@ -208,9 +208,9 @@ require_once("header.php");
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-file-signature"></i>
+              <i class="nav-icon fas fa-money-check-alt"></i>
               <p>
-                Ordem de serviço
+                Orçamentos
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -228,6 +228,23 @@ require_once("header.php");
                 </a>
               </li>
               <li class="nav-item">
+                <a href="oscanceladas.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>Orçamento Cancelado</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-file-signature"></i>
+              <p>
+                Ordem de serviço
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
                 <a href="orderservices.php" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>Ordem de serviço</p>
@@ -237,12 +254,6 @@ require_once("header.php");
                 <a href="osfinalizadas.php" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>OS - Finalizadas</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="oscanceladas.php" class="nav-link">
-                  <i class="nav-icon"></i>
-                  <p>OS - Canceladas</p>
                 </a>
               </li>
             </ul>
@@ -672,7 +683,7 @@ require_once("footer.php");
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="modelo" class="">Modelo</label>
-            <input name="txtmodelo" id="txtmodelo" placeholder="Modelo do aparelho" type="text" class="form-control" required>
+            <input name="txtmodelo" spellcheck="false" id="txtmodelo" placeholder="Modelo do aparelho" type="text" class="form-control" required>
         </div>
     </div>
 </div>
@@ -730,7 +741,7 @@ if(@$_GET['func'] == 'deleta'){
 <?php
 if(@$_GET['func'] == 'edita'){ 
   $id = $_GET['id'];
-  $query = "select * from tb_orcamentos join tb_clientes where id = '$id'";
+  $query = "select tb_orcamentos.*, tb_clientes.nome from tb_orcamentos join tb_clientes WHERE tb_clientes.id_cliente = tb_orcamentos.id_cliente and id = '$id' order by nome ASC";
   $result = mysqli_query($conn, $query);
 
   while($res_1 = mysqli_fetch_array($result)){
@@ -776,7 +787,7 @@ aria-hidden="true">
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="modelo" class="">Modelo</label>
-            <input name="txtmodelo" value="<?php echo $res_1['modelo']; ?>" id="modelo" placeholder="Modelo do aparelho" type="text" class="form-control" required>
+            <input name="txtmodelo" spellcheck="false" value="<?php echo $res_1['modelo']; ?>" id="modelo" placeholder="Modelo do aparelho" type="text" class="form-control" required>
         </div>
     </div>
 </div>
@@ -830,25 +841,9 @@ aria-hidden="true">
         </div>
     </div>
     <div class="col-md-3">
-    <!-- select -->
-    <div class="form-group" required>
-                        <label>Forma de pagamento</label>
-                        <select name="txtpagamento" class="form-control" required>
-                          <option selected value="Dinheiro">Dinheiro</option>
-                          <option value="Cartão">Cartão</option>
-                        </select>
-                      </div>
-                    </div>
-    <div class="col-md-2">
         <div class="position-relative form-group">
-            <label for="total" class="">Valor Serviço</label>
+            <label for="total" class="">Valor do Serviço</label>
             <input name="txttotal" value="<?php echo $res_1['valor_servico']; ?>" placeholder="R$" id="total" type="text" spellcheck="false" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-2">
-        <div class="position-relative form-group">
-            <label for="valortotal" class="">Valor total</label>
-            <input name="txtvalortotal" value="<?php echo $res_1['valor_total']; ?>" id="valortotal" placeholder="R$" type="text" class="form-control">
         </div>
     </div>
             </div>
@@ -879,12 +874,11 @@ if(isset($_POST['editar-orcamento'])){
   $valor_peca1 = $_POST['txtvalorpeca1'];
   $peca2 = $_POST['txtpeca2'];
   $valor_peca2 = $_POST['txtvalorpeca2'];
-  $pagamento = $_POST['txtpagamento'];
   $valor_servico = $_POST['txttotal'];
-  $valor_total = $_POST['txtvalortotal'];
+  $valor_total = $valor_peca1 + $valor_peca2 + $valor_servico;
 
 //CADASTRO DE CLIENTES
-$query_editar = "UPDATE tb_orcamentos SET id_cliente = '$id_cliente', tecnico = '$tecnico', aparelho = '$aparelho', modelo = '$modelo', serie = '$serie', defeito = '$defeito', obs = '$obs', laudo = '$laudo', peca1 = '$peca1', valor_peca1 = '$valor_peca1', peca2 = '$peca2', valor_peca2 = '$valor_peca2', pagamento = '$pagamento', valor_servico = '$valor_servico', valor_total = '$valor_total', data_geracao = curDate(), status = 'Aguardando' WHERE id = '$id' ";
+$query_editar = "UPDATE tb_orcamentos SET id_cliente = '$id_cliente', tecnico = '$tecnico', aparelho = '$aparelho', modelo = '$modelo', serie = '$serie', defeito = '$defeito', obs = '$obs', laudo = '$laudo', peca1 = '$peca1', valor_peca1 = '$valor_peca1', peca2 = '$peca2', valor_peca2 = '$valor_peca2', valor_servico = '$valor_servico', total = '$valor_total', data_geracao = curDate(), status = 'Aguardando' WHERE id = '$id' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
 

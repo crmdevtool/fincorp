@@ -208,9 +208,9 @@ require_once("header.php");
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-file-signature"></i>
+              <i class="nav-icon fas fa-money-check-alt"></i>
               <p>
-                Ordem de serviço
+                Orçamentos
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -228,6 +228,23 @@ require_once("header.php");
                 </a>
               </li>
               <li class="nav-item">
+                <a href="orcancelados.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>Orçamento Cancelado</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-file-signature"></i>
+              <p>
+                Ordem de serviço
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
                 <a href="orderservices.php" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>Ordem de serviço</p>
@@ -237,12 +254,6 @@ require_once("header.php");
                 <a href="osfinalizadas.php" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>OS - Finalizadas</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="oscanceladas.php" class="nav-link">
-                  <i class="nav-icon"></i>
-                  <p>OS - Canceladas</p>
                 </a>
               </li>
             </ul>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Set-2020 às 23:00
+-- Tempo de geração: 07-Set-2020 às 02:10
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.4.6
 
@@ -72,11 +72,12 @@ CREATE TABLE `tb_orcamentos` (
   `valor_peca1` decimal(10,2) DEFAULT NULL,
   `peca2` varchar(32) DEFAULT NULL,
   `valor_peca2` decimal(10,2) DEFAULT NULL,
-  `desconto` varchar(11) DEFAULT NULL,
+  `desconto` decimal(10,2) DEFAULT NULL,
+  `total` decimal(10,2) NOT NULL,
   `valor_total` decimal(10,2) DEFAULT NULL,
   `pagamento` varchar(32) DEFAULT NULL,
-  `data_abertura` date NOT NULL,
-  `data_geracao` date NOT NULL,
+  `data_abertura` date DEFAULT NULL,
+  `data_geracao` date DEFAULT NULL,
   `status` varchar(32) NOT NULL,
   `data_aprovacao` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -85,9 +86,36 @@ CREATE TABLE `tb_orcamentos` (
 -- Extraindo dados da tabela `tb_orcamentos`
 --
 
-INSERT INTO `tb_orcamentos` (`id`, `id_user`, `id_cliente`, `tecnico`, `aparelho`, `serie`, `modelo`, `defeito`, `laudo`, `obs`, `valor_servico`, `peca1`, `valor_peca1`, `peca2`, `valor_peca2`, `desconto`, `valor_total`, `pagamento`, `data_abertura`, `data_geracao`, `status`, `data_aprovacao`) VALUES
-(10, 1, 28, 'Adimael Santos', 'Samsung', 'sa541d5sas', 'J810', 'Não carrega', 'Troca do conector de carga', '', '120.00', '', '0.00', '', '0.00', NULL, '120.00', 'Dinheiro', '2020-09-05', '2020-09-05', 'Aprovado', '2020-09-05'),
-(11, 1, 30, 'Adimael Santos', 'Alcatel', 'ad54asd454a74w', 'S203', 'Tela preta', 'Instalação da stock rom', '', '40.00', '', '0.00', '', '0.00', NULL, '40.00', 'Dinheiro', '2020-09-05', '2020-09-05', 'Aguardando', '2020-09-04');
+INSERT INTO `tb_orcamentos` (`id`, `id_user`, `id_cliente`, `tecnico`, `aparelho`, `serie`, `modelo`, `defeito`, `laudo`, `obs`, `valor_servico`, `peca1`, `valor_peca1`, `peca2`, `valor_peca2`, `desconto`, `total`, `valor_total`, `pagamento`, `data_abertura`, `data_geracao`, `status`, `data_aprovacao`) VALUES
+(27, 1, 30, 'Adimael Santos', 'Samsung', 'as24d54sda54', 'J810M', 'Não carrega', 'Troca do conector de carga', '', '100.00', 'conector de carga', '40.00', '', '0.00', '10.00', '0.00', '140.00', 'Dinheiro', '2020-09-06', '2020-09-06', 'Aprovado', '2020-09-06'),
+(28, 1, 30, 'Adimael Santos', 'Samsung', '54da54as54sad', 'J810M', 'Não carrega', '', 'Troca do conector de carga', '100.00', 'conector de carga', '40.00', '', '0.00', '0.00', '0.00', '140.00', '', '2020-09-06', '2020-09-06', 'Aguardando', '0000-00-00');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_os`
+--
+
+CREATE TABLE `tb_os` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
+  `aparelho` varchar(25) NOT NULL,
+  `tecnico` varchar(25) NOT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `data_abertura` date NOT NULL,
+  `data_fechamento` date DEFAULT NULL,
+  `garantia` varchar(15) DEFAULT NULL,
+  `status` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `tb_os`
+--
+
+INSERT INTO `tb_os` (`id`, `id_user`, `id_cliente`, `aparelho`, `tecnico`, `total`, `data_abertura`, `data_fechamento`, `garantia`, `status`) VALUES
+(7, 1, 0, '', '', '-10.00', '2020-09-06', NULL, NULL, 'Aberto'),
+(8, 1, 0, '', '', '130.00', '2020-09-06', NULL, NULL, 'Aberto');
 
 -- --------------------------------------------------------
 
@@ -161,6 +189,14 @@ ALTER TABLE `tb_orcamentos`
   ADD KEY `id_cliente` (`id_cliente`);
 
 --
+-- Índices para tabela `tb_os`
+--
+ALTER TABLE `tb_os`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_cliente` (`id_cliente`),
+  ADD KEY `id_user` (`id_user`) USING BTREE;
+
+--
 -- Índices para tabela `tb_produtos`
 --
 ALTER TABLE `tb_produtos`
@@ -188,7 +224,13 @@ ALTER TABLE `tb_clientes`
 -- AUTO_INCREMENT de tabela `tb_orcamentos`
 --
 ALTER TABLE `tb_orcamentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT de tabela `tb_os`
+--
+ALTER TABLE `tb_os`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `tb_produtos`
