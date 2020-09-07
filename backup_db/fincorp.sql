@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07-Set-2020 às 02:10
+-- Tempo de geração: 07-Set-2020 às 19:37
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.4.6
 
@@ -87,8 +87,8 @@ CREATE TABLE `tb_orcamentos` (
 --
 
 INSERT INTO `tb_orcamentos` (`id`, `id_user`, `id_cliente`, `tecnico`, `aparelho`, `serie`, `modelo`, `defeito`, `laudo`, `obs`, `valor_servico`, `peca1`, `valor_peca1`, `peca2`, `valor_peca2`, `desconto`, `total`, `valor_total`, `pagamento`, `data_abertura`, `data_geracao`, `status`, `data_aprovacao`) VALUES
-(27, 1, 30, 'Adimael Santos', 'Samsung', 'as24d54sda54', 'J810M', 'Não carrega', 'Troca do conector de carga', '', '100.00', 'conector de carga', '40.00', '', '0.00', '10.00', '0.00', '140.00', 'Dinheiro', '2020-09-06', '2020-09-06', 'Aprovado', '2020-09-06'),
-(28, 1, 30, 'Adimael Santos', 'Samsung', '54da54as54sad', 'J810M', 'Não carrega', '', 'Troca do conector de carga', '100.00', 'conector de carga', '40.00', '', '0.00', '0.00', '0.00', '140.00', '', '2020-09-06', '2020-09-06', 'Aguardando', '0000-00-00');
+(27, 1, 30, 'Adimael Santos', 'Samsung', 'as24d54sda54', 'J810M', 'Não carrega', 'Troca do conector de carga', '', '100.00', 'conector de carga', '40.00', '', '0.00', '10.00', '0.00', '140.00', 'Dinheiro', '2020-09-06', '2020-09-06', 'Aprovado', '2020-09-07'),
+(28, 1, 30, 'Adimael Santos', 'Samsung', '54da54as54sad', 'J810M', 'Não carrega', '', 'Troca do conector de carga', '100.00', 'conector de carga', '40.00', '', '0.00', '10.00', '0.00', '140.00', 'Dinheiro', '2020-09-06', '2020-09-06', 'Aprovado', '2020-09-07');
 
 -- --------------------------------------------------------
 
@@ -101,8 +101,9 @@ CREATE TABLE `tb_os` (
   `id_user` int(11) NOT NULL,
   `id_cliente` int(11) NOT NULL,
   `aparelho` varchar(25) NOT NULL,
+  `modelo` varchar(25) NOT NULL,
   `tecnico` varchar(25) NOT NULL,
-  `total` decimal(10,2) NOT NULL,
+  `valor_total` decimal(10,2) NOT NULL,
   `data_abertura` date NOT NULL,
   `data_fechamento` date DEFAULT NULL,
   `garantia` varchar(15) DEFAULT NULL,
@@ -113,9 +114,9 @@ CREATE TABLE `tb_os` (
 -- Extraindo dados da tabela `tb_os`
 --
 
-INSERT INTO `tb_os` (`id`, `id_user`, `id_cliente`, `aparelho`, `tecnico`, `total`, `data_abertura`, `data_fechamento`, `garantia`, `status`) VALUES
-(7, 1, 0, '', '', '-10.00', '2020-09-06', NULL, NULL, 'Aberto'),
-(8, 1, 0, '', '', '130.00', '2020-09-06', NULL, NULL, 'Aberto');
+INSERT INTO `tb_os` (`id`, `id_user`, `id_cliente`, `aparelho`, `modelo`, `tecnico`, `valor_total`, `data_abertura`, `data_fechamento`, `garantia`, `status`) VALUES
+(11, 1, 30, 'Samsung', 'J810M', 'Adimael Santos', '130.00', '2020-09-07', '2020-09-07', '90 Dias', 'Finalizado'),
+(12, 1, 30, 'Samsung', 'J810M', 'Adimael Santos', '130.00', '2020-09-07', NULL, NULL, 'Aberto');
 
 -- --------------------------------------------------------
 
@@ -230,7 +231,7 @@ ALTER TABLE `tb_orcamentos`
 -- AUTO_INCREMENT de tabela `tb_os`
 --
 ALTER TABLE `tb_os`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `tb_produtos`
