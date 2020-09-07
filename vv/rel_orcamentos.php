@@ -384,7 +384,7 @@ if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
 }
 
 else{ 
-$query = "select tb_orcamentos.*, tb_clientes.* from tb_orcamentos join tb_clientes where tb_orcamentos.id_cliente = tb_clientes.id_cliente AND status != 'Aberto' order by nome ASC"; 
+$query = "select distinct(tb_orcamentos.status), tb_orcamentos.*, tb_clientes.* from tb_orcamentos join tb_clientes where tb_orcamentos.id_cliente = tb_clientes.id_cliente and tb_orcamentos.status != 'Cancelado' && tb_orcamentos.status != 'Aberto' order by nome ASC"; 
 }
 
     $result = mysqli_query($conn, $query);
