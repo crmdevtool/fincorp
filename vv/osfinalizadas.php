@@ -412,6 +412,7 @@ if($row == ''){
     <th>Email</th>
     <th>Telefone</th>
     <th>status</th>
+    <th>Garantia</th>
     <th>Data</th>
     <th>Ação</th>
   </tr>
@@ -430,6 +431,7 @@ if($row == ''){
         $status = $res_1["status"];
         $email = $res_1["email"];
         $telefone = $res_1["telefone"];
+        $garantia = $res_1["garantia"];
         $data_fechamento = $res_1["data_fechamento"];
 
         $data_fechamento2 = implode('/', array_reverse(explode('-', $data_fechamento)));
@@ -446,6 +448,7 @@ if($row == ''){
     <td><?php echo $email; ?></td>
     <td><?php echo $telefone; ?></td>
     <td><?php echo $status; ?></td>
+    <td><?php echo $garantia; ?></td>
     <td><?php echo $data_fechamento2; ?></td>
     <td><div class="widget-content-right">
     <a href="osfinalizadas.php?func=deleta&id=<?php echo $id; ?>"><button class="border-0 btn-transition btn btn-outline-danger">
