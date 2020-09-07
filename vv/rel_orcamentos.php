@@ -423,6 +423,7 @@ if($row == ''){
 
     while($res_1 = mysqli_fetch_array($result)){
         $id = $res_1["id"];
+        $id_cliente = $res_1["id_cliente"];
         $cliente = $res_1["nome"];
         $tecnico = $res_1["tecnico"];
         $aparelho = $res_1["aparelho"];
@@ -567,10 +568,7 @@ if(@$_GET['func'] == 'aprovar'){
 
   while($res_1 = mysqli_fetch_array($result)){
     $id_user = $_SESSION['id_user'];
-    $id_cliente = $_POST['id_cliente'];
-    $tecnico = $_POST['tecnico'];
-    $aparelho = $_POST['aparelho'];
-    $total = $_POST['total'];
+    $total = $_res1['total'];
 
 ?>
 
@@ -620,9 +618,6 @@ if(isset($_POST['editar-orcamento'])){
   $id_user = $_SESSION['id_user'];
   $pagamento = $_POST['txtpagamento'];
   $desconto = $_POST['txtdesconto'];
-  $id_cliente = $_POST['id_cliente'];
-  $tecnico = $_POST['tecnico'];
-  $aparelho = $_POST['aparelho'];
   $valor_total = $valor_total - $desconto;
 
 //CADASTRO DE CLIENTES
@@ -631,7 +626,7 @@ $query_editar = "UPDATE tb_orcamentos SET desconto = '$desconto', total = '$tota
 $result_editar = mysqli_query($conn, $query_editar);
 
 //Fazer abertura da OS
-$query_os = "INSERT INTO tb_os (id_user, id_cliente, aparelho, tecnico, total, data_abertura, status) VALUES ('$id_user', '$id_cliente', '$aparelho', '$tecnico', '$valor_total', curDate(), 'Aberto')";
+$query_os = "INSERT INTO tb_os (id_user, id_cliente, aparelho, tecnico, valor_total, data_abertura, status) VALUES ('$id_user', '$id_cliente', '$aparelho', '$tecnico', '$valor_total', curDate(), 'Aberto')";
 
 mysqli_query($conn, $query_os);
 
