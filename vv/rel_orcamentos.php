@@ -626,7 +626,7 @@ $query_editar = "UPDATE tb_orcamentos SET desconto = '$desconto', total = '$tota
 $result_editar = mysqli_query($conn, $query_editar);
 
 //Fazer abertura da OS
-$query_os = "INSERT INTO tb_os (id_user, id_cliente, aparelho, tecnico, valor_total, data_abertura, status) VALUES ('$id_user', '$id_cliente', '$aparelho', '$tecnico', '$valor_total', curDate(), 'Aberto')";
+$query_os = "INSERT INTO tb_os (id_user, id_cliente, aparelho, modelo, tecnico, valor_total, data_abertura, status) VALUES ('$id_user', '$id_cliente', '$aparelho', '$modelo', '$tecnico', '$valor_total', curDate(), 'Aberto')";
 
 mysqli_query($conn, $query_os);
 

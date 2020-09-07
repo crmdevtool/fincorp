@@ -385,7 +385,7 @@ if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
 }
 
 else{ 
-  $query = "select tb_orcamentos.*, tb_clientes.* from tb_orcamentos join tb_clientes where tb_orcamentos.id_cliente = tb_clientes.id_cliente AND status = 'Aprovado' order by nome ASC"; 
+  $query = "select tb_os.*, tb_clientes.* from tb_os join tb_clientes where tb_os.id_cliente = tb_clientes.id_cliente AND status = 'Aberto' order by nome ASC"; 
 }
 
     $result = mysqli_query($conn, $query);
@@ -407,13 +407,11 @@ if($row == ''){
     <th>Cliente</th>
     <th>Técnico</th>
     <th>Aparelho</th>
-    <th>Modelo</th>
-    <th>Nº Série</th>
+    <th>modelo</th>
     <th>Valor</th>
-    <th>status</th>
     <th>Email</th>
     <th>Telefone</th>
-    <th>Laudo</th>
+    <th>status</th>
     <th>Data</th>
     <th>Ação</th>
   </tr>
@@ -428,16 +426,13 @@ if($row == ''){
         $tecnico = $res_1["tecnico"];
         $aparelho = $res_1["aparelho"];
         $modelo = $res_1["modelo"];
-        $serie = $res_1["serie"];
-        $desconto = $res_1["desconto"];
-        $total = $res_1["total"] - $res_1["desconto"];
+        $valor_total = $res_1["valor_total"];
         $status = $res_1["status"];
         $email = $res_1["email"];
         $telefone = $res_1["telefone"];
-        $laudo = $res_1["laudo"];
-        $data_aprovacao = $res_1["data_aprovacao"];
+        $data_abertura = $res_1["data_abertura"];
 
-        $data_aprovacao2 = implode('/', array_reverse(explode('-', $data_aprovacao)));
+        $data_abertura2 = implode('/', array_reverse(explode('-', $data_abertura)));
 
     ?>
 
@@ -447,19 +442,14 @@ if($row == ''){
     <td><?php echo $tecnico; ?></td>
     <td><?php echo $aparelho; ?></td>
     <td><?php echo $modelo; ?></td>
-    <td><?php echo $serie; ?></td>
-    <td>R$<?php echo $total; ?></td>
-    <td><?php echo $status; ?></td>
+    <td>R$<?php echo $valor_total; ?></td>
     <td><?php echo $email; ?></td>
     <td><?php echo $telefone; ?></td>
-    <td><?php echo $laudo; ?></td>
-    <td><?php echo $data_aprovacao2; ?></td>
+    <td><?php echo $status; ?></td>
+    <td><?php echo $data_abertura2; ?></td>
     <td><div class="widget-content-right">
     <a href="orderservices.php?func=finalizar&id=<?php echo $id; ?>"><button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
     data-target=".bd-example-modal-lg-finalizar"><i class="fa fa-check"></i>
-    </button></a>
-    <a href="../rel/rel_orcamentos_class.php?id=<?php echo $id; ?>&email=<?php echo $email; ?>" target="_blank"><button class="border-0 btn-transition btn btn-outline-info" data-toggle="modal"
-    data-target=".bd-example-modal-lg-editar"><i class="fa fa-file-invoice"></i>
     </button></a>
     <a href="orderservices.php?func=deleta&id=<?php echo $id; ?>"><button class="border-0 btn-transition btn btn-outline-danger">
     <i class="fa fa-times-circle"></i>
@@ -549,17 +539,6 @@ require_once("footer.php");
       $('#cep-cliente').mask('00000-000');
       });
 </script>
- <!-- MASCARAS -->
- <script type="text/javascript">
-    $(document).ready(function(){
-      $('#valorpeca1').mask('R$ 000,00');
-      $('#valorpeca2').mask('R$ 000,00');
-      $('#valorpeca3').mask('R$ 000,00');
-      $('#valorpeca4').mask('R$ 000,00');
-      $('#total').mask('R$ 000,00');
-      $('#valortotal').mask('R$ 000,00');
-      });
-</script>  
 </body>
 </html>
 <!--EXCLUIR -->
@@ -585,7 +564,7 @@ if(@$_GET['func'] == 'deleta'){
 <?php
 if(@$_GET['func'] == 'finalizar'){ 
   $id = $_GET['id'];
-  $query = "select * from tb_orcamentos where id = '$id'";
+  $query = "select * from tb_os where id = '$id'";
   $result = mysqli_query($conn, $query);
 
   while($res_1 = mysqli_fetch_array($result)){
@@ -610,7 +589,7 @@ aria-hidden="true">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-success" name="editar-orcamento">Finalizar</button>
+                <button type="submit" class="btn btn-success" name="finalizar-OS">Finalizar</button>
             </form>
             </div>
         </div>
@@ -625,7 +604,7 @@ if(isset($_POST['finalizar-OS'])){
   $id_user = $_SESSION['id_user'];
 
 //CADASTRO DE CLIENTES
-$query_editar = "UPDATE tb_orcamentos SET status = 'Finalizado', data_aprovacao = curDate() WHERE id = '$id' ";
+$query_editar = "UPDATE tb_os SET status = 'Finalizado', data_fechamento = curDate() WHERE id = '$id' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
 
