@@ -375,10 +375,10 @@ require_once("header.php");
               <div class="inner">
                 <h3>150</h3>
 
-                <p>Total de Vendas</p>
+                <p>Produtos em estoque</p>
               </div>
               <div class="icon">
-                <i class="ion ion-bag"></i>
+                <i class="ion ion-social-dropbox-outline"></i>
               </div>
               <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -386,14 +386,44 @@ require_once("header.php");
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>150</h3>
+
+                <p>Fonecedores</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-ios-people"></i>
+              </div>
+              <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>150</h3>
+
+                <p>Total de Vendas</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-ios-cart"></i>
+              </div>
+              <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-secondary">
               <div class="inner">
                 <h3>53<sup style="font-size: 20px">%</sup></h3>
 
                 <p>Porcentagem de Ganhos</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="ion ion-arrow-graph-up-right"></i>
               </div>
               <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -405,10 +435,85 @@ require_once("header.php");
               <div class="inner">
                 <h3>44</h3>
 
-                <p>Aparelhos aguardando análise</p>
+                <p>Orçamentos em Aberto</p>
               </div>
               <div class="icon">
-                <i class="ion ion-android-phone-portrait"></i>
+                <i class="ion ion-social-usd"></i>
+              </div>
+              <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>44</h3>
+
+                <p>Orçamentos Aguardando</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-social-usd"></i>
+              </div>
+              <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>44</h3>
+
+                <p>Orçamentos Cancelados</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-social-usd"></i>
+              </div>
+              <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>44</h3>
+
+                <p>Orçamentos Aprovados</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-social-usd"></i>
+              </div>
+              <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>OS em Aberto</p>
+              </div>
+              <div class="icon">
+                <i class="ion  ion-clipboard"></i>
+              </div>
+              <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>Total de ordem de serviços</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-clipboard"></i>
               </div>
               <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -420,10 +525,25 @@ require_once("header.php");
               <div class="inner">
                 <h3>65</h3>
 
-                <p>Aparelhos em manutenção</p>
+                <p>OS canceladas</p>
               </div>
               <div class="icon">
-                <i class="ion ion-android-phone-portrait"></i>
+                <i class="ion ion-clipboard"></i>
+              </div>
+              <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>OS Finalizadas</p>
+              </div>
+              <div class="icon">
+                <i class="ion  ion-clipboard"></i>
               </div>
               <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>

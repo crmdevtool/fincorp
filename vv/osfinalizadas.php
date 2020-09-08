@@ -457,6 +457,9 @@ if($row == ''){
     <td><?php echo $garantia; ?></td>
     <td><?php echo $data_fechamento2; ?></td>
     <td><div class="widget-content-right">
+    <a href="../rel/rel_os_class.php?id=<?php echo $id; ?>&email=<?php echo $email; ?>" target="_blank"><button class="border-0 btn-transition btn btn-outline-info" data-toggle="modal"
+    data-target=".bd-example-modal-lg-editar"><i class="fa fa-file-invoice"></i>
+    </button></a>
     <a href="osfinalizadas.php?func=deleta&id=<?php echo $id; ?>"><button class="border-0 btn-transition btn btn-outline-danger">
     <i class="fa fa-times-circle"></i>
     </button></a>

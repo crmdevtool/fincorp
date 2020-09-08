@@ -17,17 +17,17 @@ $email = $_GET['email'];
 $dompdf = new Dompdf();
 
 // coloque nessa variável o código HTML que você quer que seja inserido no PDF
-$codigo_html = file_get_contents("http://localhost/fincorp/rel/rel_orcamentos.php?id=".$id);
+$codigo_html = file_get_contents("http://localhost/fincorp/rel/rel_os.php?id=".$id);
 
 $dompdf->loadHtml($codigo_html);
 $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
-$dompdf->stream("relatorioOrçamento.pdf", array("Attachment"=>0));
+$dompdf->stream("relatorioOS.pdf", array("Attachment"=>0));
 
 //ENVIAR ORCAMENTO POR EMAIL
 $to = 'fincorp.app@gmail.com';
-$subject = 'Sistema de Orçamento';
-$message = file_get_contents("http://localhost/fincorp/rel/rel_orcamentos.php");
+$subject = 'Sistema de OS';
+$message = file_get_contents("http://localhost/fincorp/rel/rel_os.php");
 $dest = $email;
 $headers = 'Content-type: text/html; charset=utf-8;';
 mail($to, $subject, $message, $headers);

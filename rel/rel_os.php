@@ -3,12 +3,12 @@ $id = $_GET['id'];
 
 include('../db/connection.php');
 
-$query = "select * from usuarios join tb_orcamentos join tb_clientes on tb_orcamentos.id_cliente = tb_clientes.id_cliente and tb_orcamentos.id = $id group by tb_orcamentos.id = $id, tb_clientes.id_cliente = tb_clientes.id_cliente";
+$query = "select * from usuarios join tb_orcamentos join tb_os join tb_clientes on tb_os.id_cliente = tb_clientes.id_cliente and tb_os.id = $id group by tb_os.id = $id, tb_clientes.id_cliente = tb_clientes.id_cliente";
 $result = mysqli_query($conn, $query);
 
  while($res_1 = mysqli_fetch_array($result)){
 
-$data2 = implode('/', array_reverse(explode('-', $res_1['data_geracao'])));
+$data2 = implode('/', array_reverse(explode('-', $res_1['data_fechamento'])));
 
  ?>
 
@@ -156,7 +156,6 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data_geracao'])));
 				 <p class="pgto" style="font-size:14px">  <b>Total de Peças: </b> R$ <?php echo $res_1['valor_peca1'] + $res_1['valor_peca2']; ?>.00 </p>
 				 <p class="pgto" style="font-size:14px">  <b>Total do serviço: </b> R$ <?php echo $res_1['valor_servico']; ?> </p>
 				 <p class="pgto" style="font-size:14px">  <b>Desconto: </b> R$ <?php echo $res_1['total'] - $res_1['desconto']; ?>.00 </p>
-				
 				</div>
 				
 				
@@ -169,7 +168,7 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data_geracao'])));
 				</div>
 				<div class="col-sm-4 areaTotal">	
 				
-				<p class="pgto" style="font-size:14px">  <b>Total a Pagar: </b> R$ <?php echo $res_1['valor_total']?> </p>
+				 <p class="pgto" style="font-size:14px">  <b>Total a Pagar: </b> R$ <?php echo $res_1['valor_total']?> </p>
 				</div>
 				
 				
@@ -192,7 +191,7 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data_geracao'])));
 		</div>
 
 		<div class="col-sm-5">	
-				<p style="font-size:13px"><b>Orçamento válido até:</b> <?php echo date('d/m/Y', strtotime("+5 days",strtotime($res_1['data_geracao']))); ?></p>
+				<p style="font-size:13px"><b>Garantia de <?php echo $res_1['garantia']; ?> a partir de <?php echo $data2; ?></b></p>
 				</div>
 
 	
