@@ -256,6 +256,12 @@ require_once("header.php");
                   <p>OS - Finalizadas</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="oscanceladas.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>OS - Canceladas</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
@@ -385,7 +391,7 @@ if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
 }
 
 else{ 
-  $query = "select tb_os.*, tb_clientes.* from tb_os join tb_clientes where tb_os.id_cliente = tb_clientes.id_cliente AND status = 'Finalizado' order by nome ASC";  
+  $query = "select tb_os.*, tb_clientes.* from tb_os join tb_clientes where tb_os.id_cliente = tb_clientes.id_cliente AND status = 'Finalizada' order by nome ASC";  
 }
 
     $result = mysqli_query($conn, $query);

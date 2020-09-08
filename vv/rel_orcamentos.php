@@ -256,6 +256,12 @@ require_once("header.php");
                   <p>OS - Finalizadas</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="oscanceladas.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>OS - Canceladas</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
@@ -626,7 +632,7 @@ $query_editar = "UPDATE tb_orcamentos SET desconto = '$desconto', total = '$tota
 $result_editar = mysqli_query($conn, $query_editar);
 
 //Fazer abertura da OS
-$query_os = "INSERT INTO tb_os (id_user, id_cliente, aparelho, modelo, tecnico, valor_total, data_abertura, status) VALUES ('$id_user', '$id_cliente', '$aparelho', '$modelo', '$tecnico', '$valor_total', curDate(), 'Aberto')";
+$query_os = "INSERT INTO tb_os (id_user, id_cliente, aparelho, modelo, tecnico, valor_total, data_abertura, status) VALUES ('$id_user', '$id_cliente', '$aparelho', '$modelo', '$tecnico', '$valor_total', curDate(), 'Aberta')";
 
 mysqli_query($conn, $query_os);
 

@@ -256,6 +256,12 @@ require_once("header.php");
                   <p>OS - Finalizadas</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="oscanceladas.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>OS - Canceladas</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
@@ -385,7 +391,7 @@ if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
 }
 
 else{ 
-  $query = "select tb_os.*, tb_clientes.* from tb_os join tb_clientes where tb_os.id_cliente = tb_clientes.id_cliente AND status = 'Aberto' order by nome ASC"; 
+  $query = "select tb_os.*, tb_clientes.* from tb_os join tb_clientes where tb_os.id_cliente = tb_clientes.id_cliente AND status = 'Aberta' order by nome ASC"; 
 }
 
     $result = mysqli_query($conn, $query);
@@ -545,8 +551,8 @@ require_once("footer.php");
 <?php
 if(@$_GET['func'] == 'deleta'){
   $id_cliente = $_GET['id_cliente'];
-  $query = "DELETE FROM tb_orcamentos where id = '$id'";
-  mysqli_query($conn, $query);
+  $query_editar = "UPDATE tb_os SET status = 'Cancelada' WHERE id = '$id' ";
+  mysqli_query($conn, $query_editar);
   echo "<script language='javascript'> window.location='orderservices.php'; </script>";
 }
 ?>
@@ -588,7 +594,7 @@ aria-hidden="true">
             <h6>Tem certeza que deseja Finalizar OS com o ID(<?php echo $id; ?>)?</h6>   
             <!-- select -->
     <div class="form-group" required>
-                        <label>Grantia do serviço</label>
+                        <label>Garantia do serviço</label>
                         <select name="txtgarantia" class="form-control" required>
                         <option selected disabled>Selecione Garantia do serviço</option>
                           <option value="15 Dias">15 Dias</option>
@@ -616,7 +622,7 @@ if(isset($_POST['finalizar-OS'])){
   $garantia = $_POST['txtgarantia'];
 
 //CADASTRO DE CLIENTES
-$query_editar = "UPDATE tb_os SET garantia = '$garantia', status = 'Finalizado', data_fechamento = curDate() WHERE id = '$id' ";
+$query_editar = "UPDATE tb_os SET garantia = '$garantia', status = 'Finalizada', data_fechamento = curDate() WHERE id = '$id' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
 
