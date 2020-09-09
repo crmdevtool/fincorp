@@ -294,39 +294,39 @@ require_once("header.php");
           </li>
           <li class="nav-header">FINANCEIRO</li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="javascript:void(0);" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>Controle de venda</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="javascript:void(0);" class="nav-link">
               <i class="nav-icon fas fa-chart-line"></i>
               <p>Controle de produtos</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="javascript:void(0);" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>Anotações</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="javascript:void(0);" class="nav-link">
               <i class="nav-icon fas fa-chart-bar"></i>
               <p>Relatório</p>
             </a>
           </li>
           <li class="nav-header">SUPORTE</li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="javascript:void(0);" class="nav-link">
               <i class="nav-icon fas fa-info-circle"></i>
               <p>Central de Suporte</p>
             </a>
           </li>
           <li class="nav-header">CONFIGURAÇÕES & SAIR</li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="javascript:void(0);" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>Configurações</p>
             </a>

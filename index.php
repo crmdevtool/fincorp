@@ -78,7 +78,7 @@
     </div>
     <ul class="header-menu nav">
 		<li class="nav-item">
-			<a href="/fincorp/index.php" class="nav-link">
+			<a href="javascript:void(0);" class="nav-link">
 			<i class="nav-link-icon fa fa-home" aria-hidden="true"> </i>
 				Inicio
 			</a>
@@ -90,7 +90,7 @@
 			</a>
 		</li>
 		<li class="dropdown nav-item">
-			<a href="suporte.php" class="nav-link">
+			<a href="javascript:void(0);" class="nav-link">
 			<i class="nav-link-icon fa fa-info" aria-hidden="true"></i>
 				Suporte
 			</a>
@@ -175,7 +175,7 @@
     </li>
     <li class="app-sidebar__heading">Suporte</li>
     <li>
-        <a href="suporte.php">
+        <a href="javascript:void(0);">
             <i class="metismenu-icon pe-7s-info">
             </i>Central de Suporte
         </a>
