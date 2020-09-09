@@ -376,7 +376,7 @@ require_once("header.php");
 <!-- /.card-header -->
 <div class="card-body">
 
-<!--LISTAR TODOS OS CLIENTES -->
+<!--LISTAR TODOS OS ORÇAMENTOS -->
 
 <?php
 
@@ -565,7 +565,7 @@ if(@$_GET['func'] == 'deleta'){
   echo "<script language='javascript'> window.location='rel_orcamentos.php'; </script>";
 }
 ?>
-<!-- Aprovar OS -->
+<!-- Aprovar orçamento -->
 <?php
 if(@$_GET['func'] == 'aprovar'){ 
   $id = $_GET['id'];
@@ -626,12 +626,12 @@ if(isset($_POST['editar-orcamento'])){
   $desconto = $_POST['txtdesconto'];
   $valor_total = $valor_total - $desconto;
 
-//CADASTRO DE CLIENTES
+//UPDATE DE ORÇAMENTO
 $query_editar = "UPDATE tb_orcamentos SET desconto = '$desconto', total = '$total', pagamento = '$pagamento', status = 'Aprovado', data_aprovacao = curDate() WHERE id = '$id' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
 
-//Fazer abertura da OS
+//Fazer abertura do orçamento
 $query_os = "INSERT INTO tb_os (id_user, id_cliente, aparelho, modelo, tecnico, valor_total, data_abertura, status) VALUES ('$id_user', '$id_cliente', '$aparelho', '$modelo', '$tecnico', '$valor_total', curDate(), 'Aberta')";
 
 mysqli_query($conn, $query_os);

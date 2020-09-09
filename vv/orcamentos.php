@@ -378,7 +378,7 @@ require_once("header.php");
 <!-- /.card-header -->
 <div class="card-body">
 
-<!--LISTAR TODOS OS CLIENTES -->
+<!--LISTAR TODOS OS ORÇAMENTOS -->
 
 <?php
 
@@ -883,13 +883,13 @@ if(isset($_POST['editar-orcamento'])){
   $valor_servico = $_POST['txttotal'];
   $valor_total = $valor_peca1 + $valor_peca2 + $valor_servico;
 
-//CADASTRO DE CLIENTES
+//UPDATE DE ORÇAMENTO
 $query_editar = "UPDATE tb_orcamentos SET id_cliente = '$id_cliente', tecnico = '$tecnico', aparelho = '$aparelho', modelo = '$modelo', serie = '$serie', defeito = '$defeito', obs = '$obs', laudo = '$laudo', peca1 = '$peca1', valor_peca1 = '$valor_peca1', peca2 = '$peca2', valor_peca2 = '$valor_peca2', valor_servico = '$valor_servico', total = '$valor_total', data_geracao = curDate(), status = 'Aguardando' WHERE id = '$id' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
 
 if($result_editar == ''){
-  //Mensagem Ocorreu um erro ao cadastrar!
+  //Mensagem Ocorreu um erro ao atualizar!
   echo "<script language='javascript'> window.alert('Ocorreu um erro ao Editar!'); </script>";
   echo "<script language='javascript'> window.location='orcamentos.php'; </script>";
 

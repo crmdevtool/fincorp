@@ -377,7 +377,7 @@ require_once("header.php");
 <!-- /.card-header -->
 <div class="card-body">
 
-<!--LISTAR TODOS OS CLIENTES -->
+<!--LISTAR TODAS AS OS FINALIZADAS -->
 
 <?php
 

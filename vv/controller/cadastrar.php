@@ -123,7 +123,7 @@ if(isset($_POST['criar-orcamento'])){
   $defeito = $_POST['txtdefeito'];
   $obs = $_POST['txtobs'];
 
-//CADASTRO DE USUÁRIOS
+//ABRINDO NOVO ORÇAMENTO
 $query = "INSERT into tb_orcamentos (id_user, id_cliente, tecnico, aparelho, serie, modelo, defeito, obs, status, data_abertura) VALUES ('$id_user', '$id_cliente', '$tecnico', '$aparelho', '$serie', '$modelo', '$defeito', '$obs', 'Aberto', curDate() )";
 
 $result = mysqli_query($conn, $query);

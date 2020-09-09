@@ -24,7 +24,7 @@ if(isset($_POST['criar-orcamento'])){
   $total = $_POST['txttotal'];
   $valor_total = $_POST['txtvalortotal'];
 
-//CADASTRO DE USUÁRIOS
+//CADASTRO DE ORÇAMENTOS
 $query = "INSERT into tb_orcamentos (id_user, id_cliente, tecnico, aparelho, modelo, serie, defeito, obs, laudo, peca1, valor_peca1, peca2, valor_peca2, peca3, valor_peca3, peca4, valor_peca4, pagamento, total, valor_total, status, data_abertura) VALUES ('$id_user', '$id_cliente', '$tecnico', '$aparelho', '$modelo', '$serie', '$defeito', '$obs', '$laudo', '$peca1', '$valor_peca1', '$peca2', '$valor_peca2', '$peca3', '$valor_peca3', '$peca4', '$valor_peca4', '$pagamento', '$total', '$valor_total', curDate() )";
 
 $result = mysqli_query($conn, $query);

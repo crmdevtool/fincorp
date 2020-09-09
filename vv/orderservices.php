@@ -377,7 +377,7 @@ require_once("header.php");
 <!-- /.card-header -->
 <div class="card-body">
 
-<!--LISTAR TODOS OS CLIENTES -->
+<!--LISTAR TODAS AS OS -->
 
 <?php
 
@@ -621,13 +621,13 @@ if(isset($_POST['finalizar-OS'])){
   $id_user = $_SESSION['id_user'];
   $garantia = $_POST['txtgarantia'];
 
-//CADASTRO DE CLIENTES
+//UPDATE DAS OS
 $query_editar = "UPDATE tb_os SET garantia = '$garantia', status = 'Finalizada', data_fechamento = curDate() WHERE id = '$id' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
 
 if($result_editar == ''){
-  //Mensagem Ocorreu um erro ao cadastrar!
+  //Mensagem Ocorreu um erro ao atualizar!
   echo "<script language='javascript'> window.alert('Ocorreu um erro ao finalizar OS!'); </script>";
   echo "<script language='javascript'> window.location='orderservices.php'; </script>";
 
