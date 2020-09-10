@@ -184,7 +184,7 @@ require_once("header.php");
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-shopping-cart"></i>
               <p>
                 Produtos-OS
@@ -199,7 +199,7 @@ require_once("header.php");
                 </a>
               </li>
               <li class="nav-item">
-                <a href="fornecedores.php" class="nav-link">
+                <a href="fornecedores.php" class="nav-link active">
                   <i class="nav-icon"></i>
                   <p>Fornecedores</p>
                 </a>
@@ -236,7 +236,7 @@ require_once("header.php");
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file-signature"></i>
               <p>
                 Ordem de serviço
@@ -257,7 +257,7 @@ require_once("header.php");
                 </a>
               </li>
               <li class="nav-item">
-                <a href="oscanceladas.php" class="nav-link active">
+                <a href="oscanceladas.php" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>OS - Canceladas</p>
                 </a>
@@ -353,12 +353,14 @@ require_once("header.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
+          <a href="#" class="btn btn-success" data-toggle="modal"
+          data-target=".bd-example-modal-lg-cadastrar"><i class="material-icons">&#xE147;</i> <span>Add Novo fornecedor</span></a>
           <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Exporta dados para o Excel</span></a>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-              <li class="breadcrumb-item active">OS-canceladas</li>
+              <li class="breadcrumb-item active">fornecedores</li>
             </ol>
           </div>
         </div>
@@ -372,26 +374,26 @@ require_once("header.php");
 <div class="col-12">
 <div class="card">
 <div class="card-header">
-<h3 class="card-title">Ordem de serviço Canceladas</h3>
+<h3 class="card-title">Cadastros de fornecedores</h3>
 </div>
 <!-- /.card-header -->
 <div class="card-body">
 
-<!--LISTAR TODAS AS OS CANCELADAS -->
+<!--LISTAR TODOS OS FORNECEDORES -->
 
 <?php
 
 
 if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
     $nome = $_GET['txtpesquisar'] . '%';
-    $query = "select * from tb_clientes where id_user = $_SESSION[id_user]  order by nome asc"; 
+    $query = "select * from tb_fornecedores where id_user = $_SESSION[id_user]  order by nome asc"; 
 }else if(isset($_GET['buttonPesquisarCPF']) and $_GET['txtpesquisarcpf'] != ''){
     $nome = $_GET['txtpesquisarcpf'];
-    $query = "select * from tb_clientes where cpf = '$nome'  order by nome asc"; 
+    $query = "select * from tb_fornecedores where cpf = '$nome'  order by nome asc"; 
 }
 
 else{ 
-  $query = "select tb_os.*, tb_clientes.* from tb_os join tb_clientes where tb_os.id_cliente = tb_clientes.id_cliente AND status = 'Cancelada' order by nome ASC";  
+$query = "select * from tb_fornecedores WHERE id_user = '$_SESSION[id_user]' order by nome ASC"; 
 }
 
     $result = mysqli_query($conn, $query);
@@ -410,15 +412,11 @@ if($row == ''){
   <thead>
   <tr>
     <th>id</th>
-    <th>Cliente</th>
-    <th>Técnico</th>
-    <th>Aparelho</th>
-    <th>modelo</th>
-    <th>Valor</th>
-    <th>Email</th>
+    <th>nome</th>
+    <th>Endereço</th>
+    <th>E-mail</th>
     <th>Telefone</th>
-    <th>status</th>
-    <th>Data</th>
+    <th>cpf</th>
     <th>Ação</th>
   </tr>
   </thead>
@@ -427,35 +425,28 @@ if($row == ''){
   <?php 
 
     while($res_1 = mysqli_fetch_array($result)){
-        $id = $res_1["id"];
-        $cliente = $res_1["nome"];
-        $tecnico = $res_1["tecnico"];
-        $aparelho = $res_1["aparelho"];
-        $modelo = $res_1["modelo"];
-        $valor_total = $res_1["valor_total"];
-        $status = $res_1["status"];
+        $id_fornecedor = $res_1["id_fornecedor"];
+        $nome = $res_1["nome"];
+        $endereco = $res_1["endereco"];
         $email = $res_1["email"];
         $telefone = $res_1["telefone"];
-        $data_abertura = $res_1["data_abertura"];
-
-        $data_abertura2 = implode('/', array_reverse(explode('-', $data_abertura)));
+        $cpf = $res_1["cpf"];
 
     ?>
 
   <tr>
-    <td><?php echo $id; ?></td>
-    <td><?php echo $cliente; ?></td>
-    <td><?php echo $tecnico; ?></td>
-    <td><?php echo $aparelho; ?></td>
-    <td><?php echo $modelo; ?></td>
-    <td>R$<?php echo $valor_total; ?></td>
+    <td><?php echo $id_fornecedor; ?></td>
+    <td><?php echo $nome; ?></td>
+    <td><?php echo $endereco; ?></td>
     <td><?php echo $email; ?></td>
     <td><?php echo $telefone; ?></td>
-    <td><?php echo $status; ?></td>
-    <td><?php echo $data_abertura2; ?></td>
+    <td><?php echo $cpf; ?></td>
     <td><div class="widget-content-right">
-    <a href="oscanceladas.php?func=deleta&id=<?php echo $id; ?>"><button class="border-0 btn-transition btn btn-outline-danger">
-    <i class="fa fa-times-circle"></i>
+    <a href="fornecedores.php?func=edita&id_fornecedor=<?php echo $id_fornecedor; ?>"><button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
+    data-target=".bd-example-modal-lg-editar"><i class="fa fa-edit"></i>
+    </button></a>
+    <a href="fornecedores.php?func=deleta&id_fornecedor=<?php echo $id_fornecedor; ?>"><button class="border-0 btn-transition btn btn-outline-danger">
+    <i class="fa fa-trash-alt"></i>
     </button></a>
     </div></td>
   </tr>
@@ -541,35 +532,244 @@ require_once("footer.php");
       $('#cpf-cliente').mask('000.000.000-00');
       $('#cep-cliente').mask('00000-000');
       });
-</script>
- <!-- MASCARAS -->
- <script type="text/javascript">
-    $(document).ready(function(){
-      $('#valorpeca1').mask('R$ 000,00');
-      $('#valorpeca2').mask('R$ 000,00');
-      $('#valorpeca3').mask('R$ 000,00');
-      $('#valorpeca4').mask('R$ 000,00');
-      $('#total').mask('R$ 000,00');
-      $('#valortotal').mask('R$ 000,00');
-      });
-</script>  
+</script> 
 </body>
 </html>
 <!--EXCLUIR -->
 <?php
 if(@$_GET['func'] == 'deleta'){
-  $id_cliente = $_GET['id_cliente'];
-  $query = "DELETE FROM tb_os where id = '$id'";
+  $id_fornecedor = $_GET['id_fornecedor'];
+  $query = "DELETE FROM tb_fornecedores where id_fornecedor = '$id_fornecedor'";
   mysqli_query($conn, $query);
-  echo "<script language='javascript'> window.location='oscanceladas.php'; </script>";
+  echo "<script language='javascript'> window.location='fornecedores.php'; </script>";
 }
 ?>
 
   <!--MASCARAS -->
   <script type="text/javascript">
     $(document).ready(function(){
+      $('#cadastar-telefone').mask('(00) 00000-0000');
+      $('#cadastar-cpf').mask('000.000.000-00');
+      $('#cadastar-cep').mask('00000-000');
+      });
+</script> 
+
+<!-- modal Cadastrar -->
+<div id="modalcadastrar" class="modal fade bd-example-modal-lg-cadastrar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Cadastrar novo fornecedor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form method="POST" action="">
+<div class="form-row">
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="nome-fornecedor" class="">Nome do fornecedor</label>
+            <input name="txtnome" id="cadastar-nome" placeholder="Nome completo do fornecedor" spellcheck="false" type="name" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="cpf-fornecedor" class="">CPF</label>
+            <input name="txtcpf" id="cadastar-cpf" placeholder="Digite o CPF do fornecedor..." type="name" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="contato-fornecedor" class="">Telefone</label>
+            <input name="txttelefone" id="cadastar-telefone" placeholder="Número para contato" type="name" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="email-fornecedor" class="">Email</label>
+            <input name="txtemail" id="cadastar-email" placeholder="E-mail do fornecedor" spellcheck="false" type="email" spellcheck="false" class="form-control">
+        </div>
+    </div>
+</div>
+<div class="position-relative form-group">
+    <label for="exampleAddress" class="">Endereço</label>
+    <input name="txtendereco" id="cadastarAddress" placeholder="Rua Bairro Nº" spellcheck="false" type="text" class="form-control">
+</div>
+<div class="form-row">
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="exampleCity" class="">Cidade</label>
+            <input name="txtcidade" id="cadastarCity" placeholder="Cidade" spellcheck="false" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="position-relative form-group">
+            <label for="exampleState" class="">Estado</label>
+            <input name="txtestado" id="cadastarState" placeholder="Estado" spellcheck="false" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="position-relative form-group">
+            <label for="exampleZip" class="">CEP</label>
+            <input name="txtcep" id="cadastar-cep" placeholder="CEP" type="text" class="form-control">
+        </div>
+    </div>
+</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" name="cadastrar-fornecedor" class="btn btn-success">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script> $("#modalEditar").modal("show"); </script>
+
+<!--EDITAR -->
+<?php
+if(@$_GET['func'] == 'edita'){ 
+  $id_fornecedor = $_GET['id_fornecedor'];
+  $query = "select * from tb_fornecedores where id_fornecedor = '$id_fornecedor'";
+  $result = mysqli_query($conn, $query);
+
+  while($res_1 = mysqli_fetch_array($result)){
+
+?>
+
+<!--MASCARAS -->
+<script type="text/javascript">
+    $(document).ready(function(){
       $('#editar-telefone').mask('(00) 00000-0000');
       $('#editar-cpf').mask('000.000.000-00');
       $('#editar-cep').mask('00000-000');
       });
 </script> 
+
+<!-- modal Editar -->
+<div id="modalEditar" class="modal fade bd-example-modal-lg-editar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Editar Cadastro do cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form method="POST" action="">
+<div class="form-row">
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="nome-cliente" class="">Nome do cliente</label>
+            <input name="txtnome" id="editar-nome" value="<?php echo $res_1['nome']; ?>" placeholder="Nome completo do fornecedor" spellcheck="false" type="name" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="cpf-cliente" class="">CPF</label>
+            <input name="txtcpf" id="editar-cpf" value="<?php echo $res_1['cpf']; ?>" placeholder="Digite o CPF do cliente..." type="name" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="contato-cliente" class="">Telefone</label>
+            <input name="txttelefone" id="editar-telefone" value="<?php echo $res_1['telefone']; ?>" placeholder="Número para contato" type="name" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="email-cliente" class="">Email</label>
+            <input name="txtemail" id="editar-email" value="<?php echo $res_1['email']; ?>" placeholder="E-mail do cliente" type="email" spellcheck="false" class="form-control">
+        </div>
+    </div>
+</div>
+<div class="position-relative form-group">
+    <label for="exampleAddress" class="">Endereço</label>
+    <input name="txtendereco" id="editarAddress" value="<?php echo $res_1['endereco']; ?>" placeholder="Rua Bairro Nº" type="text" spellcheck="false" class="form-control">
+</div>
+<div class="form-row">
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="exampleCity" class="">Cidade</label>
+            <input name="txtcidade" id="editarCity" value="<?php echo $res_1['cidade']; ?>" type="text" spellcheck="false" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="position-relative form-group">
+            <label for="exampleState" class="">Estado</label>
+            <input name="txtestado" id="editarState" value="<?php echo $res_1['estado']; ?>" type="text" spellcheck="false" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="position-relative form-group">
+            <label for="exampleZip" class="">CEP</label>
+            <input name="txtcep" id="editar-cep" value="<?php echo $res_1['cep']; ?>" type="text" class="form-control">
+        </div>
+    </div>
+</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" name="editar-fornecedor" class="btn btn-primary">Atualizar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script> $("#modalEditar").modal("show"); </script> 
+
+<!--Comando para editar os dados UPDATE -->
+<?php
+if(isset($_POST['editar-fornecedor'])){
+  $id_user = $_SESSION['id_user'];
+  $nome = $_POST['txtnome'];
+  $cpf = $_POST['txtcpf'];
+  $endereco = $_POST['txtendereco'];
+  $cidade = $_POST['txtcidade'];
+  $estado = $_POST['txtestado'];
+  $cep = $_POST['txtcep'];
+  $telefone = $_POST['txttelefone'];
+  $email = $_POST['txtemail'];
+
+  if ($res_1['cpf'] != $cpf){
+
+    //VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO
+ $query_verificar= "SELECT * FROM tb_fornecedores WHERE cpf = '$cpf' ";
+
+ $result_verificar = mysqli_query($conn, $query_verificar);
+ $row_verificar = mysqli_num_rows($result_verificar);
+
+ if($row_verificar > 0){
+     //Mensagem CPF já Cadastrado!
+     echo "<script language='javascript'> window.alert('CPF já Cadastrado!'); </script>";
+     echo "<script language='javascript'> window.location='fornecedores.php'; </script>";
+ exit();
+ }
+
+}
+
+//CADASTRO DE CLIENTES
+$query_editar = "UPDATE tb_fornecedores SET nome = '$nome', cpf = '$cpf', endereco = '$endereco', cidade = '$cidade', estado = '$estado', cep = '$cep', telefone = '$telefone', email = '$email' WHERE id_fornecedor = '$id_fornecedor' ";
+
+$result_editar = mysqli_query($conn, $query_editar);
+
+if($result_editar == ''){
+  //Mensagem Ocorreu um erro ao cadastrar!
+  echo "<script language='javascript'> window.alert('Ocorreu um erro ao Editar!'); </script>";
+  echo "<script language='javascript'> window.location='fornecedores.php'; </script>";
+
+} else {
+  //Mensagem de Salvo com Sucesso!
+  echo "<script language='javascript'> window.alert('Editado com Sucesso!'); </script>";
+  echo "<script language='javascript'> window.location='fornecedores.php'; </script>";
+}
+}
+?>
+
+<?php } } ?>

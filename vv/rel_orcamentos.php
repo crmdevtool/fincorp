@@ -199,7 +199,7 @@ require_once("header.php");
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
+                <a href="fornecedores.php" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>Fornecedores</p>
                 </a>
