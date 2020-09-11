@@ -193,7 +193,7 @@ require_once("header.php");
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="produtos.php" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>Produtos</p>
                 </a>
@@ -655,7 +655,7 @@ if(@$_GET['func'] == 'edita'){
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Editar Cadastro do cliente</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Editar Cadastro do fornecedor</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -665,7 +665,7 @@ if(@$_GET['func'] == 'edita'){
 <div class="form-row">
     <div class="col-md-6">
         <div class="position-relative form-group">
-            <label for="nome-cliente" class="">Nome do cliente</label>
+            <label for="nome-cliente" class="">Nome do fornecedor</label>
             <input name="txtnome" id="editar-nome" value="<?php echo $res_1['nome']; ?>" placeholder="Nome completo do fornecedor" spellcheck="false" type="name" class="form-control">
         </div>
     </div>

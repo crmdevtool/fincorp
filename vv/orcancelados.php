@@ -193,7 +193,7 @@ require_once("header.php");
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="produtos.php" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>Produtos</p>
                 </a>

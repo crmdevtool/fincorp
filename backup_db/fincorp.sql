@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Set-2020 às 00:12
+-- Tempo de geração: 11-Set-2020 às 23:57
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.4.6
 
@@ -34,6 +34,15 @@ CREATE TABLE `tb_categorias` (
   `dt_registro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `tb_categorias`
+--
+
+INSERT INTO `tb_categorias` (`id_categoria`, `id_user`, `nome_categoria`, `dt_registro`) VALUES
+(1, 1, 'acessórios', '0000-00-00'),
+(2, 1, 'Celulares', '0000-00-00'),
+(3, 1, 'Notebooks', '0000-00-00');
+
 -- --------------------------------------------------------
 
 --
@@ -62,8 +71,7 @@ INSERT INTO `tb_clientes` (`id_cliente`, `id_user`, `nome`, `cpf`, `endereco`, `
 (28, 1, 'Larissa', '255.665.896-62', 'Lago azul-centro, 33', 'Gandu', 'Bahia', '45450-000', '(73) 99985-0332', 'larissa@outlook.com', '2020-07-27 14:18:24'),
 (29, 12, 'Gabriel', '257.956.563-21', 'Rua Gilberto Gil, 87', 'Gandu', 'Bahia', '45450-000', '(73) 99978-5236', 'gabrielgdu@gmail.com', '2020-07-27 14:37:47'),
 (30, 1, 'Lucas', '447.854.548-78', 'Rua Humberto Campos 80', 'Gandu', 'Bahia', '45450-000', '(73) 99985-2669', 'adimaelbr@gmail.com', '2020-09-02 00:59:54'),
-(31, 1, 'Tales', '656.565.656-56', 'Rua Jurandir Velame 477', 'Gandu', 'Bahia', '45450-000', '(73) 99985-3225', 'talesmiller@gmail.com', '2020-09-10 21:16:49'),
-(32, 1, 'Tales', '656.898.956-23', 'Rua Jurandir Velame', 'Gandu', 'Bahia', '45450-000', '(73) 99989-1362', 'talest@gmail.com', '2020-09-10 21:24:17');
+(31, 1, 'Tales', '656.565.656-56', 'Rua Jurandir Velame 477', 'Gandu', 'Bahia', '45450-000', '(73) 99985-3225', 'talesmiller@gmail.com', '2020-09-10 21:16:49');
 
 -- --------------------------------------------------------
 
@@ -89,7 +97,7 @@ CREATE TABLE `tb_fornecedores` (
 --
 
 INSERT INTO `tb_fornecedores` (`id_fornecedor`, `id_user`, `nome`, `endereco`, `cidade`, `estado`, `cep`, `email`, `telefone`, `cpf`) VALUES
-(3, 1, 'Hiller', 'Rua Eliseu Leal 77', 'Gandu', 'Bahia', '45450-000', 'hiller@gmail.com', '(73) 99989-4665', '852.565.885-56');
+(3, 1, 'Hiller_celulares', 'Rua Eliseu Leal 77', 'Gandu', 'Bahia', '45450-000', 'hiller@gmail.com', '(73) 99989-4665', '852.565.885-56');
 
 -- --------------------------------------------------------
 
@@ -170,7 +178,7 @@ CREATE TABLE `tb_produtos` (
   `id_produto` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_categoria` int(11) NOT NULL,
-  `nome` varchar(32) NOT NULL,
+  `produto` varchar(32) NOT NULL,
   `desproduto` varchar(64) NOT NULL,
   `codigo_barra` varchar(14) NOT NULL,
   `valor` float NOT NULL,
@@ -300,7 +308,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `tb_categorias`
 --
 ALTER TABLE `tb_categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `tb_clientes`

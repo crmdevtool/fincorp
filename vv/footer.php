@@ -109,9 +109,47 @@
 </div>
 <div class="position-relative form-group">
     <label for="desproduto" class="">Descrição</label>
-    <input name="desproduto" id="desproduto" placeholder="Descrição do produto" type="text" class="form-control">
+    <textarea name="desproduto" id="desproduto" placeholder="Descrição do produto" type="text" class="form-control"></textarea>
 </div>
 <div class="form-row">
+<div class="col-md-5">
+        <div class="position-relative form-group">
+                  <label for="nome-cliente" class="">Categoria</label>
+                  <select name="txtcliente" class="form-control select2" style="width: 100%;">
+                    <option selected="selected" disabled>Selecione a categoria do produto...</option>
+                    <?php
+            $query = "SELECT * FROM tb_categorias where id_user = $_SESSION[id_user] ORDER BY nome_categoria asc";
+            $result = mysqli_query($conn, $query);
+            if(count($result)){
+              while($res_1 = mysqli_fetch_array($result)){
+                   ?>                                       
+            <option value="<?php echo $res_1['id_categoria']; ?>"><?php echo $res_1['nome_categoria']; ?></option> 
+                         <?php      
+                       }
+                   }
+                  ?>
+                  </select>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="position-relative form-group">
+                  <label for="nome-cliente" class="">Fornecedor</label>
+                  <select name="txtcliente" class="form-control select2" style="width: 100%;">
+                    <option selected="selected" disabled>Selecione o fornecedor do produto...</option>
+                    <?php
+            $query = "SELECT * FROM tb_fornecedores where id_user = $_SESSION[id_user] ORDER BY nome asc";
+            $result = mysqli_query($conn, $query);
+            if(count($result)){
+              while($res_1 = mysqli_fetch_array($result)){
+                   ?>                                       
+            <option value="<?php echo $res_1['nome']; ?>"><?php echo $res_1['nome']; ?></option> 
+                         <?php      
+                       }
+                   }
+                  ?>
+                  </select>
+        </div>
+    </div>
     <div class="col-md-2">
         <div class="position-relative form-group">
             <label for="valor" class="">Valor</label>
@@ -120,7 +158,7 @@
     </div>
 </div>
 <div class="position-relative row form-group">
-<label for="imagem" class="col-sm-2 col-form-label">Imagem do produto</label>
+<label for="imagem" class="col-sm-5 col-form-label">Imagem do produto</label>
 <div class="col-sm-10">
     <input name="imagem" id="imagem" type="file" class="form-control-file">
     <small class="form-text text-muted">Selecione uma foto do produto.
