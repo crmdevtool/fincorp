@@ -193,13 +193,13 @@ require_once("header.php");
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="categorias.php" class="nav-link">
+                <a href="categorias.php" class="nav-link active">
                   <i class="nav-icon"></i>
                   <p>Categoria de produtos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="produtos.php" class="nav-link active">
+                <a href="produtos.php" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>Produtos</p>
                 </a>
@@ -359,8 +359,8 @@ require_once("header.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-          <a href="#" class="btn btn-success" data-toggle="modal"
-          data-target=".bd-example-modal-lg-produto"><i class="material-icons">&#xE147;</i> <span>Add Novo Produto</span></a>
+          <a href="#" class="btn btn-primary" data-toggle="modal"
+          data-target=".bd-example-modal-lg-categoria"><i class="material-icons">&#xE147;</i> <span>Criar categoria</span></a>
           <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Exporta dados para o Excel</span></a>
           </div>
           <div class="col-sm-6">
@@ -385,7 +385,7 @@ require_once("header.php");
 <!-- /.card-header -->
 <div class="card-body">
 
-<!--LISTAR TODOS OS PRODUTOS -->
+<!--LISTAR TODAS AS CATEGORIAS -->
 
 <?php
 
@@ -399,7 +399,7 @@ if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
 }
 
 else{ 
-$query = "select * from tb_produtos WHERE id_user = '$_SESSION[id_user]' order by produto ASC"; 
+$query = "select * from tb_categorias WHERE id_user = '$_SESSION[id_user]' order by nome_categoria ASC"; 
 }
 
     $result = mysqli_query($conn, $query);
@@ -418,12 +418,7 @@ if($row == ''){
   <thead>
   <tr>
     <th>id</th>
-    <th>imagem</th>
-    <th>produto</th>
-    <th>Descrição</th>
-    <th>Quantidade</th>
     <th>Categoria</th>
-    <th>Valor</th>
     <th>Data</th>
     <th>Ação</th>
   </tr>
@@ -433,32 +428,20 @@ if($row == ''){
   <?php 
 
     while($res_1 = mysqli_fetch_array($result)){
-        $id_produto = $res_1["id_produto"];
-        $produto = $res_1["produto"];
-        $desproduto = $res_1["desproduto"];
-        $quantidade = $res_1["quantidade"];
-        $categoria = $res_1["categoria"];
-        $valor = $res_1["valor"];
-        $dt_registro = $res_1["dt_registro"];
+        $id_categoria = $res_1["id_categoria"];
+        $categoria = $res_1["nome_categoria"];
+        $data_registro = $res_1["dt_registro"];
 
-        $dt_registro2 = implode('/', array_reverse(explode('-', $dt_registro)));
+        $data_registro2 = implode('/', array_reverse(explode('-', $data_registro)));
 
     ?>
 
   <tr>
-    <td><?php echo $id_produto; ?></td>
-    <td><?php echo $imagem; ?></td>
-    <td><?php echo $produto; ?></td>
-    <td><?php echo $desproduto; ?></td>
-    <td><?php echo $quantidade; ?></td>
+    <td><?php echo $id_categoria; ?></td>
     <td><?php echo $categoria; ?></td>
-    <td><?php echo $valor; ?></td>
-    <td><?php echo $dt_registro2; ?></td>
+    <td><?php echo $data_registro2; ?></td>
     <td><div class="widget-content-right">
-    <a href="produtos.php?func=edita&id_produto=<?php echo $id_produto; ?>"><button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
-    data-target=".bd-example-modal-lg-editar"><i class="fa fa-edit"></i>
-    </button></a>
-    <a href="produtos.php?func=deleta&id_produto=<?php echo $id_produto; ?>"><button class="border-0 btn-transition btn btn-outline-danger">
+    <a href="categorias.php?func=deletacategoria&id_categoria=<?php echo $id_categoria; ?>"><button class="border-0 btn-transition btn btn-outline-danger">
     <i class="fa fa-trash-alt"></i>
     </button></a>
     </div></td>
@@ -624,13 +607,14 @@ require_once("footer.php");
 </html>
 <!--EXCLUIR -->
 <?php
-if(@$_GET['func'] == 'deleta'){
-  $id_produto = $_GET['id_produto'];
-  $query = "DELETE FROM tb_produtos where id_produto = '$id_produto'";
+if(@$_GET['func'] == 'deletacategoria'){
+  $id_categoria = $_GET['id_categoria'];
+  $query = "DELETE FROM tb_categorias where id_categoria = '$id_categoria'";
   mysqli_query($conn, $query);
-  echo "<script language='javascript'> window.location='produtos.php'; </script>";
+  echo "<script language='javascript'> window.location='categorias.php'; </script>";
 }
 ?>
+
   <!--MASCARAS -->
   <script type="text/javascript">
     $(document).ready(function(){
@@ -670,148 +654,3 @@ if(@$_GET['func'] == 'deleta'){
         </div>
     </div>
 </div>
-
-<!--EDITAR -->
-<?php
-if(@$_GET['func'] == 'edita'){ 
-  $id_produto = $_GET['id_produto'];
-  $query = "select * from tb_produtos where id_produto = '$id_produto'";
-  $result = mysqli_query($conn, $query);
-
-  while($res_1 = mysqli_fetch_array($result)){
-
-?>
-
-<!--MASCARAS -->
-<script type="text/javascript">
-    $(document).ready(function(){
-      $('#editar-telefone').mask('(00) 00000-0000');
-      $('#editar-cpf').mask('000.000.000-00');
-      $('#editar-cep').mask('00000-000');
-      });
-</script> 
-
-<!-- modal Editar -->
-<div id="modalEditar" class="modal fade bd-example-modal-lg-editar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Editar Cadastro do cliente</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-            <form method="POST" action="">
-<div class="form-row">
-    <div class="col-md-6">
-        <div class="position-relative form-group">
-            <label for="nome-cliente" class="">Nome do cliente</label>
-            <input name="txtnome" id="editar-nome" value="<?php echo $res_1['nome']; ?>" placeholder="Nome completo do fornecedor" spellcheck="false" type="name" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="position-relative form-group">
-            <label for="cpf-cliente" class="">CPF</label>
-            <input name="txtcpf" id="editar-cpf" value="<?php echo $res_1['cpf']; ?>" placeholder="Digite o CPF do cliente..." type="name" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="position-relative form-group">
-            <label for="contato-cliente" class="">Telefone</label>
-            <input name="txttelefone" id="editar-telefone" value="<?php echo $res_1['telefone']; ?>" placeholder="Número para contato" type="name" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="position-relative form-group">
-            <label for="email-cliente" class="">Email</label>
-            <input name="txtemail" id="editar-email" value="<?php echo $res_1['email']; ?>" placeholder="E-mail do cliente" type="email" spellcheck="false" class="form-control">
-        </div>
-    </div>
-</div>
-<div class="position-relative form-group">
-    <label for="exampleAddress" class="">Endereço</label>
-    <input name="txtendereco" id="editarAddress" value="<?php echo $res_1['endereco']; ?>" placeholder="Rua Bairro Nº" type="text" spellcheck="false" class="form-control">
-</div>
-<div class="form-row">
-    <div class="col-md-6">
-        <div class="position-relative form-group">
-            <label for="exampleCity" class="">Cidade</label>
-            <input name="txtcidade" id="editarCity" value="<?php echo $res_1['cidade']; ?>" type="text" spellcheck="false" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="position-relative form-group">
-            <label for="exampleState" class="">Estado</label>
-            <input name="txtestado" id="editarState" value="<?php echo $res_1['estado']; ?>" type="text" spellcheck="false" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-2">
-        <div class="position-relative form-group">
-            <label for="exampleZip" class="">CEP</label>
-            <input name="txtcep" id="editar-cep" value="<?php echo $res_1['cep']; ?>" type="text" class="form-control">
-        </div>
-    </div>
-</div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" name="editar-fornecedor" class="btn btn-primary">Atualizar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script> $("#modalEditar").modal("show"); </script> 
-
-<!--Comando para editar os dados UPDATE -->
-<?php
-if(isset($_POST['editar-produto'])){
-  $id_user = $_SESSION['id_user'];
-  $nome = $_POST['txtnome'];
-  $cpf = $_POST['txtcpf'];
-  $endereco = $_POST['txtendereco'];
-  $cidade = $_POST['txtcidade'];
-  $estado = $_POST['txtestado'];
-  $cep = $_POST['txtcep'];
-  $telefone = $_POST['txttelefone'];
-  $email = $_POST['txtemail'];
-
-  if ($res_1['cpf'] != $cpf){
-
-    //VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO
- $query_verificar= "SELECT * FROM tb_fornecedores WHERE cpf = '$cpf' ";
-
- $result_verificar = mysqli_query($conn, $query_verificar);
- $row_verificar = mysqli_num_rows($result_verificar);
-
- if($row_verificar > 0){
-     //Mensagem CPF já Cadastrado!
-     echo "<script language='javascript'> window.alert('CPF já Cadastrado!'); </script>";
-     echo "<script language='javascript'> window.location='fornecedores.php'; </script>";
- exit();
- }
-
-}
-
-//CADASTRO DE CLIENTES
-$query_editar = "UPDATE tb_fornecedores SET nome = '$nome', cpf = '$cpf', endereco = '$endereco', cidade = '$cidade', estado = '$estado', cep = '$cep', telefone = '$telefone', email = '$email' WHERE id_fornecedor = '$id_fornecedor' ";
-
-$result_editar = mysqli_query($conn, $query_editar);
-
-if($result_editar == ''){
-  //Mensagem Ocorreu um erro ao cadastrar!
-  echo "<script language='javascript'> window.alert('Ocorreu um erro ao Editar!'); </script>";
-  echo "<script language='javascript'> window.location='fornecedores.php'; </script>";
-
-} else {
-  //Mensagem de Salvo com Sucesso!
-  echo "<script language='javascript'> window.alert('Editado com Sucesso!'); </script>";
-  echo "<script language='javascript'> window.location='fornecedores.php'; </script>";
-}
-}
-?>
-
-<?php } } ?>

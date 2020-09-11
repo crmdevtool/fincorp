@@ -192,6 +192,12 @@ require_once("header.php");
               </p>
             </a>
             <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="categorias.php" class="nav-link">
+                  <i class="nav-icon"></i>
+                  <p>Categoria de produtos</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="produtos.php" class="nav-link">
                   <i class="nav-icon"></i>

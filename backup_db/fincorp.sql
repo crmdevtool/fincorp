@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Set-2020 às 23:57
+-- Tempo de geração: 12-Set-2020 às 01:35
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.4.6
 
@@ -40,8 +40,7 @@ CREATE TABLE `tb_categorias` (
 
 INSERT INTO `tb_categorias` (`id_categoria`, `id_user`, `nome_categoria`, `dt_registro`) VALUES
 (1, 1, 'acessórios', '0000-00-00'),
-(2, 1, 'Celulares', '0000-00-00'),
-(3, 1, 'Notebooks', '0000-00-00');
+(2, 1, 'Celulares', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -180,6 +179,7 @@ CREATE TABLE `tb_produtos` (
   `id_categoria` int(11) NOT NULL,
   `produto` varchar(32) NOT NULL,
   `desproduto` varchar(64) NOT NULL,
+  `quantidade` int(11) NOT NULL,
   `codigo_barra` varchar(14) NOT NULL,
   `valor` float NOT NULL,
   `imagem` varchar(128) NOT NULL,
