@@ -80,9 +80,8 @@
 </div>
 
 <!-- modal Cadastrar novo Produto -->
-
-<div class="modal fade bd-example-modal-lg-produto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
+  <div class="modal bd-example-modal-lg-produto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -92,30 +91,24 @@
                 </button>
             </div>
             <div class="modal-body">
-            <form class="">
+            <form method="POST" enctype="multipart/form-data" action="" class="">
 <div class="form-row">
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="nome-produto" class="">Nome/Marca do produto</label>
-            <input name="nome" autocomplete="off" id="nome-produto" placeholder="Nome do produto" type="text" class="form-control">
+            <input name="txtproduto" autocomplete="off" id="nome-produto" placeholder="Nome do produto" type="text" class="form-control">
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
             <label for="codigo-produto" class="">Código</label>
-            <input name="codigo_barra" id="codigo-produto" placeholder="Código de barra" type="text" class="form-control">
+            <input name="txtcodigo_barra" id="codigo-produto" placeholder="Código de barra" type="text" class="form-control">
         </div>
     </div>
-</div>
-<div class="position-relative form-group">
-    <label for="desproduto" class="">Descrição</label>
-    <textarea name="desproduto" id="desproduto" placeholder="Descrição do produto" type="text" class="form-control"></textarea>
-</div>
-<div class="form-row">
-<div class="col-md-5">
+    <div class="col-md-6">
         <div class="position-relative form-group">
                   <label for="nome-cliente" class="">Categoria</label>
-                  <select name="txtcliente" class="form-control select2" style="width: 100%;">
+                  <select name="txtcategoria" class="form-control select2" style="width: 100%;">
                     <option selected="selected" disabled>Selecione a categoria do produto...</option>
                     <?php
             $query = "SELECT * FROM tb_categorias where id_user = $_SESSION[id_user] ORDER BY nome_categoria asc";
@@ -131,10 +124,22 @@
                   </select>
         </div>
     </div>
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="nome-produto" class="">Quantidade</label>
+            <input name="txtquantidade" autocomplete="off" id="nome-produto" placeholder="Quantidade do produto..." type="number" class="form-control">
+        </div>
+    </div>
+</div>
+<div class="position-relative form-group">
+    <label for="desproduto" class="">Descrição</label>
+    <textarea name="txtdesproduto" id="desproduto" placeholder="Descrição do produto" type="text" class="form-control"></textarea>
+</div>
+<div class="form-row">
     <div class="col-md-5">
         <div class="position-relative form-group">
                   <label for="nome-cliente" class="">Fornecedor</label>
-                  <select name="txtcliente" class="form-control select2" style="width: 100%;">
+                  <select name="txtfornecedor" class="form-control select2" style="width: 100%;">
                     <option selected="selected" disabled>Selecione o fornecedor do produto...</option>
                     <?php
             $query = "SELECT * FROM tb_fornecedores where id_user = $_SESSION[id_user] ORDER BY nome asc";
@@ -142,7 +147,7 @@
             if(count($result)){
               while($res_1 = mysqli_fetch_array($result)){
                    ?>                                       
-            <option value="<?php echo $res_1['nome']; ?>"><?php echo $res_1['nome']; ?></option> 
+            <option value="<?php echo $res_1['id_fornecedor']; ?>"><?php echo $res_1['nome']; ?></option> 
                          <?php      
                        }
                    }
@@ -153,23 +158,19 @@
     <div class="col-md-2">
         <div class="position-relative form-group">
             <label for="valor" class="">Valor</label>
-            <input name="valor" id="valor" placeholder="R$" type="text" class="form-control">
+            <input name="txtvalor" id="valor" placeholder="R$" type="text" class="form-control">
         </div>
     </div>
 </div>
-<div class="position-relative row form-group">
-<label for="imagem" class="col-sm-5 col-form-label">Imagem do produto</label>
-<div class="col-sm-10">
-    <input name="imagem" id="imagem" type="file" class="form-control-file">
-    <small class="form-text text-muted">Selecione uma foto do produto.
-    </small>
+<div class="position-relative form-group">
+    <label for="fotoperfil" class="">Foto do produto:</label>
+    <input name="img" id="fotoperfil" type="file" class="form-control" required>
 </div>
-</div>
-</form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Cadastrar</button>
+                <button type="submit" class="btn btn-primary" name="cadastrar-produto">Cadastrar</button>
+            </form>
             </div>
         </div>
     </div>

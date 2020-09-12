@@ -380,98 +380,26 @@ require_once("header.php");
 <div class="col-12">
 <div class="card">
 <div class="card-header">
-<h3 class="card-title">Listagem de produtos</h3>
+<h3 class="card-title">Por favor, preencha as informações abaixo.</h3>
 </div>
 <!-- /.card-header -->
 <div class="card-body">
 
-<!--LISTAR TODOS OS PRODUTOS -->
-
-<?php
-
-
-if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
-    $produto = $_GET['txtpesquisar'] . '%';
-    $query = "select * from tb_produtos where id_user = $_SESSION[id_user]  order by produto asc"; 
-}else if(isset($_GET['buttonPesquisarCPF']) and $_GET['txtpesquisarcpf'] != ''){
-    $produto = $_GET['txtpesquisarcpf'];
-    $query = "select * from tb_produtos where cpf = '$produto'  order by produto asc"; 
-}
-
-else{ 
-$query = "select * from tb_produtos join tb_categorias join tb_fornecedores WHERE tb_produtos.id_user = '1' and tb_produtos.id_categoria = tb_categorias.id_categoria order by produto ASC"; 
-}
-
-    $result = mysqli_query($conn, $query);
-    //$dado = mysqli_fetch_array($result);
-    $row = mysqli_num_rows($result);
-
-if($row == ''){
-
-    echo "<h3> Não existem dados cadastrados no banco </h3>";
-
-}else{
-
-?>
-
-<table id="example1" class="table table-bordered table-striped">
-  <thead>
-  <tr>
-    <th>id</th>
-    <th>imagem</th>
-    <th>produto</th>
-    <th>Descrição</th>
-    <th>Quantidade</th>
-    <th>Categoria</th>
-    <th>Valor</th>
-    <th>Data</th>
-    <th>Ação</th>
-  </tr>
-  </thead>
-  <tbody>
-
-  <?php 
-
-    while($res_1 = mysqli_fetch_array($result)){
-        $id_produto = $res_1["id_produto"];
-        $img = $res_1["imagem"];
-        $produto = $res_1["produto"];
-        $desproduto = $res_1["desproduto"];
-        $quantidade = $res_1["quantidade"];
-        $categoria = $res_1["nome_categoria"];
-        $valor = $res_1["valor"];
-        $dt_registro = $res_1["dt_registro"];
-
-        $dt_registro2 = implode('/', array_reverse(explode('-', $dt_registro)));
-
-    ?>
-
-  <tr>
-    <td><?php echo $id_produto; ?></td>
-    <td><?php echo "<img src='../assets/images/produtos/".$img."' class='img-produto' alt='Foto'"; ?></td>
-    <td><?php echo $produto; ?></td>
-    <td><?php echo $desproduto; ?></td>
-    <td><?php echo $quantidade; ?></td>
-    <td><?php echo $categoria; ?></td>
-    <td>R$<?php echo $valor; ?></td>
-    <td><?php echo $dt_registro2; ?></td>
-    <td><div class="widget-content-right">
-    <a href="produtos.php?func=edita&id_produto=<?php echo $id_produto; ?>"><button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
-    data-target=".bd-example-modal-lg-editar"><i class="fa fa-edit"></i>
-    </button></a>
-    <a href="produtos.php?func=deleta&id_produto=<?php echo $id_produto; ?>"><button class="border-0 btn-transition btn btn-outline-danger">
-    <i class="fa fa-trash-alt"></i>
-    </button></a>
-    </div></td>
-  </tr>
-  <?php 
-        }                        
-    ?>
-  </tbody>
-</table>
-<?php 
-        }                        
-    ?>
+            <div class="modal-body">
+            <form method="POST" action="">
+<div class="form-row">
+    <div class="col-md-6">
+        <div class="position-relative form-group">
+            <label for="nome-cliente" class="">Valor em caixa</label>
+            <input name="txtnome" id="editar-nome" placeholder="Por favor, informe o valor em dinheiro que tem no caixa..." type="name" class="form-control">
+        </div>
+    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="cadastrar-categoria" class="btn btn-primary">Abrir caixa</button>
+                </form>
+            </div>
+        </div>
 </div>
 <!-- /.card-body -->
 </div>
@@ -641,11 +569,42 @@ if(@$_GET['func'] == 'deleta'){
       });
 </script>
 
+<!-- modal Lista de categorias -->
+
+<div class="modal fade bd-example-modal-lg-categoria" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-small">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Lista de categorias</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form class="">
+<div class="form-row">
+<div class="col-md-8">
+        <div class="position-relative form-group">
+            <label for="nome-fornecedor" class="">Nova categoria</label>
+            <input name="txtnome" id="cadastar-nome" placeholder="Digite o nome para nova categoria..." spellcheck="false" type="name" class="form-control">
+        </div>
+    </div>
+</form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" name="cadastrar-cliente">Criar categoria</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--EDITAR -->
 <?php
 if(@$_GET['func'] == 'edita'){ 
   $id_produto = $_GET['id_produto'];
-  $query = "select * from tb_produtos join tb_categorias join tb_fornecedores where id_produto = '$id_produto'";
+  $query = "select * from tb_produtos where id_produto = '$id_produto'";
   $result = mysqli_query($conn, $query);
 
   while($res_1 = mysqli_fetch_array($result)){
@@ -661,72 +620,73 @@ if(@$_GET['func'] == 'edita'){
       });
 </script> 
 
-
 <!-- modal Editar -->
 <div id="modalEditar" class="modal fade bd-example-modal-lg-editar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-aria-hidden="true">
+    aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Cadastrar novo produto</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Editar Cadastro do cliente</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-            <form method="POST" enctype="multipart/form-data" action="" class="">
+            <form method="POST" action="">
 <div class="form-row">
     <div class="col-md-6">
         <div class="position-relative form-group">
-            <label for="nome-produto" class="">Nome/Marca do produto</label>
-            <input name="txtproduto" value="<?php echo $res_1['produto']; ?>" autocomplete="off" id="nome-produto" placeholder="Nome do produto" type="text" class="form-control">
+            <label for="nome-cliente" class="">Nome do cliente</label>
+            <input name="txtnome" id="editar-nome" value="<?php echo $res_1['nome']; ?>" placeholder="Nome completo do fornecedor" spellcheck="false" type="name" class="form-control">
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
-            <label for="codigo-produto" class="">Código</label>
-            <input name="txtcodigo_barra" value="<?php echo $res_1['codigo_barra']; ?>" id="codigo-produto" placeholder="Código de barra" type="text" class="form-control">
+            <label for="cpf-cliente" class="">CPF</label>
+            <input name="txtcpf" id="editar-cpf" value="<?php echo $res_1['cpf']; ?>" placeholder="Digite o CPF do cliente..." type="name" class="form-control">
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
-                  <label for="nome-cliente" class="">Categoria</label>
-                  <select name="txtcategoria" class="form-control select2" style="width: 100%;">                
-                  <option selected="selected" value="<?php echo $res_1['id_categoria']; ?>"><?php echo $res_1['nome_categoria']; ?></option> 
-                  </select>
+            <label for="contato-cliente" class="">Telefone</label>
+            <input name="txttelefone" id="editar-telefone" value="<?php echo $res_1['telefone']; ?>" placeholder="Número para contato" type="name" class="form-control">
         </div>
     </div>
     <div class="col-md-6">
         <div class="position-relative form-group">
-            <label for="nome-produto" class="">Quantidade</label>
-            <input name="txtquantidade" value="<?php echo $res_1['quantidade']; ?>" autocomplete="off" id="nome-produto" placeholder="<?php echo $res_1['quantidade']; ?>" type="number" class="form-control">
+            <label for="email-cliente" class="">Email</label>
+            <input name="txtemail" id="editar-email" value="<?php echo $res_1['email']; ?>" placeholder="E-mail do cliente" type="email" spellcheck="false" class="form-control">
         </div>
     </div>
 </div>
 <div class="position-relative form-group">
-    <label for="desproduto" class="">Descrição</label>
-    <textarea name="txtdesproduto" id="desproduto" placeholder="Descrição do produto" type="text" class="form-control"><?php echo $res_1['desproduto']; ?></textarea>
+    <label for="exampleAddress" class="">Endereço</label>
+    <input name="txtendereco" id="editarAddress" value="<?php echo $res_1['endereco']; ?>" placeholder="Rua Bairro Nº" type="text" spellcheck="false" class="form-control">
 </div>
 <div class="form-row">
-    <div class="col-md-5">
+    <div class="col-md-6">
         <div class="position-relative form-group">
-                  <label for="nome-cliente" class="">Fornecedor</label>
-                  <select name="txtfornecedor" value="<?php echo $res_1['nome']; ?>" class="form-control select2" style="width: 100%;">
-                    <option selected="selected" value="<?php echo $res_1['id_fornecedor']; ?>"><?php echo $res_1['nome']; ?></option> 
-                  </select>
+            <label for="exampleCity" class="">Cidade</label>
+            <input name="txtcidade" id="editarCity" value="<?php echo $res_1['cidade']; ?>" type="text" spellcheck="false" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="position-relative form-group">
+            <label for="exampleState" class="">Estado</label>
+            <input name="txtestado" id="editarState" value="<?php echo $res_1['estado']; ?>" type="text" spellcheck="false" class="form-control">
         </div>
     </div>
     <div class="col-md-2">
         <div class="position-relative form-group">
-            <label for="valor" class="">Valor R$</label>
-            <input name="txtvalor" value="<?php echo $res_1['valor']; ?>" id="valor" placeholder="R$" type="text" class="form-control">
+            <label for="exampleZip" class="">CEP</label>
+            <input name="txtcep" id="editar-cep" value="<?php echo $res_1['cep']; ?>" type="text" class="form-control">
         </div>
     </div>
 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" name="editar-produto" class="btn btn-primary">Atualizar</button>
+                <button type="submit" name="editar-fornecedor" class="btn btn-primary">Atualizar</button>
                 </form>
             </div>
         </div>
@@ -739,28 +699,46 @@ aria-hidden="true">
 <?php
 if(isset($_POST['editar-produto'])){
   $id_user = $_SESSION['id_user'];
-  $produto = $_POST['txtproduto'];
-  $codigo_barra = $_POST['txtcodigo_barra'];
-  $id_categoria = $_POST['txtcategoria'];
-  $quantidade = $_POST['txtquantidade'];
-  $desproduto = $_POST['txtdesproduto'];
-  $id_fornecedor = $_POST['txtfornecedor'];
-  $valor = $_POST['txtvalor'];
+  $nome = $_POST['txtnome'];
+  $cpf = $_POST['txtcpf'];
+  $endereco = $_POST['txtendereco'];
+  $cidade = $_POST['txtcidade'];
+  $estado = $_POST['txtestado'];
+  $cep = $_POST['txtcep'];
+  $telefone = $_POST['txttelefone'];
+  $email = $_POST['txtemail'];
+
+  if ($res_1['cpf'] != $cpf){
+
+    //VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO
+ $query_verificar= "SELECT * FROM tb_fornecedores WHERE cpf = '$cpf' ";
+
+ $result_verificar = mysqli_query($conn, $query_verificar);
+ $row_verificar = mysqli_num_rows($result_verificar);
+
+ if($row_verificar > 0){
+     //Mensagem CPF já Cadastrado!
+     echo "<script language='javascript'> window.alert('CPF já Cadastrado!'); </script>";
+     echo "<script language='javascript'> window.location='fornecedores.php'; </script>";
+ exit();
+ }
+
+}
 
 //CADASTRO DE CLIENTES
-$query_editar = "UPDATE tb_produtos SET produto = '$produto', codigo_barra = '$codigo_barra', id_categoria = '$id_categoria', quantidade = '$quantidade', desproduto = '$desproduto', id_fornecedor = '$id_fornecedor', valor = '$valor', dt_registro = curDate() WHERE id_produto = '$id_produto' ";
+$query_editar = "UPDATE tb_fornecedores SET nome = '$nome', cpf = '$cpf', endereco = '$endereco', cidade = '$cidade', estado = '$estado', cep = '$cep', telefone = '$telefone', email = '$email' WHERE id_fornecedor = '$id_fornecedor' ";
 
 $result_editar = mysqli_query($conn, $query_editar);
 
 if($result_editar == ''){
   //Mensagem Ocorreu um erro ao cadastrar!
   echo "<script language='javascript'> window.alert('Ocorreu um erro ao Editar!'); </script>";
-  echo "<script language='javascript'> window.location='produtos.php'; </script>";
+  echo "<script language='javascript'> window.location='fornecedores.php'; </script>";
 
 } else {
   //Mensagem de Salvo com Sucesso!
   echo "<script language='javascript'> window.alert('Editado com Sucesso!'); </script>";
-  echo "<script language='javascript'> window.location='produtos.php'; </script>";
+  echo "<script language='javascript'> window.location='fornecedores.php'; </script>";
 }
 }
 ?>
