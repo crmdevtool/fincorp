@@ -360,13 +360,13 @@ require_once("header.php");
         <div class="row mb-2">
           <div class="col-sm-6">
           <a href="#" class="btn btn-primary" data-toggle="modal"
-          data-target=".bd-example-modal-lg-categoria"><i class="material-icons">&#xE147;</i> <span>Criar categoria</span></a>
+          data-target=".bd-example-modal-lg-categoria"><i class="material-icons">&#xE147;</i> <span>Criar nova categoria</span></a>
           <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Exporta dados para o Excel</span></a>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-              <li class="breadcrumb-item active">produtos</li>
+              <li class="breadcrumb-item active">categorias</li>
             </ol>
           </div>
         </div>
@@ -380,26 +380,26 @@ require_once("header.php");
 <div class="col-12">
 <div class="card">
 <div class="card-header">
-<h3 class="card-title">Listagem de produtos</h3>
+<h3 class="card-title">Listagem de categorias</h3>
 </div>
 <!-- /.card-header -->
 <div class="card-body">
 
-<!--LISTAR TODAS AS CATEGORIAS -->
+<!--LISTAR TODOS OS CLIENTES -->
 
 <?php
 
 
 if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != ''){
-    $produto = $_GET['txtpesquisar'] . '%';
-    $query = "select * from tb_produtos where id_user = $_SESSION[id_user]  order by produto asc"; 
+  $produto = $_GET['txtpesquisar'] . '%';
+  $query = "select * from tb_produtos where id_user = $_SESSION[id_user]  order by produto asc"; 
 }else if(isset($_GET['buttonPesquisarCPF']) and $_GET['txtpesquisarcpf'] != ''){
-    $produto = $_GET['txtpesquisarcpf'];
-    $query = "select * from tb_produtos where cpf = '$produto'  order by produto asc"; 
+  $produto = $_GET['txtpesquisarcpf'];
+  $query = "select * from tb_produtos where cpf = '$produto'  order by produto asc"; 
 }
 
 else{ 
-$query = "select * from tb_categorias WHERE id_user = '$_SESSION[id_user]' order by nome_categoria ASC"; 
+  $query = "select * from tb_categorias WHERE id_user = '$_SESSION[id_user]' order by nome_categoria ASC";
 }
 
     $result = mysqli_query($conn, $query);
@@ -427,21 +427,24 @@ if($row == ''){
 
   <?php 
 
-    while($res_1 = mysqli_fetch_array($result)){
-        $id_categoria = $res_1["id_categoria"];
-        $categoria = $res_1["nome_categoria"];
-        $data_registro = $res_1["dt_registro"];
+while($res_1 = mysqli_fetch_array($result)){
+  $id_categoria = $res_1["id_categoria"];
+  $categoria = $res_1["nome_categoria"];
+  $data_registro = $res_1["dt_registro"];
 
-        $data_registro2 = implode('/', array_reverse(explode('-', $data_registro)));
+  $data_registro2 = implode('/', array_reverse(explode('-', $data_registro)));
 
     ?>
 
   <tr>
-    <td><?php echo $id_categoria; ?></td>
+  <td><?php echo $id_categoria; ?></td>
     <td><?php echo $categoria; ?></td>
     <td><?php echo $data_registro2; ?></td>
     <td><div class="widget-content-right">
-    <a href="categorias.php?func=deletacategoria&id_categoria=<?php echo $id_categoria; ?>"><button class="border-0 btn-transition btn btn-outline-danger">
+    <a href="categorias.php?func=edita&id_categoria=<?php echo $id_categoria; ?>"><button class="border-0 btn-transition btn btn-outline-success" data-toggle="modal"
+    data-target=".bd-example-modal-lg-editar"><i class="fa fa-edit"></i>
+    </button></a>
+    <a href="categorias.php?func=deleta&id_categoria=<?php echo $id_categoria; ?>"><button class="border-0 btn-transition btn btn-outline-danger">
     <i class="fa fa-trash-alt"></i>
     </button></a>
     </div></td>
@@ -484,8 +487,6 @@ require_once("footer.php");
 <script src="../assets/plugins/jquery/jquery.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Select2 -->
-<script src="../assets/plugins/select2/js/select2.full.min.js"></script>
 <!-- DataTables -->
 <script src="../assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -520,78 +521,6 @@ require_once("footer.php");
       "responsive": true,
     });
   });
-
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
-
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-      theme: 'bootstrap4'
-    })
-
-    //Datemask dd/mm/yyyy
-    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-    //Datemask2 mm/dd/yyyy
-    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-    //Money Euro
-    $('[data-mask]').inputmask()
-
-    //Date range picker
-    $('#reservationdate').datetimepicker({
-        format: 'L'
-    });
-    //Date range picker
-    $('#reservation').daterangepicker()
-    //Date range picker with time picker
-    $('#reservationtime').daterangepicker({
-      timePicker: true,
-      timePickerIncrement: 30,
-      locale: {
-        format: 'MM/DD/YYYY hh:mm A'
-      }
-    })
-    //Date range as a button
-    $('#daterange-btn').daterangepicker(
-      {
-        ranges   : {
-          'Today'       : [moment(), moment()],
-          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        startDate: moment().subtract(29, 'days'),
-        endDate  : moment()
-      },
-      function (start, end) {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-      }
-    )
-
-    //Timepicker
-    $('#timepicker').datetimepicker({
-      format: 'LT'
-    })
-    
-    //Bootstrap Duallistbox
-    $('.duallistbox').bootstrapDualListbox()
-
-    //Colorpicker
-    $('.my-colorpicker1').colorpicker()
-    //color picker with addon
-    $('.my-colorpicker2').colorpicker()
-
-    $('.my-colorpicker2').on('colorpickerChange', function(event) {
-      $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
-    });
-
-    $("input[data-bootstrap-switch]").each(function(){
-      $(this).bootstrapSwitch('state', $(this).prop('checked'));
-    });
-
-  })
 </script>
 <!-- MASK -->
 <script type="text/javascript" src="../assets/js/jquery.mask.min.js"></script>
@@ -607,7 +536,7 @@ require_once("footer.php");
 </html>
 <!--EXCLUIR -->
 <?php
-if(@$_GET['func'] == 'deletacategoria'){
+if(@$_GET['func'] == 'deleta'){
   $id_categoria = $_GET['id_categoria'];
   $query = "DELETE FROM tb_categorias where id_categoria = '$id_categoria'";
   mysqli_query($conn, $query);
@@ -618,39 +547,135 @@ if(@$_GET['func'] == 'deletacategoria'){
   <!--MASCARAS -->
   <script type="text/javascript">
     $(document).ready(function(){
-      $('#cadastar-telefone').mask('(00) 00000-0000');
-      $('#cadastar-cpf').mask('000.000.000-00');
-      $('#cadastar-cep').mask('00000-000');
+      $('#editar-telefone').mask('(00) 00000-0000');
+      $('#editar-cpf').mask('000.000.000-00');
+      $('#editar-cep').mask('00000-000');
       });
-</script>
+</script> 
 
-<!-- modal Lista de categorias -->
+<!-- modal cadastrar categorias -->
 
 <div class="modal fade bd-example-modal-lg-categoria" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
+aria-hidden="true">
     <div class="modal-dialog modal-small">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Lista de categorias</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Editar Cadastro do cliente</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-            <form class="">
+            <form method="POST" action="">
 <div class="form-row">
-<div class="col-md-8">
+    <div class="col-md-8">
         <div class="position-relative form-group">
-            <label for="nome-fornecedor" class="">Nova categoria</label>
-            <input name="txtnome" id="cadastar-nome" placeholder="Digite o nome para nova categoria..." spellcheck="false" type="name" class="form-control">
+            <label for="nome-cliente" class="">Categoria</label>
+            <input name="txtnome" id="editar-nome" placeholder="Nome completo do cliente" type="name" class="form-control">
         </div>
     </div>
-</form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" name="cadastrar-cliente">Criar categoria</button>
+                <button type="submit" name="cadastrar-categoria" class="btn btn-primary">Cadastrar</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+<!--EDITAR -->
+<?php
+if(@$_GET['func'] == 'edita'){ 
+  $id_categoria = $_GET['id_categoria'];
+  $query = "select * from tb_categorias where id_categoria = '$id_categoria'";
+  $result = mysqli_query($conn, $query);
+
+  while($res_1 = mysqli_fetch_array($result)){
+
+?>
+
+<!-- modal Editar -->
+<div id="modalEditar" class="modal fade bd-example-modal-lg-editar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-small">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Editar Cadastro do cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form method="POST" action="">
+<div class="form-row">
+    <div class="col-md-8">
+        <div class="position-relative form-group">
+            <label for="nome-cliente" class="">Categoria</label>
+            <input name="txtnome" id="editar-nome" value="<?php echo $res_1['nome_categoria']; ?>" placeholder="Nome completo do cliente" type="name" class="form-control">
+        </div>
+    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" name="editar-categoria" class="btn btn-primary">Atualizar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script> $("#modalEditar").modal("show"); </script> 
+
+<!--Comando para editar os dados UPDATE -->
+<?php
+if(isset($_POST['editar-categoria'])){
+  $id_user = $_SESSION['id_user'];
+  $nome_categoria = $_POST['txtnome'];
+
+//CADASTRO DE CLIENTES
+$query_editar = "UPDATE tb_categorias SET nome_categoria = '$nome_categoria', dt_registro = curDate() WHERE id_categoria = '$id_categoria' ";
+
+$result_editar = mysqli_query($conn, $query_editar);
+
+if($result_editar == ''){
+  //Mensagem Ocorreu um erro ao cadastrar!
+  echo "<script language='javascript'> window.alert('Ocorreu um erro ao Editar!'); </script>";
+  echo "<script language='javascript'> window.location='categorias.php'; </script>";
+
+} else {
+  //Mensagem de Salvo com Sucesso!
+  echo "<script language='javascript'> window.alert('Editado com Sucesso!'); </script>";
+  echo "<script language='javascript'> window.location='categorias.php'; </script>";
+}
+}
+?>
+
+<?php } } ?>
+
+<?php
+
+if(isset($_POST['cadastrar-categoria'])){
+  $id_user = $_SESSION['id_user'];
+  $nome_categoria = $_POST['txtnome'];
+
+//ABRINDO NOVO ORÇAMENTO
+$query = "INSERT into tb_categorias (id_user, nome_categoria, dt_registro) VALUES ('$id_user', '$nome_categoria', curDate() )";
+
+$result = mysqli_query($conn, $query);
+
+if($result == ''){
+  //Mensagem Ocorreu um erro ao cadastrar!
+  echo "<script language='javascript'> window.alert('Ocorreu um erro ao Cadastrar!'); </script>";
+  echo "<script language='javascript'> window.location='categorias.php'; </script>";
+
+} else {
+  //Mensagem de Salvo com Sucesso!
+  echo "<script language='javascript'></script>";
+  echo "<script language='javascript'> window.location='categorias.php'; </script>";
+}
+
+}
+
+?>
+
