@@ -184,7 +184,7 @@ require_once("header.php");
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-shopping-cart"></i>
               <p>
                 Produtos-OS
@@ -199,7 +199,7 @@ require_once("header.php");
                 </a>
               </li>
               <li class="nav-item">
-                <a href="produtos.php" class="nav-link active">
+                <a href="produtos.php" class="nav-link">
                   <i class="nav-icon"></i>
                   <p>Produtos</p>
                 </a>
@@ -295,7 +295,7 @@ require_once("header.php");
           </li>
           <li class="nav-header">CONTROLE DE CAIXA</li>
           <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.0" class="nav-link">
+            <a href="caixa.php" class="nav-link active">
               <i class="nav-icon fas fa-cash-register"></i>
               <p>Caixa</p>
             </a>
@@ -359,9 +359,7 @@ require_once("header.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-          <a href="#" class="btn btn-success" data-toggle="modal"
-          data-target=".bd-example-modal-lg-produto"><i class="material-icons">&#xE147;</i> <span>Add Novo Produto</span></a>
-          <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Exporta dados para o Excel</span></a>
+          <i class="material-icons" disabled>&#xE24D;</i> <span>CAIXA DE VENDAS</span>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -375,28 +373,212 @@ require_once("header.php");
 
 <!-- Main content -->
 <section class="content">
-<div class="container-fluid">
-<div class="row">
-<div class="col-12">
-<div class="card">
-<div class="card-header">
-<h3 class="card-title">Caixa</h3>
-</div>
-<!-- /.card-header -->
-<div class="card-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Caixa</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+              
+              <form id="frmVendasProdutos">
+			<label>Selecionar Cliente</label>
+			<select name="txtcliente" class="form-control select2" style="width: 100%;">
+                    <option selected="selected" disabled>Selecione o nome do cliente...</option>
+                    <?php
+            $query = "SELECT * FROM tb_clientes where id_user = $_SESSION[id_user] ORDER BY nome asc";
+            $result = mysqli_query($conn, $query);
+            if(count($result)){
+              while($res_1 = mysqli_fetch_array($result)){
+                   ?>                                       
+            <option value="<?php echo $res_1['id_cliente']; ?>"><?php echo $res_1['nome']; ?></option> 
+                         <?php      
+                       }
+                   }
+                  ?>
+                  </select>
+			<label>Produto</label>
+			<select name="txtcliente" id="tags" class="form-control select2" style="width: 100%;">
+                    <option selected="selected" disabled>Selecione o produto...</option>
+                    <?php
+            $query = "SELECT * FROM tb_produtos where id_user = $_SESSION[id_user] and id_produto = id_produto ORDER BY produto asc";
+            $result = mysqli_query($conn, $query);
+            if(count($result)){
+              while($res_1 = mysqli_fetch_array($result)){
+                   ?>                                       
+            <option value="<?php echo $res_1['id_produto']; ?>"><?php echo $res_1['produto']; ?></option> 
+                         <?php      
+                       }
+                   }
+                  ?>
+                  </select>
+			<label>Descrição</label>
+			<textarea readonly="" disabled id="descricaoV" name="descricaoV" class="form-control input-sm"></textarea>
+			<label>Quantidade Estoque</label>
+			<input readonly="" disabled  type="text" class="form-control input-sm" id="quantidadeV" name="quantidadeV">
+			<label>Preço</label>
+			<input readonly="" disabled type="text" class="form-control input-sm" id="precoV" name="precoV">
+			<label>Quantidade Vendida</label>
+			<input type="number" class="form-control input-sm" id="quantV" name="quantV">
+			<p></p>
+			<span class="btn btn-primary" id="btnAddVenda">Adicionar</span>
+			<span class="btn btn-danger" id="btnLimparVendas">Limpar Venda</span>
+    </form>
 
-</div>
-<!-- /.card-body -->
-</div>
-<!-- /.card -->
-</div>
-<!-- /.col -->
-</div>
-<!-- /.row -->
-</div>
-<!-- /.container-fluid -->
-</section>
-<!-- /.content -->
+              </div>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Striped Full Width Table</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Task</th>
+                      <th>Progress</th>
+                      <th style="width: 40px">Label</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1.</td>
+                      <td>Update software</td>
+                      <td>
+                        <div class="progress progress-xs">
+                          <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-success">R$ 0,00</span></td>
+                    </tr>
+                    <tr>
+                      <td>2.</td>
+                      <td>Clean database</td>
+                      <td>
+                        <div class="progress progress-xs">
+                          <div class="progress-bar bg-success" style="width: 70%"></div>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-success">R$ 0,00</span></td>
+                    </tr>
+                    <tr>
+                      <td>3.</td>
+                      <td>Cron job running</td>
+                      <td>
+                        <div class="progress progress-xs progress-striped active">
+                          <div class="progress-bar bg-primary" style="width: 30%"></div>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-success">R$ 0,00</span></td>
+                    </tr>
+                    <tr>
+                      <td>4.</td>
+                      <td>Fix and squish bugs</td>
+                      <td>
+                        <div class="progress progress-xs progress-striped active">
+                          <div class="progress-bar bg-success" style="width: 90%"></div>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-success">R$ 0,00</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0 float-right">
+                  Valor total: R$ 0,00
+                </ul>
+              </div>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Histórico de venda</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Cliente</th>
+                      <th>Produto</th>
+                      <th>Valor</th>
+                      <th>Registro</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>183</td>
+                      <td>John Doe</td>
+                      <td>Roteador</td>
+                      <td>R$83,00</td>
+                      <td><span class="tag tag-success">11-7-2014</span></td>
+                      <td>Venda realizada com sucesso.</td>
+                    </tr>
+                    <tr>
+                      <td>219</td>
+                      <td>Alexander Pierce</td>
+                      <td>Pendriver</td>
+                      <td>R$34,00</td>
+                      <td><span class="tag tag-warning">11-7-2014</span></td>
+                      <td>Venda realizada com sucesso.</td>
+                    </tr>
+                    <tr>
+                      <td>657</td>
+                      <td>Bob Doe</td>
+                      <td>Capa celular</td>
+                      <td>R$20,00</td>
+                      <td><span class="tag tag-primary">11-7-2014</span></td>
+                      <td>Venda realizada com sucesso.</td>
+                    </tr>
+                    <tr>
+                      <td>175</td>
+                      <td>Mike Doe</td>
+                      <td>11-7-2014</td>
+                      <td>11-7-2014</td>
+                      <td><span class="tag tag-danger">Denied</span></td>
+                      <td>Venda realizada com sucesso.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 <?php
@@ -553,179 +735,3 @@ if(@$_GET['func'] == 'deleta'){
       $('#cadastar-cep').mask('00000-000');
       });
 </script>
-
-<!-- modal Lista de categorias -->
-
-<div class="modal fade bd-example-modal-lg-categoria" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-small">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Lista de categorias</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-            <form class="">
-<div class="form-row">
-<div class="col-md-8">
-        <div class="position-relative form-group">
-            <label for="nome-fornecedor" class="">Nova categoria</label>
-            <input name="txtnome" id="cadastar-nome" placeholder="Digite o nome para nova categoria..." spellcheck="false" type="name" class="form-control">
-        </div>
-    </div>
-</form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" name="cadastrar-cliente">Criar categoria</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--EDITAR -->
-<?php
-if(@$_GET['func'] == 'edita'){ 
-  $id_produto = $_GET['id_produto'];
-  $query = "select * from tb_produtos where id_produto = '$id_produto'";
-  $result = mysqli_query($conn, $query);
-
-  while($res_1 = mysqli_fetch_array($result)){
-
-?>
-
-<!--MASCARAS -->
-<script type="text/javascript">
-    $(document).ready(function(){
-      $('#editar-telefone').mask('(00) 00000-0000');
-      $('#editar-cpf').mask('000.000.000-00');
-      $('#editar-cep').mask('00000-000');
-      });
-</script> 
-
-<!-- modal Editar -->
-<div id="modalEditar" class="modal fade bd-example-modal-lg-editar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Editar Cadastro do cliente</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-            <form method="POST" action="">
-<div class="form-row">
-    <div class="col-md-6">
-        <div class="position-relative form-group">
-            <label for="nome-cliente" class="">Nome do cliente</label>
-            <input name="txtnome" id="editar-nome" value="<?php echo $res_1['nome']; ?>" placeholder="Nome completo do fornecedor" spellcheck="false" type="name" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="position-relative form-group">
-            <label for="cpf-cliente" class="">CPF</label>
-            <input name="txtcpf" id="editar-cpf" value="<?php echo $res_1['cpf']; ?>" placeholder="Digite o CPF do cliente..." type="name" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="position-relative form-group">
-            <label for="contato-cliente" class="">Telefone</label>
-            <input name="txttelefone" id="editar-telefone" value="<?php echo $res_1['telefone']; ?>" placeholder="Número para contato" type="name" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="position-relative form-group">
-            <label for="email-cliente" class="">Email</label>
-            <input name="txtemail" id="editar-email" value="<?php echo $res_1['email']; ?>" placeholder="E-mail do cliente" type="email" spellcheck="false" class="form-control">
-        </div>
-    </div>
-</div>
-<div class="position-relative form-group">
-    <label for="exampleAddress" class="">Endereço</label>
-    <input name="txtendereco" id="editarAddress" value="<?php echo $res_1['endereco']; ?>" placeholder="Rua Bairro Nº" type="text" spellcheck="false" class="form-control">
-</div>
-<div class="form-row">
-    <div class="col-md-6">
-        <div class="position-relative form-group">
-            <label for="exampleCity" class="">Cidade</label>
-            <input name="txtcidade" id="editarCity" value="<?php echo $res_1['cidade']; ?>" type="text" spellcheck="false" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="position-relative form-group">
-            <label for="exampleState" class="">Estado</label>
-            <input name="txtestado" id="editarState" value="<?php echo $res_1['estado']; ?>" type="text" spellcheck="false" class="form-control">
-        </div>
-    </div>
-    <div class="col-md-2">
-        <div class="position-relative form-group">
-            <label for="exampleZip" class="">CEP</label>
-            <input name="txtcep" id="editar-cep" value="<?php echo $res_1['cep']; ?>" type="text" class="form-control">
-        </div>
-    </div>
-</div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" name="editar-fornecedor" class="btn btn-primary">Atualizar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script> $("#modalEditar").modal("show"); </script> 
-
-<!--Comando para editar os dados UPDATE -->
-<?php
-if(isset($_POST['editar-produto'])){
-  $id_user = $_SESSION['id_user'];
-  $nome = $_POST['txtnome'];
-  $cpf = $_POST['txtcpf'];
-  $endereco = $_POST['txtendereco'];
-  $cidade = $_POST['txtcidade'];
-  $estado = $_POST['txtestado'];
-  $cep = $_POST['txtcep'];
-  $telefone = $_POST['txttelefone'];
-  $email = $_POST['txtemail'];
-
-  if ($res_1['cpf'] != $cpf){
-
-    //VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO
- $query_verificar= "SELECT * FROM tb_fornecedores WHERE cpf = '$cpf' ";
-
- $result_verificar = mysqli_query($conn, $query_verificar);
- $row_verificar = mysqli_num_rows($result_verificar);
-
- if($row_verificar > 0){
-     //Mensagem CPF já Cadastrado!
-     echo "<script language='javascript'> window.alert('CPF já Cadastrado!'); </script>";
-     echo "<script language='javascript'> window.location='fornecedores.php'; </script>";
- exit();
- }
-
-}
-
-//CADASTRO DE CLIENTES
-$query_editar = "UPDATE tb_fornecedores SET nome = '$nome', cpf = '$cpf', endereco = '$endereco', cidade = '$cidade', estado = '$estado', cep = '$cep', telefone = '$telefone', email = '$email' WHERE id_fornecedor = '$id_fornecedor' ";
-
-$result_editar = mysqli_query($conn, $query_editar);
-
-if($result_editar == ''){
-  //Mensagem Ocorreu um erro ao cadastrar!
-  echo "<script language='javascript'> window.alert('Ocorreu um erro ao Editar!'); </script>";
-  echo "<script language='javascript'> window.location='fornecedores.php'; </script>";
-
-} else {
-  //Mensagem de Salvo com Sucesso!
-  echo "<script language='javascript'> window.alert('Editado com Sucesso!'); </script>";
-  echo "<script language='javascript'> window.location='fornecedores.php'; </script>";
-}
-}
-?>
-
-<?php } } ?>

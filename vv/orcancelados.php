@@ -295,7 +295,7 @@ require_once("header.php");
           </li>
           <li class="nav-header">CONTROLE DE CAIXA</li>
           <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.0" class="nav-link">
+            <a href="caixa.php" class="nav-link">
               <i class="nav-icon fas fa-cash-register"></i>
               <p>Caixa</p>
             </a>
