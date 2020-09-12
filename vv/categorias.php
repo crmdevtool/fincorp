@@ -571,7 +571,7 @@ aria-hidden="true">
     <div class="col-md-8">
         <div class="position-relative form-group">
             <label for="nome-cliente" class="">Categoria</label>
-            <input name="txtnome" id="editar-nome" placeholder="Nome completo do cliente" type="name" class="form-control">
+            <input name="txtnome" id="editar-nome" placeholder="Nome da nova categoria..." type="name" class="form-control">
         </div>
     </div>
             </div>
