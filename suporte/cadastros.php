@@ -530,6 +530,8 @@ if(@$_GET['func'] == 'deleta'){
   $id_user = $_GET['id_user'];
   $query = "DELETE FROM usuarios where id_user = '$id_user'";
   mysqli_query($conn, $query);
+  $url= '../assets/images/avatars/'.$foto;
+  unlink($url);
   echo "<script language='javascript'> window.location='cadastros.php'; </script>";
 }
 ?>

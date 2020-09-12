@@ -629,6 +629,8 @@ if(@$_GET['func'] == 'deleta'){
   $id_produto = $_GET['id_produto'];
   $query = "DELETE FROM tb_produtos where id_produto = '$id_produto'";
   mysqli_query($conn, $query);
+  $url= '../assets/images/produtos/'.$img;
+  unlink($url);
   echo "<script language='javascript'> window.location='produtos.php'; </script>";
 }
 ?>
