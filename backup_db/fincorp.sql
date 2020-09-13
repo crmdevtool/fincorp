@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12-Set-2020 às 01:35
+-- Tempo de geração: 13-Set-2020 às 17:59
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.4.6
 
@@ -39,8 +39,8 @@ CREATE TABLE `tb_categorias` (
 --
 
 INSERT INTO `tb_categorias` (`id_categoria`, `id_user`, `nome_categoria`, `dt_registro`) VALUES
-(1, 1, 'acessórios', '0000-00-00'),
-(2, 1, 'Celulares', '0000-00-00');
+(1, 1, 'acessórios', '2020-09-11'),
+(2, 1, 'Celulares', '2020-09-11');
 
 -- --------------------------------------------------------
 
@@ -177,14 +177,22 @@ CREATE TABLE `tb_produtos` (
   `id_produto` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_categoria` int(11) NOT NULL,
+  `id_fornecedor` int(11) NOT NULL,
   `produto` varchar(32) NOT NULL,
   `desproduto` varchar(64) NOT NULL,
   `quantidade` int(11) NOT NULL,
-  `codigo_barra` varchar(14) NOT NULL,
-  `valor` float NOT NULL,
+  `codigo_barra` varchar(14) DEFAULT NULL,
+  `valor` decimal(10,2) NOT NULL,
   `imagem` varchar(128) NOT NULL,
   `dt_registro` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `tb_produtos`
+--
+
+INSERT INTO `tb_produtos` (`id_produto`, `id_user`, `id_categoria`, `id_fornecedor`, `produto`, `desproduto`, `quantidade`, `codigo_barra`, `valor`, `imagem`, `dt_registro`) VALUES
+(6, 1, 1, 3, 'Smartwatch', 'Relógio', 6, '45564a4sd848', '200.00', '748305914smart.png', '2020-09-12');
 
 -- --------------------------------------------------------
 
@@ -282,7 +290,8 @@ ALTER TABLE `tb_os`
 ALTER TABLE `tb_produtos`
   ADD PRIMARY KEY (`id_produto`),
   ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_categoria` (`id_categoria`);
+  ADD KEY `id_categoria` (`id_categoria`),
+  ADD KEY `id_fornecedor` (`id_fornecedor`);
 
 --
 -- Índices para tabela `tb_vendas`
@@ -308,13 +317,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `tb_categorias`
 --
 ALTER TABLE `tb_categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `tb_clientes`
 --
 ALTER TABLE `tb_clientes`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de tabela `tb_fornecedores`
@@ -338,7 +347,7 @@ ALTER TABLE `tb_os`
 -- AUTO_INCREMENT de tabela `tb_produtos`
 --
 ALTER TABLE `tb_produtos`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `tb_vendas`

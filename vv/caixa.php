@@ -435,68 +435,73 @@ require_once("header.php");
           <div class="col-md-6">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Striped Full Width Table</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th style="width: 10px">#</th>
-                      <th>Task</th>
-                      <th>Progress</th>
-                      <th style="width: 40px">Label</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1.</td>
-                      <td>Update software</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-success">R$ 0,00</span></td>
-                    </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td>Clean database</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar bg-success" style="width: 70%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-success">R$ 0,00</span></td>
-                    </tr>
-                    <tr>
-                      <td>3.</td>
-                      <td>Cron job running</td>
-                      <td>
-                        <div class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-primary" style="width: 30%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-success">R$ 0,00</span></td>
-                    </tr>
-                    <tr>
-                      <td>4.</td>
-                      <td>Fix and squish bugs</td>
-                      <td>
-                        <div class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-success" style="width: 90%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-success">R$ 0,00</span></td>
-                    </tr>
-                  </tbody>
-                </table>
+              <h4>Criar Venda</h4>
+ <h4><strong><div id="nomeclienteVenda"></div></strong></h4>
+ <table class="table table-bordered table-hover table-condensed" style="text-align: center;">
+ 	<tr>
+ 		<td>Nome</td>
+ 		<td>Descrição</td>
+ 		<td>Preço</td>
+ 		<td>Quantidade</td>
+ 		<td>Remover</td>
+ 	</tr>
+ 	<?php 
+ 	$total=0;//total da venda em dinheiro
+ 	$cliente=""; //nome cliente
+ 		if(isset($_SESSION['tabelaComprasTemp'])):
+ 			$i=0;
+ 			foreach (@$_SESSION['tabelaComprasTemp'] as $key) {
+
+ 				$d=explode("||", @$key);
+ 	 ?>
+
+ 	<tr>
+ 		<td><?php echo $d[1] ?></td>
+ 		<td><?php echo $d[2] ?></td>
+ 		<td><?php echo "R$ ".$d[3].",00" ?></td>
+ 		<td><?php echo $d[6]; ?></td>
+ 		<td>
+
+ 			
+
+ 			<span class="btn btn-danger btn-xs" onclick="fecharP('<?php echo $i; ?>'), editarP('<?php echo $d[0]; ?>, <?php echo $d[5]; ?>')">
+ 				<span class="glyphicon glyphicon-remove"></span>
+ 			</span>
+ 		</td>
+ 	</tr>
+
+ <?php 
+ 		$calc = $d[3] * $d[6];
+ 		$total=$total + $calc;
+ 		$i++;
+ 		$cliente=$d[4];
+ 	}
+ 	endif; 
+ ?>
+
+
+ </table>
+
+
+ <script type="text/javascript">
+ 	$(document).ready(function(){
+ 		nome="<?php echo @$cliente ?>";
+ 		$('#nomeclienteVenda').text("Nome de cliente: " + nome);
+ 	});
+ </script>
               </div>
               <!-- /.card-body -->
               <!-- /.card-body -->
               <div class="card-footer clearfix">
                 <ul class="pagination pagination-sm m-0 float-right">
-                  Valor total: R$ 0,00
+                <caption>
+ 		            <span class="btn btn-success" onclick="criarVenda()"> Criar Venda
+ 			          <span class="glyphicon glyphicon-usd"></span>
+ 		            </span>
+ 	              </caption>
+                <tr>
+ 		            <td>Total da venda: <?php echo "R$ ".$total.",00"; ?></td>
+ 	              </tr>
                 </ul>
               </div>
             </div>
